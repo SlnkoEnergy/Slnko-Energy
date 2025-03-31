@@ -9,8 +9,8 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Navbar />
-        <Footer />
+        {/* <Navbar />
+        <Footer /> */}
       </BrowserRouter>
     </ThemeProvider>
   );
