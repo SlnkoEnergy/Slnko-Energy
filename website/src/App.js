@@ -9,7 +9,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        {/* <Navbar /> */}
+        <Navbar />
         <Footer />
       </BrowserRouter>
     </ThemeProvider>
