@@ -4,7 +4,7 @@ import "../CSS/file.css"; // Ensure this import is at the top
 
 const Page2 = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [isVisible, setIsVisible] = useState(false);
 
   // Trigger animation when component mounts
@@ -102,7 +102,7 @@ const Page2 = () => {
             <Typography
               variant="h1"
               fontWeight="900"
-              fontSize={{ md: "10rem", lg: "14rem" }}
+              fontSize={{ xs: "6rem", sm: "6em", md: "10rem", lg: "14rem" }}
               color="#1d3f79"
               textShadow="4px 4px 8px rgba(0,0,0,0.2)"
               lineHeight="1"
@@ -120,26 +120,37 @@ const Page2 = () => {
             <Box
               sx={{
                 background: item.gradient,
-                p: 3,
                 textAlign: "center",
+                width: { xs: "100%", sm: "100%", md: "100%" },
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                height: "300px",
+                height: { xs: "100%", sm: "200px", md: "380px" },
               }}
             >
               <Typography
                 fontWeight="900"
                 color="white"
-                fontSize={{ md: "1.2rem", lg: "1.4rem" }}
+                fontSize={{
+                  xs: "0.8rem",
+                  sm: "0.6rem",
+                  md: "1.2rem",
+                  lg: "1.4rem",
+                }}
                 letterSpacing={2}
               >
                 {item.title}
               </Typography>
               <Typography
-                fontSize={{ md: "1rem", lg: "1.3rem" }}
+                fontSize={{
+                  xs: "0.8rem",
+                  sm: "0.6rem",
+                  md: "1.2rem",
+                  lg: "1.5rem",
+                }}
                 mt={3}
+                p={1}
                 color="#1d3f79"
                 maxWidth={"300px"}
               >

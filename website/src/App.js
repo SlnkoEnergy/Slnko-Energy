@@ -5,6 +5,7 @@ import { ThemeProvider } from "@mui/material/styles"; // Ensure correct import
 import theme from "./theme";
 import Footer from "./Components/Footer";
 import Page2 from "./Pages/Page2";
+import Page3 from "./Pages/Page3";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <BrowserRouter>
         {/* <Navbar /> */}
         <Page2 />
+        <Page3 />        
         {/* <Footer /> */}
 
       </BrowserRouter>

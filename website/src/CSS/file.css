@@ -1,6 +1,6 @@
 @keyframes slideInFromPaper {
     0% {
-      transform: translateX(-100%) rotate(15deg); /* Start off-screen to the left */
+      transform: translateX(-80%) rotate(15deg); /* Start off-screen to the left */
       opacity: 0;
     }
     50% {
