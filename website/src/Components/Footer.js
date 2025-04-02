@@ -20,7 +20,7 @@ const Footer = () => {
     <Grid
       container
       width="100%"
-      height="100%"
+      minHeight="80vh"
       display="flex"
       flexDirection="column"
       justifyContent="center"
@@ -55,26 +55,33 @@ const Footer = () => {
             gap={2}
           >
             <Box display="flex" flexDirection="row" gap={1} alignItems="center">
-              <img width="5%" alt="location" src={img1} />
+              <img width="6%" alt="location" src={img1} />
               <Typography maxWidth={"340px"} color="white">
                 2nd Floor, B58B, Block B, Sector 60, Noida, Uttar Pradesh 201301
               </Typography>
             </Box>
 
             <Box display="flex" flexDirection="row" gap={1} alignItems="center">
-              <img width="5%" alt="call" src={img2} />
+              <img width="6%" alt="call" src={img2} />
               <Typography color="white">+91-6202528672</Typography>
             </Box>
 
             <Box display="flex" flexDirection="row" gap={1} alignItems="center">
-              <img width="5%" alt="mail" src={img3} />
+              <img width="6%" alt="mail" src={img3} />
               <Typography color="white">info@slnkoenergy.com</Typography>
             </Box>
           </Box>
         </Grid>
 
         {/* Right Section */}
-        <Grid item display="flex" flexDirection="row" gap={10}>
+        <Grid
+          item
+          width={'40%'}
+          display="flex"
+          flexDirection="row"
+          justifyContent={'space-between'}
+          
+        >
           {/* First Row */}
           <Grid
             container
@@ -84,7 +91,7 @@ const Footer = () => {
           >
             {/* Information */}
             <Box display="flex" flexDirection="column" alignItems="flex-start">
-              <Typography color="white" fontSize="2rem" gutterBottom>
+              <Typography color="white" fontSize={{xs:"1.4rem",sm:'1.2rem',md:'1.3rem',lg:"1.5rem"}} gutterBottom>
                 Information
               </Typography>
               <List>
@@ -101,7 +108,7 @@ const Footer = () => {
                       primary={text}
                       primaryTypographyProps={{
                         color: "white",
-                        fontSize: "1.2rem",
+                        fontSize: { sm: "0.7rem", md: "0.75rem", lg: "1rem" },
                       }}
                     />
                   </ListItem>
@@ -110,7 +117,7 @@ const Footer = () => {
             </Box>
             {/* Our Presences */}
             <Box display="flex" flexDirection="column" alignItems="flex-start">
-              <Typography color="white" fontSize="2rem" gutterBottom>
+              <Typography color="white" fontSize="1.5rem" gutterBottom>
                 Our Presences
               </Typography>
               <List>
@@ -121,7 +128,7 @@ const Footer = () => {
                         primary={text}
                         primaryTypographyProps={{
                           color: "white",
-                          fontSize: "1.2rem",
+                          fontSize: { sm: "0.7rem", md: "0.75rem", lg: "1rem" },
                         }}
                       />
                     </ListItem>
@@ -140,7 +147,7 @@ const Footer = () => {
           >
             {/* Media */}
             <Box display="flex" flexDirection="column" alignItems="flex-start">
-              <Typography color="white" fontSize="2rem" gutterBottom>
+              <Typography color="white" fontSize="1.5rem" gutterBottom>
                 Media
               </Typography>
               <List>
@@ -150,12 +157,18 @@ const Footer = () => {
                       primary={text}
                       primaryTypographyProps={{
                         color: "white",
-                        fontSize: "1.2rem",
+                        fontSize: { sm: "0.7rem", md: "0.75rem", lg: "1rem" },
                       }}
                     />
                   </ListItem>
                 ))}
               </List>
+            </Box>
+
+            <Box>
+              <Typography color="white" fontSize="1.5rem" gutterBottom>
+                Career
+              </Typography>
             </Box>
 
             {/* Group Companies */}
@@ -165,7 +178,7 @@ const Footer = () => {
               flexDirection="column"
               alignItems="flex-start"
             >
-              <Typography color="white" fontSize="2rem" gutterBottom>
+              <Typography color="white" fontSize="1.5rem" gutterBottom>
                 Group Companies
               </Typography>
               <List>
@@ -175,7 +188,7 @@ const Footer = () => {
                       primary={text}
                       primaryTypographyProps={{
                         color: "white",
-                        fontSize: "1.2rem",
+                        fontSize: { sm: "0.7rem", md: "0.75rem", lg: "1rem" },
                       }}
                     />
                   </ListItem>
@@ -190,37 +203,43 @@ const Footer = () => {
         display={"flex"}
         flexDirection={"row"}
         justifyContent={"flex-start"}
-        marginBottom={'30px'}
+        marginBottom={"30px"}
       >
         <Box
-        width={'100%'}
+          width={"60%"}
           display={"flex"}
           flexDirection={"column"}
           justifyContent={"center"}
           alignItems={"center"}
         >
-          <Typography color="#f4efe5" fontSize="1.2rem">
-            Follow Us On
-          </Typography>
+          <Box
+            display={"flex"}
+            justifyContent={"flex-start"}
+            alignItems={"flex-start"}
+          >
+            <Typography color="#f4efe5" fontSize="1.2rem">
+              Follow Us On
+            </Typography>
+          </Box>
+
           <Box
             display={"flex"}
             justifyContent={"center"}
             alignItems={"center"}
             gap={1}
           >
-            <img width={"3%"} alt="img1" src={img4} />
-            <img width={"3%"} alt="img1" src={img5} />
-            <img width={"3%"} alt="img1" src={img6} />
-            <img width={"3%"} alt="img1" src={img7} />
+            <img width={"4%"} alt="img1" src={img4} />
+            <img width={"4%"} alt="img1" src={img5} />
+            <img width={"4%"} alt="img1" src={img6} />
+            <img width={"4%"} alt="img1" src={img7} />
           </Box>
         </Box>
 
         <Box
-        
-        width={'100%'}
-        display={"flex"}
-        justifyContent={"flex-start"}
-        alignItems={"center"}
+          width={"100%"}
+          display={"flex"}
+          justifyContent={"flex-start"}
+          alignItems={"flex-end"}
         >
           <Typography color="#f4efe5" fontSize="1rem">
             © 2025 All rights reserved. Slnko Energy Pvt. Ltd.

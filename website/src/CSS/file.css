@@ -1,0 +1,40 @@
+@keyframes slideInFromPaper {
+    0% {
+      transform: translateX(-100%) rotate(15deg); /* Start off-screen to the left */
+      opacity: 0;
+    }
+    50% {
+      transform: translateX(0) rotate(0deg); /* Move to its final position */
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateX(0) rotate(0deg); /* Final position */
+      opacity: 1;
+    }
+  }
+  
+
+  /* file.css */
+
+  @keyframes scrollHeadline {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .scroll-container {
+    width: 100%;
+    overflow: hidden; /* Prevents horizontal scroll */
+    white-space: nowrap; /* Prevents text from wrapping */
+    position: relative; /* Keeps text inside */
+  }
+  
+  .scroll-text {
+    display: inline-block;
+    animation: scrollHeadline 12s linear infinite;
+    white-space: nowrap;
+  }
+  
