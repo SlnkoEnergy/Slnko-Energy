@@ -12,9 +12,9 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         {/* <Navbar /> */}
-        <Page2 />
+        {/* <Page2 />
         <Page3 />        
-        <Footer />
+        <Footer /> */}
 
       </BrowserRouter>
     </ThemeProvider>
