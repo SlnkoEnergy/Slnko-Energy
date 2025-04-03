@@ -25,7 +25,9 @@ const Footer = () => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      p={2}
+      pl={{xs:3, sm:2}}
+      pr={{xs:3, sm:2}}
+      pt={4}
       gap={10}
       sx={{
         background: "linear-gradient(to top right, #00c4cc, #0a1a44)",
@@ -35,7 +37,7 @@ const Footer = () => {
         display="flex"
         flexDirection={{ xs: "column", sm: "row" }}
         justifyContent="center"
-        alignItems="center"
+        alignItems="flex-start"
         gap={{ xs: 8, sm: 8, md: 6, lg: 4 }}
       >
         {/* Left Section */}
@@ -44,18 +46,17 @@ const Footer = () => {
           display="flex"
           flexDirection="column"
           width={{ xs: "100%", sm: "30%" }}
-          gap={4}
+          gap={{xs:4, sm:4, md:6}}
         >
           <Box
             display="flex"
             justifyContent="flex-start"
             alignItems="center"
-            gap={1}
           >
             <Box
               component="img"
               sx={{
-                width: { xs: "50%", sm: "80%", md: "80%", lg: "60%" },
+                width: { xs: "50%", sm: "90%", md: "80%", lg: "60%" },
               }}
               alt="logo"
               src={logo}
@@ -79,8 +80,8 @@ const Footer = () => {
                 src={img1}
               />
               <Typography
-                fontSize={{ xs: "1rem", sm: "0.8rem", md: "1rem" }}
-                maxWidth={"340px"}
+                fontSize={{ xs: "0.9rem", sm: "0.9rem", md: "1rem" }}
+                maxWidth={{xs:'100%',sm:"340px"}}
                 color="white"
               >
                 2nd Floor, B58B, Block B, Sector 60, Noida, Uttar Pradesh 201301
@@ -97,7 +98,7 @@ const Footer = () => {
                 src={img2}
               />
               <Typography
-                fontSize={{ xs: "1rem", sm: "0.8rem", md: "1rem" }}
+                fontSize={{ xs: "0.9rem", sm: "0.9rem", md: "1rem" }}
                 color="white"
               >
                 +91-6202528672
@@ -114,7 +115,7 @@ const Footer = () => {
                 src={img3}
               />
               <Typography
-                fontSize={{ xs: "1rem", sm: "0.8rem", md: "1rem" }}
+                fontSize={{ xs: "0.9rem", sm: "0.9rem", md: "1rem" }}
                 color="white"
               >
                 info@slnkoenergy.com
@@ -392,6 +393,7 @@ const Footer = () => {
           <Typography
             color="#f4efe5"
             fontSize={{ xs: "0.8rem", sm: "0.8rem", md: "1rem" }}
+            textAlign={'center'}
           >
             © 2025 All rights reserved. Slnko Energy Pvt. Ltd.
           </Typography>
