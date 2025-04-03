@@ -94,7 +94,7 @@ const Page2 = () => {
               width: isMobile ? "100%" : "24%", // Full width on mobile, 4x1 layout on desktop
               textAlign: "center",
               opacity: isVisible ? 1 : 0, // Fade-in effect
-              transform: isVisible ? "translateY(0)" : "translateY(30px)", // Slide-up effect
+              transform: isVisible ? "translateY(0)" : "translateY(100px)", // Slide-up effect
               transition: "opacity 1s ease-out, transform 1s ease-out", // Smooth transition for opacity and transform
             }}
           >

@@ -20,11 +20,12 @@ const Footer = () => {
     <Grid
       container
       width="100%"
-      minHeight="80vh"
+      minHeight="100%"
       display="flex"
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
+      p={2}
       gap={10}
       sx={{
         background: "linear-gradient(to top right, #00c4cc, #0a1a44)",
@@ -32,19 +33,33 @@ const Footer = () => {
     >
       <Grid
         display="flex"
-        flexDirection="row"
+        flexDirection={{ xs: "column", sm: "row" }}
         justifyContent="center"
         alignItems="center"
+        gap={{ xs: 8, sm: 8, md: 6, lg: 4 }}
       >
         {/* Left Section */}
-        <Grid item display="flex" flexDirection="column" width="30%" gap={4}>
+        <Grid
+          item
+          display="flex"
+          flexDirection="column"
+          width={{ xs: "100%", sm: "30%" }}
+          gap={4}
+        >
           <Box
             display="flex"
             justifyContent="flex-start"
             alignItems="center"
             gap={1}
           >
-            <img width="60%" alt="logo" src={logo} />
+            <Box
+              component="img"
+              sx={{
+                width: { xs: "50%", sm: "80%", md: "80%", lg: "60%" },
+              }}
+              alt="logo"
+              src={logo}
+            />
           </Box>
 
           <Box
@@ -55,20 +70,55 @@ const Footer = () => {
             gap={2}
           >
             <Box display="flex" flexDirection="row" gap={1} alignItems="center">
-              <img width="6%" alt="location" src={img1} />
-              <Typography maxWidth={"340px"} color="white">
+              <Box
+                component="img"
+                sx={{
+                  width: { xs: "5%", sm: "8%", md: "8%", lg: "6%" },
+                }}
+                alt="location"
+                src={img1}
+              />
+              <Typography
+                fontSize={{ xs: "1rem", sm: "0.8rem", md: "1rem" }}
+                maxWidth={"340px"}
+                color="white"
+              >
                 2nd Floor, B58B, Block B, Sector 60, Noida, Uttar Pradesh 201301
               </Typography>
             </Box>
 
             <Box display="flex" flexDirection="row" gap={1} alignItems="center">
-              <img width="6%" alt="call" src={img2} />
-              <Typography color="white">+91-6202528672</Typography>
+              <Box
+                component="img"
+                sx={{
+                  width: { xs: "5%", sm: "8%", md: "8%", lg: "6%" },
+                }}
+                alt="call"
+                src={img2}
+              />
+              <Typography
+                fontSize={{ xs: "1rem", sm: "0.8rem", md: "1rem" }}
+                color="white"
+              >
+                +91-6202528672
+              </Typography>
             </Box>
 
             <Box display="flex" flexDirection="row" gap={1} alignItems="center">
-              <img width="6%" alt="mail" src={img3} />
-              <Typography color="white">info@slnkoenergy.com</Typography>
+              <Box
+                component="img"
+                sx={{
+                  width: { xs: "5%", sm: "8%", md: "8%", lg: "6%" },
+                }}
+                alt="mail"
+                src={img3}
+              />
+              <Typography
+                fontSize={{ xs: "1rem", sm: "0.8rem", md: "1rem" }}
+                color="white"
+              >
+                info@slnkoenergy.com
+              </Typography>
             </Box>
           </Box>
         </Grid>
@@ -76,11 +126,11 @@ const Footer = () => {
         {/* Right Section */}
         <Grid
           item
-          width={'40%'}
+          width={{ xs: "100%", sm: "50%", md: "50%", lg: "40%" }}
           display="flex"
           flexDirection="row"
-          justifyContent={'space-between'}
-          
+          justifyContent={"space-between"}
+          gap={{ xs: 2 }}
         >
           {/* First Row */}
           <Grid
@@ -91,7 +141,16 @@ const Footer = () => {
           >
             {/* Information */}
             <Box display="flex" flexDirection="column" alignItems="flex-start">
-              <Typography color="white" fontSize={{xs:"1.4rem",sm:'1.2rem',md:'1.3rem',lg:"1.5rem"}} gutterBottom>
+              <Typography
+                color="white"
+                fontSize={{
+                  xs: "1.2rem",
+                  sm: "1rem",
+                  md: "1.3rem",
+                  lg: "1.5rem",
+                }}
+                gutterBottom
+              >
                 Information
               </Typography>
               <List>
@@ -108,7 +167,12 @@ const Footer = () => {
                       primary={text}
                       primaryTypographyProps={{
                         color: "white",
-                        fontSize: { sm: "0.7rem", md: "0.75rem", lg: "1rem" },
+                        fontSize: {
+                          xs: "0.8rem",
+                          sm: "0.7rem",
+                          md: "0.8rem",
+                          lg: "1rem",
+                        },
                       }}
                     />
                   </ListItem>
@@ -117,7 +181,16 @@ const Footer = () => {
             </Box>
             {/* Our Presences */}
             <Box display="flex" flexDirection="column" alignItems="flex-start">
-              <Typography color="white" fontSize="1.5rem" gutterBottom>
+              <Typography
+                color="white"
+                fontSize={{
+                  xs: "1.2rem",
+                  sm: "1rem",
+                  md: "1.3rem",
+                  lg: "1.5rem",
+                }}
+                gutterBottom
+              >
                 Our Presences
               </Typography>
               <List>
@@ -128,7 +201,12 @@ const Footer = () => {
                         primary={text}
                         primaryTypographyProps={{
                           color: "white",
-                          fontSize: { sm: "0.7rem", md: "0.75rem", lg: "1rem" },
+                          fontSize: {
+                            xs: "0.8rem",
+                            sm: "0.7rem",
+                            md: "0.8rem",
+                            lg: "1rem",
+                          },
                         }}
                       />
                     </ListItem>
@@ -147,7 +225,16 @@ const Footer = () => {
           >
             {/* Media */}
             <Box display="flex" flexDirection="column" alignItems="flex-start">
-              <Typography color="white" fontSize="1.5rem" gutterBottom>
+              <Typography
+                color="white"
+                fontSize={{
+                  xs: "1.2rem",
+                  sm: "1rem",
+                  md: "1.3rem",
+                  lg: "1.5rem",
+                }}
+                gutterBottom
+              >
                 Media
               </Typography>
               <List>
@@ -157,7 +244,12 @@ const Footer = () => {
                       primary={text}
                       primaryTypographyProps={{
                         color: "white",
-                        fontSize: { sm: "0.7rem", md: "0.75rem", lg: "1rem" },
+                        fontSize: {
+                          xs: "0.8rem",
+                          sm: "0.7rem",
+                          md: "0.8rem",
+                          lg: "1rem",
+                        },
                       }}
                     />
                   </ListItem>
@@ -166,19 +258,37 @@ const Footer = () => {
             </Box>
 
             <Box>
-              <Typography color="white" fontSize="1.5rem" gutterBottom>
+              <Typography
+                color="white"
+                fontSize={{
+                  xs: "1.2rem",
+                  sm: "1rem",
+                  md: "1.3rem",
+                  lg: "1.5rem",
+                }}
+                gutterBottom
+              >
                 Career
               </Typography>
             </Box>
 
             {/* Group Companies */}
             <Box
-              marginBottom={"40px"}
+              marginBottom={{ xs: "30px", sm: "25px", md: "25px", lg: "28px" }}
               display="flex"
               flexDirection="column"
               alignItems="flex-start"
             >
-              <Typography color="white" fontSize="1.5rem" gutterBottom>
+              <Typography
+                color="white"
+                fontSize={{
+                  xs: "1.2rem",
+                  sm: "1rem",
+                  md: "1.3rem",
+                  lg: "1.5rem",
+                }}
+                gutterBottom
+              >
                 Group Companies
               </Typography>
               <List>
@@ -188,7 +298,12 @@ const Footer = () => {
                       primary={text}
                       primaryTypographyProps={{
                         color: "white",
-                        fontSize: { sm: "0.7rem", md: "0.75rem", lg: "1rem" },
+                        fontSize: {
+                          xs: "0.8rem",
+                          sm: "0.7rem",
+                          md: "0.8rem",
+                          lg: "1rem",
+                        },
                       }}
                     />
                   </ListItem>
@@ -201,9 +316,11 @@ const Footer = () => {
 
       <Grid
         display={"flex"}
-        flexDirection={"row"}
-        justifyContent={"flex-start"}
+        flexDirection={{ xs: "column", sm: "row" }}
+        justifyContent={{ xs: "center", sm: "flex-start" }}
+        alignItems={{ xs: "center" }}
         marginBottom={"30px"}
+        gap={{ xs: 4 }}
       >
         <Box
           width={"60%"}
@@ -217,7 +334,10 @@ const Footer = () => {
             justifyContent={"flex-start"}
             alignItems={"flex-start"}
           >
-            <Typography color="#f4efe5" fontSize="1.2rem">
+            <Typography
+              color="#f4efe5"
+              fontSize={{ md: "1.1rem", lg: "1.2rem" }}
+            >
               Follow Us On
             </Typography>
           </Box>
@@ -228,20 +348,51 @@ const Footer = () => {
             alignItems={"center"}
             gap={1}
           >
-            <img width={"4%"} alt="img1" src={img4} />
-            <img width={"4%"} alt="img1" src={img5} />
-            <img width={"4%"} alt="img1" src={img6} />
-            <img width={"4%"} alt="img1" src={img7} />
+            <Box
+              component="img"
+              sx={{
+                width: { xs: "10%", sm: "8%", md: "6%", lg: "4%" },
+              }}
+              alt="img1"
+              src={img4}
+            />
+            <Box
+              component="img"
+              sx={{
+                width: { xs: "10%", sm: "8%", md: "6%", lg: "4%" },
+              }}
+              alt="img1"
+              src={img5}
+            />
+            <Box
+              component="img"
+              sx={{
+                width: { xs: "10%", sm: "8%", md: "6%", lg: "4%" },
+              }}
+              alt="img1"
+              src={img6}
+            />
+            <Box
+              component="img"
+              sx={{
+                width: { xs: "10%", sm: "8%", md: "6%", lg: "4%" },
+              }}
+              alt="img1"
+              src={img7}
+            />
           </Box>
         </Box>
 
         <Box
           width={"100%"}
           display={"flex"}
-          justifyContent={"flex-start"}
-          alignItems={"flex-end"}
+          justifyContent={{ xs: "center", sm: "flex-start" }}
+          alignItems={{ xs: "center", sm: "flex-end" }}
         >
-          <Typography color="#f4efe5" fontSize="1rem">
+          <Typography
+            color="#f4efe5"
+            fontSize={{ xs: "0.8rem", sm: "0.8rem", md: "1rem" }}
+          >
             © 2025 All rights reserved. Slnko Energy Pvt. Ltd.
           </Typography>
         </Box>
@@ -251,4 +402,4 @@ const Footer = () => {
 };
 
 export default Footer;
- // developing this website//
+// developing this website//

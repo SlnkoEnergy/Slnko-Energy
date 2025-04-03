@@ -14,7 +14,7 @@ const App = () => {
         {/* <Navbar /> */}
         <Page2 />
         <Page3 />        
-        {/* <Footer /> */}
+        <Footer />
 
       </BrowserRouter>
     </ThemeProvider>
