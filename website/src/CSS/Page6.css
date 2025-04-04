@@ -1,0 +1,49 @@
+.map-container {
+    text-align: left;
+    padding: 20px;
+  }
+  
+  .map-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #000d33;
+  }
+  
+  .map-title strong {
+    font-weight: 700;
+  }
+  
+  .map-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .mp-map {
+    width: 80%;
+    height: auto;
+  }
+  
+  .highlighted {
+    fill: #f2a900; /* Yellow color for presence */
+    stroke: #000;
+    stroke-width: 1px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .highlighted:hover {
+    transform: scale(1.05);
+  }
+  
+  .label {
+    font-size: 14px;
+    fill: #ffffff;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    background: #0d2a5f;
+    padding: 4px;
+    border-radius: 4px;
+  }
+  

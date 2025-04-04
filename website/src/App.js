@@ -7,27 +7,31 @@ import Footer from "./Components/Footer";
 import Page2 from "./Pages/Page2";
 
 import Page3 from "./Pages/Page3";
+=======
 import Page4 from "./Pages/Page4"; // Import your Page4 component
 import Page5 from "./Pages/Page5"; // Import your Page5 component
-import Page1 from "./Pages/Page1";
-
-
+>>>>>>> origin/main
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         {/* <Navbar /> */}
-        <Page1 />
-        <Page2 />
+
+        {/* <Page2 />
         <Page3 />        
-        
+        <Footer /> */}
 
         {/* <Page2 /> */}
         <Page4/>
         {/* <Footer /> */}
+
+        {/* <Page5/> */}
+        {/* <Page6/> */}
+        <Page7/>
+        {/* <Page7N/> */}
+
         <Page5/>
-        <Footer />  
 
 
       </BrowserRouter>
