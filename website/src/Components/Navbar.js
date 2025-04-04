@@ -43,6 +43,7 @@ const Navbar = () => {
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
+        mr={{lg:6,xl:12}}
       >
         <img alt="logo" width="150px" height="75px" src={logo} />
       </Grid>
@@ -72,6 +73,7 @@ const Navbar = () => {
                   display: "flex",
                   flexDirection: "column",
                   gap: 2,
+                  
                 }}
               >
                 {navItems.map(({ label, path }, index) => (
@@ -104,7 +106,7 @@ const Navbar = () => {
                 }}
               >
                 <img width={"100px"} height={"70px"} alt="infra" src={img1} />
-                <img width={"100px"} height={"70px"} alt="infra" src={img2} />
+                <img width={"100px"} height={"70px"} alt="foundation" src={img2} />
               </Box>
             </Box>
           </Drawer>
@@ -144,8 +146,8 @@ const Navbar = () => {
           alignItems={"center"}
           gap={2}
         >
-          <img width={"150px"} height={"120px"} alt="infra" src={img1} />
-          <img width={"150px"} height={"120px"} alt="infra" src={img2} />
+          <img width={"110px"} height={"100px"} alt="infra" src={img1} />
+          <img width={"110px"} height={"100px"} alt="foundation" src={img2} />
         </Grid>
       )}
     </Grid>
