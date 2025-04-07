@@ -52,7 +52,7 @@ const Page7 = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          px: { xs: 2, sm: 4 },
+          
           overflow: "hidden",
         }}
       >

@@ -10,8 +10,8 @@ const Page5 = () => {
     <Grid
       container
       sx={{
-        minHeight: "100vh",
-        width: "100vw",
+        minHeight: "100%",
+        width: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
