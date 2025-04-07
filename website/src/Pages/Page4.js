@@ -19,11 +19,10 @@ const services = [
 ];
 
 const getSlidesPerView = (width) => {
-  if (width > 1024) return 3;
-  if (width > 768) return 2;
-  return 1;
+  if (width < 768) return 1;
+  if (width < 1024) return 2;
+  return 3;
 };
-
 const Page4 = () => {
   const [slidesPerView, setSlidesPerView] = useState(getSlidesPerView(window.innerWidth));
 
@@ -46,7 +45,7 @@ const Page4 = () => {
 
       <div className="slider-wrapper">
         <Swiper
-          key={slidesPerView} // Forces rerender when slidesPerView changes
+          key={slidesPerView}
           modules={[Navigation]}
           spaceBetween={10}
           slidesPerView={slidesPerView}
