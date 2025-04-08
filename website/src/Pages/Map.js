@@ -76,10 +76,11 @@ const MadhyaPradeshMap = () => {
   return (
     <Grid
       container
-      direction="row"
+      mt={{xs:0, sm:10}}
+      direction={{ xs: "row", lg: "row" }}
       justifyContent={"space-around"}
       alignItems="center"
-      spacing={2}
+      spacing={{ xs: 0, sm: 8, md: 8, lg: 1, xl: 2 }}
     >
       <Grid
         item
@@ -87,14 +88,20 @@ const MadhyaPradeshMap = () => {
         flexDirection={"column"}
         justifyContent={"space-between"}
         alignItems={"flex-start"}
-        gap={20}
+        gap={{ xs: 4, sm: 4, md: 5, lg: 15, xl: 20 }}
       >
         <Grid>
           <Typography
             fontFamily={"poppins"}
             color="#0a1a44"
-            fontSize={"3rem"}
-            maxWidth={"500px"}
+            fontSize={{
+              xs: "1.5rem",
+              sm: "2.2rem",
+              md: "2.5rem",
+              lg: "2.5rem",
+              xl: "3rem",
+            }}
+            maxWidth={{ lg: "520px", xl: "500px" }}
           >
             Our Presence in{" "}
             <span style={{ fontWeight: "bold" }}>Madhya Pradesh</span>
@@ -113,14 +120,13 @@ const MadhyaPradeshMap = () => {
               sx={{
                 backgroundColor: "#ffd945",
                 color: "#1d3f79",
-                padding: 0.8,
-                borderRadius: "2px",
-                fontSize: "1rem",
+                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
+                borderRadius: { xs: "3px", sm: "3px", md: "2px" },
+                fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
-
                 textAlign: "center",
                 fontFamily: "poppins",
-                width: "100px",
+                width: { xs: "60px", sm: "80px", md: "100px" },
               }}
             >
               Completed
@@ -129,13 +135,13 @@ const MadhyaPradeshMap = () => {
               sx={{
                 backgroundColor: "#1d3f79",
                 color: "#ffd945",
-                padding: 0.8,
-                borderRadius: "2px",
-                fontSize: "1rem",
+                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
+                borderRadius: { xs: "3px", sm: "3px", md: "2px" },
+                fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
-                width: "100px",
+                width: { xs: "60px", sm: "80px", md: "100px" },
               }}
             >
               20 MWp
@@ -146,13 +152,13 @@ const MadhyaPradeshMap = () => {
               sx={{
                 backgroundColor: "#ffd945",
                 color: "#1d3f79",
-                padding: 0.8,
-                borderRadius: "2px",
-                fontSize: "1rem",
+                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
+                borderRadius: { xs: "3px", sm: "3px", md: "2px" },
+                fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
-                width: "100px",
+                width: { xs: "60px", sm: "80px", md: "100px" },
               }}
             >
                Ongoing
@@ -161,14 +167,14 @@ const MadhyaPradeshMap = () => {
               sx={{
                 backgroundColor: "#ffffff",
                 color: "#1d3f79",
-                padding: 0.8,
-                borderRadius: "2px",
-                fontSize: "1rem",
+                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
+                borderRadius: { xs: "3px", sm: "3px", md: "2px" },
+                fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
                 border:'1px solid #1d3f79',                
-                width: "100px",
+                width: { xs: "60px", sm: "80px", md: "100px" },
               }}
             >
               10 MWp
@@ -187,6 +193,15 @@ const MadhyaPradeshMap = () => {
             maxWidth: "100%",
           }}
         >
+          <Box
+                      sx={{
+                        width: "100%",
+                        height: {
+                          xs: "80%", // 80% height on extra-small screens
+                          sm: "100%", // 100% on small and above
+                        },
+                      }}
+                    >
           <ComposableMap
             projection="geoMercator"
             width={800}
@@ -235,7 +250,7 @@ const MadhyaPradeshMap = () => {
               }
             </Geographies>
           </ComposableMap>
-
+          </Box>
           {showCard && (
             <div
               style={{
