@@ -55,13 +55,13 @@ const Rajasthan = () => {
     const data = districtWpData[name] || {};
     const { wp = "", status = "" } = data;
 
-    const path = evt.target;
-    const bbox = path.getBoundingClientRect();
-    const centerX = bbox.left + bbox.width / 2;
-    const centerY = bbox.top + bbox.height / 2;
+    const container = evt.currentTarget.ownerSVGElement;
+    const containerRect = container.getBoundingClientRect();
+    const mouseX = evt.clientX - containerRect.left;
+    const mouseY = evt.clientY - containerRect.top;
 
     setTooltipContent({ name, wp, status });
-    setPosition({ x: centerX, y: centerY });
+    setPosition({ x: mouseX, y: mouseY });
     setShowCard(true);
     setHoveredDistrict(name);
   };
@@ -74,10 +74,11 @@ const Rajasthan = () => {
   return (
     <Grid
       container
-      direction={{xs:'column',lg:"row-reverse"}}
+      mt={10}
+      direction={{ xs: "row-reverse", lg: "row-reverse" }}
       justifyContent={"space-around"}
       alignItems="center"
-      spacing={{sm:8,md:8,lg:1, xl:2}}
+      spacing={{ xs: 0, sm: 8, md: 8, lg: 1, xl: 2 }}
     >
       <Grid
         item
@@ -85,14 +86,20 @@ const Rajasthan = () => {
         flexDirection={"column"}
         justifyContent={"space-between"}
         alignItems={"flex-start"}
-        gap={{sm:4,md:5,lg:15,xl:20}}
+        gap={{ xs: 4, sm: 4, md: 5, lg: 15, xl: 20 }}
       >
         <Grid>
           <Typography
             fontFamily={"poppins"}
             color="#0a1a44"
-            fontSize={{sm:'2.2rem',md:'2.5rem',lg:'2.5rem',xl:"3rem"}}
-            maxWidth={{lg:'520px',xl:"500px"}}
+            fontSize={{
+              xs: "1.5rem",
+              sm: "2.2rem",
+              md: "2.5rem",
+              lg: "2.5rem",
+              xl: "3rem",
+            }}
+            maxWidth={{ lg: "520px", xl: "500px" }}
           >
             Our Presence in{" "}
             <span style={{ fontWeight: "bold" }}>Rajasthan</span>
@@ -111,13 +118,13 @@ const Rajasthan = () => {
               sx={{
                 backgroundColor: "#ffd945",
                 color: "#1d3f79",
-                padding: 0.8,
-                borderRadius: "2px",
-                fontSize: "1rem",
+                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
+                borderRadius: { xs: "3px", sm: "3px", md: "2px" },
+                fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
-                width: "100px",
+                width: { xs: "60px", sm: "80px", md: "100px" },
               }}
             >
               Completed
@@ -126,13 +133,13 @@ const Rajasthan = () => {
               sx={{
                 backgroundColor: "#1d3f79",
                 color: "#ffd945",
-                padding: 0.8,
-                borderRadius: "2px",
-                fontSize: "1rem",
+                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
+                borderRadius: { xs: "3px", sm: "3px", md: "2px" },
+                fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
-                width: "100px",
+                width: { xs: "60px", sm: "80px", md: "100px" },
               }}
             >
               20 MWp
@@ -143,13 +150,13 @@ const Rajasthan = () => {
               sx={{
                 backgroundColor: "#ffd945",
                 color: "#1d3f79",
-                padding: 0.8,
-                borderRadius: "2px",
-                fontSize: "1rem",
+                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
+                borderRadius: { xs: "3px", sm: "3px", md: "2px" },
+                fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
-                width: "100px",
+                width: { xs: "60px", sm: "80px", md: "100px" },
               }}
             >
               Ongoing
@@ -158,14 +165,14 @@ const Rajasthan = () => {
               sx={{
                 backgroundColor: "#ffffff",
                 color: "#1d3f79",
-                padding: 0.8,
-                borderRadius: "2px",
-                fontSize: "1rem",
+                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
+                borderRadius: { xs: "3px", sm: "3px", md: "2px" },
+                fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
                 border: "1px solid #1d3f79",
-                width: "100px",
+                width: { xs: "60px", sm: "80px", md: "100px" },
               }}
             >
               10 MWp
@@ -179,67 +186,78 @@ const Rajasthan = () => {
           style={{
             backgroundColor: "white",
             position: "relative",
-            width: {xs:'400px',sm:'500px',md:'600px',lg:'700px',xl:"800px"},
+            width: "800px",
             height: "600px",
             maxWidth: "100%",
           }}
         >
-          <ComposableMap
-            projection="geoMercator"
-            width={{xs:400,sm:500,md:600,lg:700,xl:800}}
-            height={600}
-            style={{ width: "100%", height: "100%" }}
-            projectionConfig={{ scale: 4200, center: [74.65, 26.6] }} // ⬅️ Increase scale
+          <Box
+            sx={{
+              width: "100%",
+              height: {
+                xs: "80%", // 80% height on extra-small screens
+                sm: "100%", // 100% on small and above
+              },
+            }}
           >
-            <Geographies geography={geoUrl}>
-              {({ geographies }) =>
-                geographies.map((geo) => {
-                  const districtName = geo.properties?.Dist_Name;
-                  const isYellow = yellowDistricts.includes(districtName);
-                  const isHovered = districtName === hoveredDistrict;
+            <ComposableMap
+              projection="geoMercator"
+              width={800}
+              height={600}
+              style={{ width: "100%", height: "100%" }}
+              projectionConfig={{ scale: 4200, center: [74.65, 26.6] }}
+            >
+              {/* Your Map Layers */}
 
-                  return (
-                    <g
-                      key={geo.rsmKey}
-                      transform={
-                        isHovered ? "translate(0,-5)" : "translate(0,0)"
-                      }
-                    >
-                      <Geography
-                        geography={geo}
-                        onMouseEnter={(evt) => handleMouseEnter(geo, evt)}
-                        onMouseLeave={handleMouseLeave}
-                        style={{
-                          default: {
-                            fill: isYellow ? "#efc82f" : "white",
-                            stroke: "black",
-                            strokeWidth: 0.4,
-                            outline: "none",
-                          },
-                          hover: {
-                            fill: isYellow ? "#ffd945" : "#f1e5b5",
-                            outline: "none",
-                          },
-                          pressed: {
-                            fill: isYellow ? "#ffd945" : "#f1e5b5",
-                            outline: "none",
-                          },
-                        }}
-                      />
-                    </g>
-                  );
-                })
-              }
-            </Geographies>
-          </ComposableMap>
+              <Geographies geography={geoUrl}>
+                {({ geographies }) =>
+                  geographies.map((geo) => {
+                    const districtName = geo.properties?.Dist_Name;
+                    const isYellow = yellowDistricts.includes(districtName);
+                    const isHovered = districtName === hoveredDistrict;
 
+                    return (
+                      <g
+                        key={geo.rsmKey}
+                        transform={
+                          isHovered ? "translate(0,-5)" : "translate(0,0)"
+                        }
+                      >
+                        <Geography
+                          geography={geo}
+                          onMouseEnter={(evt) => handleMouseEnter(geo, evt)}
+                          onMouseLeave={handleMouseLeave}
+                          style={{
+                            default: {
+                              fill: isYellow ? "#efc82f" : "white",
+                              stroke: "black",
+                              strokeWidth: 0.4,
+                              outline: "none",
+                            },
+                            hover: {
+                              fill: isYellow ? "#ffd945" : "#f1e5b5",
+                              outline: "none",
+                            },
+                            pressed: {
+                              fill: isYellow ? "#ffd945" : "#f1e5b5",
+                              outline: "none",
+                            },
+                          }}
+                        />
+                      </g>
+                    );
+                  })
+                }
+              </Geographies>
+            </ComposableMap>
+          </Box>
           {showCard && (
             <div
               style={{
-                position: "fixed",
-                top: position.y + 10,
+                position: "absolute",
+                top: position.y,
                 left: position.x,
-                transform: "translate(-50%, 0)",
+                transform: "translate(-50%, 10px)",
                 zIndex: 1000,
                 pointerEvents: "none",
                 display: "flex",
