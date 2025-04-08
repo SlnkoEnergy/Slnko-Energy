@@ -54,7 +54,7 @@ const Page1 = () => {
             component="img"
             src={kusum}
             alt="kusum"
-            sx={{ width: "300px", height: "auto", display: "block" }}
+            sx={{ width: {xs:'200px',sm:'240px',md:'260px',lg:'280px',xl:"300px"}, height: "auto", display: "block" }}
           />
           <Grid
             display={"flex"}
@@ -63,9 +63,9 @@ const Page1 = () => {
             alignItems={"center"}
           >
             <Typography
-              fontSize={"1.5rem"}
+              fontSize={{xs:'1.1rem',sm:'1.2rem',md:'1.3rem',lg:'1.4rem',xl:"1.5rem"}}
               color="black"
-              maxWidth={"700px"}
+              maxWidth={{sm:'600px',md:"700px"}}
               fontWeight={"600"}
               letterSpacing={1}
               textAlign={"center"}
@@ -78,17 +78,19 @@ const Page1 = () => {
 
             <Typography
               color="#1750a0"
-              fontSize={"1.1rem"}
+              fontSize={{xs:'0.8rem',sm:'0.9rem',md:'1rem',lg:'1rem',xl:"1.1rem"}}
               letterSpacing={1}
               fontWeight={"100"}
+              textAlign={'center'}
             >
               One-stop platform providing Solar EPC
             </Typography>
             <Typography
               color="#1750a0"
-              fontSize={"1.1rem"}
+              fontSize={{xs:'0.8rem',sm:'0.9rem',md:'1rem',lg:'1rem',xl:"1.1rem"}}
               letterSpacing={1}
               fontWeight={"100"}
+              textAlign={'center'}
             >
               Join the solar revolution with SLNKO ENERGY
             </Typography>
@@ -104,22 +106,11 @@ const Page1 = () => {
           pl={4}
           pr={4}
           left={"0%"}
-          top={"81%"}
+          top={{xs:'85%',sm:'84%',md:'83%',lg:'82%',xl:"81%"}}
         >
-          
-            <Box
-            component={'img'}
-            width={'60px'}
-            src={Calculator}
-            >
+          <Box component={"img"} width={{xs:'30px', sm:'35px',md:'40px',lg:'50px',xl:"60px"}} src={Calculator} />
 
-            </Box>
-         
-          
-          
-
-            <Box component={"img"} width={"60px"} src={whatsapp}></Box>
-          
+          <Box component={"img"} width={{xs:'30px', sm:'35px',md:'40px',lg:'50px',xl:"60px"}} src={whatsapp} />
         </Grid>
 
         <Grid
@@ -137,10 +128,10 @@ const Page1 = () => {
             sx={{
               backgroundColor: "#ffd945",
               color: "#1d3f79",
-              fontSize: "0.9rem",
+              fontSize: {xs:'0.5rem',sm:'0.65rem',md:'0.7rem',lg:'0.8rem',xl:"0.9rem"},
               fontWeight: "900",
-              paddingLeft: 4,
-              paddingRight: 4,
+              paddingLeft: {xs:1,sm:2,md:2,lg:3,xl:4},
+              paddingRight: {xs:1,sm:2,md:2,lg:3,xl:4},
               paddingTop: 1,
               paddingBottom: 1,
               borderRadius: "20px",
@@ -152,18 +143,18 @@ const Page1 = () => {
             sx={{
               backgroundColor: "#ffd945",
               color: "#1d3f79",
-              fontSize: "0.9rem",
+              fontSize: {xs:'0.5rem',sm:'0.65rem',md:'0.7rem',lg:'0.8rem',xl:"0.9rem"},
               fontWeight: "900",
-              paddingLeft: 4,
-              paddingRight: 4,
+              paddingLeft: {xs:1,sm:2,md:2,lg:3,xl:4},
+              paddingRight: {xs:1,sm:2,md:2,lg:3,xl:4},
               paddingTop: 1,
               paddingBottom: 1,
               borderRadius: "20px",
-              gap:1
+              gap: {xs:0.5,sm:1},
             }}
           >
             Get a FREE Consultation{" "}
-            <Box component={"img"} width={"20px"} src={arrow}></Box>
+            <Box component={"img"} width={{xs:"12px",sm:'13px',md:'14px',lg:'16px',xl:"20px"}} src={arrow}></Box>
           </Button>
         </Grid>
       </Grid>
