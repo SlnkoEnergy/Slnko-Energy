@@ -15,11 +15,24 @@ import MadhyaPradeshMap from "./Pages/Map";
 import Rajasthan from "./Pages/Rajasthan";
 
 
+import Page4 from "./Pages/Page4"; // Import your Page4 component
+import Page5 from "./Pages/Page5"; // Import your Page5 component
+import Page6 from "./Pages/Page6";
+import Page7 from "./Pages/Page7";
+
+// import Page7N from "./Pages/Page7.0";
+
+import Page4 from "./Pages/Page4"; // Import your Page4 component
+import Page5 from "./Pages/Page5"; // Import your Page5 component
+
+
+
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         {/* <Navbar /> */}
+
         <Page1 />
         <Page2 />
         <Page3 />     
@@ -35,12 +48,33 @@ const App = () => {
 
         {/* <Page2 /> */}
         
+
+
+        <Page2 />
+        <Page3 />
+        {/* <Page4/>   */}
+        <Page5/>
+        <Page6/>
+        <Page7/>       
+       
+        <Footer />
+
+        {/* <Page2 /> */}
+
+        
+
+        <Page4/>
+
         {/* <Footer /> */}
 
         
         {/* <Page7N/> */}
 
+
         {/* <Page5/> */}
+
+
+
 
 
       </BrowserRouter>
