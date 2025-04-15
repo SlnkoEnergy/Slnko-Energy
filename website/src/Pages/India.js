@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import {
   Box,
   Grid,
   Typography,
   Modal,
   IconButton,
+  CircularProgress,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
-// Import individual state components
-import MadhyaPradesh from "../Pages/Map.js";
-import Rajasthan from "../Pages/Rajasthan.js";
-// import UttarPradesh from "../Pages/UttarPradesh";
-// Add more imports as needed...
+// Lazy load state components
+const MadhyaPradesh = lazy(() => import("../Pages/Map"));
+const Rajasthan = lazy(() => import("../Pages/Rajasthan"));
+// const UttarPradesh = lazy(() => import("../Pages/UttarPradesh"));
 
 const India = () => {
-  const geoUrl = process.env.PUBLIC_URL + "/maps/India.geojson";
+  const geoUrl = process.env.PUBLIC_URL + "/maps/India.topojson";
 
   const yellowDistricts = [
     "Madhya Pradesh",
     "Rajasthan",
     "Uttar Pradesh",
-    "Khargone (West Nimar)",
-    "Raisen",
+    "Bihar",
+    "Jharkhand",
     "Chhindwara",
     "Narsinghpur",
     "Seoni",
@@ -42,8 +42,8 @@ const India = () => {
     Rajasthan: { wp: 40.0, status: "completed" },
     "Uttar Pradesh": { wp: 30.2, status: "completed" },
     "Khargone (West Nimar)": { wp: 2.0, status: "ongoing" },
-    Raisen: { wp: 4.4, status: "ongoing" },
-    Chhindwara: { wp: 1.2, status: "completed" },
+    Bihar: { wp: 4.4, status: "ongoing" },
+    Jharkhand: { wp: 1.2, status: "completed" },
     Narsinghpur: { wp: 2.0, status: "completed" },
     Seoni: { wp: 3.6, status: "ongoing" },
     Jabalpur: { wp: 4.8, status: "ongoing" },
@@ -73,21 +73,32 @@ const India = () => {
     return `hsl(45, 100%, ${lightness}%)`;
   };
 
+  let leaveTimeout;
+
+  const handleMouseLeave = () => {
+    leaveTimeout = setTimeout(() => {
+      setShowCard(false);
+      setHoveredDistrict("");
+    }, 100);
+  };
+
   const handleMouseEnter = (geo, evt) => {
+    clearTimeout(leaveTimeout);
     const name = geo.properties?.NAME_1;
     const data = districtWpData[name] || {};
     const { wp = "", status = "" } = data;
     const path = evt.target;
-    const bbox = path.getBoundingClientRect();
-    setTooltipContent({ name, wp, status });
-    setPosition({ x: bbox.left + bbox.width / 2, y: bbox.top + bbox.height / 2 });
-    setShowCard(true);
-    setHoveredDistrict(name);
-  };
 
-  const handleMouseLeave = () => {
-    setShowCard(false);
-    setHoveredDistrict("");
+    requestAnimationFrame(() => {
+      const bbox = path.getBoundingClientRect();
+      setTooltipContent({ name, wp, status });
+      setPosition({
+        x: bbox.left + bbox.width / 2,
+        y: bbox.top + bbox.height / 2,
+      });
+      setShowCard(true);
+      setHoveredDistrict(name);
+    });
   };
 
   const handleClick = (geo) => {
@@ -103,9 +114,8 @@ const India = () => {
         return <MadhyaPradesh />;
       case "Rajasthan":
         return <Rajasthan />;
-    //   case "Uttar Pradesh":
-    //     return <UttarPradesh />;
-      // Add more cases as needed
+      // case "Uttar Pradesh":
+      //   return <UttarPradesh />;
       default:
         return <div>Data for {stateName} is not available yet.</div>;
     }
@@ -113,64 +123,128 @@ const India = () => {
 
   return (
     <>
-      <Grid container mt={{ xs: 0, sm: 10 }} direction={{ xs: "row", lg: "column" }} justifyContent="center" alignItems="center">
+      <Grid
+        container
+        mt={{ xs: 0, sm: 10 }}
+        direction="column"
+        spacing={2}
+        justifyContent="center"
+        alignItems="center"
+      >
         <Grid item>
           <Typography
             fontFamily={"poppins"}
             color="#0a1a44"
-            fontSize={{ xs: "1.5rem", sm: "2.2rem", md: "2.5rem", lg: "2.5rem", xl: "4rem" }}
-            maxWidth={{ lg: "520px", xl: "1000px" }}
+            fontSize={{
+              xs: "1.7rem",
+              sm: "2.2rem",
+              md: "2.5rem",
+              lg: "3.5rem",
+              xl: "4rem",
+            }}
+            maxWidth={{ lg: "820px", xl: "1000px" }}
           >
             Our Presence in <span style={{ fontWeight: "bold" }}>India</span>
           </Typography>
+
+          <Grid display={"flex"} flexDirection={"column"} gap={2} mt={2}>
+            <Grid display="flex" gap={2}>
+              <Box sx={legendBoxStyle("#ffd945", "#1d3f79")}>Completed</Box>
+              <Box sx={legendBoxStyle("#1d3f79", "#ffd945")}>20 MWp</Box>
+            </Grid>
+            <Grid display="flex" gap={2}>
+              <Box sx={legendBoxStyle("#ffd945", "#1d3f79")}>Ongoing</Box>
+              <Box sx={legendBoxStyle("white", "#1d3f79", true)}>10 MWp</Box>
+            </Grid>
+          </Grid>
         </Grid>
 
-        <Grid item>
-          <div style={{ backgroundColor: "white", position: "relative", width: "800px", height: "600px", maxWidth: "100%" }}>
-            <Box sx={{ width: "100%", height: { xs: "80%", sm: "100%" } }}>
+        <Grid item display="flex" justifyContent="center" width="100%">
+          <Grid
+            sx={{
+              backgroundColor: "white",
+              width: {
+                xs: "110%",
+                sm: "150%",
+                md: "70%",
+                lg: "50%",
+                xl: "50%",
+              },
+              height: {
+                xs: "auto",
+                md: "600px",
+              },
+              position: "relative",
+              mb: { xl: 10 },
+            }}
+          >
+            <Box width="100%" sx={{ aspectRatio: "4 / 3", maxWidth: "2000px" }}>
               <ComposableMap
                 projection="geoMercator"
-                width={800}
-                height={800}
-                style={{ width: "100%", height: "100%" }}
-                projectionConfig={{ scale: 1410, center: [77.65, 21.5] }}
+                projectionConfig={{ scale: 800, center: [80.65, 22.5] }}
+                style={{ width: "100%", height: "auto" }}
               >
                 <Geographies geography={geoUrl}>
-                  {({ geographies }) =>
-                    geographies.map((geo) => {
-                      const districtName = geo.properties?.NAME_1;
-                      const isYellow = yellowDistricts.includes(districtName);
-                      const isHovered = districtName === hoveredDistrict;
-                      return (
-                        <g key={geo.rsmKey} transform={isHovered ? "translate(0,-5)" : "translate(0,0)"}>
-                          <Geography
-                            geography={geo}
-                            onMouseEnter={(evt) => handleMouseEnter(geo, evt)}
-                            onMouseLeave={handleMouseLeave}
-                            onClick={() => handleClick(geo)}
-                            style={{
-                              default: {
-                                fill: isYellow ? getFillColor(districtName) : "white",
-                                stroke: "black",
-                                strokeWidth: 0.5,
-                                outline: "none",
-                                cursor: isYellow ? "pointer" : "default",
-                              },
-                              hover: {
-                                fill: isYellow ? "#ffd945" : "#f1e5b5",
-                                outline: "none",
-                              },
-                              pressed: {
-                                fill: isYellow ? "#ffd945" : "#f1e5b5",
-                                outline: "none",
-                              },
-                            }}
-                          />
-                        </g>
-                      );
-                    })
-                  }
-                </Geographies>
+  {({ geographies }) =>
+    geographies.map((geo) => {
+      const districtName = geo.properties?.NAME_1;
+      const isYellow = yellowDistricts.includes(districtName);
+      const isHovered = districtName === hoveredDistrict;
+
+      return (
+        <g key={geo.rsmKey}>
+  {/* Interactive Transparent Layer */}
+  <Geography
+    geography={geo}
+    onMouseEnter={(evt) => handleMouseEnter(geo, evt)}
+    onMouseLeave={handleMouseLeave}
+    onClick={() => handleClick(geo)}  
+    style={{
+      default: {
+        fill: "transparent",
+        stroke: "none",
+        outline: "none",
+        pointerEvents: "auto",
+      },
+      hover: {
+        fill: "transparent",
+        stroke: "none",
+        outline: "none",
+      },
+      pressed: {
+        fill: "transparent",
+        stroke: "none",
+        outline: "none",
+      },
+    }}
+  />
+
+  {/* Visible Non-interactive Layer */}
+  <Geography
+    geography={geo}
+    style={{
+      default: {
+        fill: isYellow ? getFillColor(districtName) : "white",
+        stroke: "black",
+        strokeWidth: 0.5,
+        outline: "none",
+        pointerEvents: "none",
+        transform:
+          isHovered && isYellow ? "translate(-4px, -4px)" : "none",
+        transition: "all 0.1s ease-in-out",
+      },
+      hover: {},
+      pressed: {},
+    }}
+  />
+</g>
+
+      
+      );
+    })
+  }
+</Geographies>
+
               </ComposableMap>
             </Box>
 
@@ -190,7 +264,14 @@ const India = () => {
               >
                 {tooltipContent.wp ? (
                   <>
-                    <div style={{ height: "100px", width: "2px", backgroundColor: "#1d3f79", marginBottom: "4px" }} />
+                    <div
+                      style={{
+                        height: "100px",
+                        width: "2px",
+                        backgroundColor: "#1d3f79",
+                        marginBottom: "4px",
+                      }}
+                    />
                     <div
                       style={{
                         fontSize: "1rem",
@@ -200,7 +281,6 @@ const India = () => {
                         padding: "4px 8px",
                         borderRadius: "4px",
                         border: tooltipContent.status === "completed" ? "none" : "1px solid #1d3f79",
-                        letterSpacing: 1,
                         fontFamily: "poppins",
                       }}
                     >
@@ -225,11 +305,10 @@ const India = () => {
                 )}
               </div>
             )}
-          </div>
+          </Grid>
         </Grid>
       </Grid>
 
-      {/* Modal */}
       <Modal open={!!selectedState} onClose={() => setSelectedState(null)}>
         <Box
           sx={{
@@ -253,11 +332,26 @@ const India = () => {
           >
             <CloseIcon />
           </IconButton>
-          {renderStateComponent(selectedState)}
+          <Suspense fallback={<CircularProgress color="primary" />}>
+            {renderStateComponent(selectedState)}
+          </Suspense>
         </Box>
       </Modal>
     </>
   );
 };
+
+// Reusable styles
+const legendBoxStyle = (bg, color, isBordered = false) => ({
+  backgroundColor: bg,
+  color: color,
+  padding: { xs: 0.6, sm: 0.8 },
+  borderRadius: "3px",
+  fontSize: { xs: "0.65rem", sm: "0.8rem", md: "0.9rem" },
+  textAlign: "center",
+  fontFamily: "poppins",
+  width: { xs: "60px", sm: "80px", md: "100px" },
+  border: isBordered ? `1px solid ${color}` : "none",
+});
 
 export default India;

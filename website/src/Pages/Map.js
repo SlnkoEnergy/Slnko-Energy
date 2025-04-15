@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 const MadhyaPradeshMap = () => {
-  const geoUrl = process.env.PUBLIC_URL + "/maps/MadhyaPradesh.geojson";
+  const geoUrl = process.env.PUBLIC_URL + "/maps/MadhyaPradesh.topojson";
   const yellowDistricts = [
     "Rajgarh",
     "Mandsaur",
