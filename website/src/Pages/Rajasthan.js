@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 const Rajasthan = () => {
-  const geoUrl = process.env.PUBLIC_URL + "/maps/Rajasthan.geojson";
+  const geoUrl = process.env.PUBLIC_URL + "/maps/Rajasthan.topojson";
 
   const [tooltipContent, setTooltipContent] = useState({
     name: "",

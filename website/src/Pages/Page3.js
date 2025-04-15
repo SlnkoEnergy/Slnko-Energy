@@ -1,8 +1,12 @@
-import { Grid, Typography, useMediaQuery } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import { motion, useInView } from "framer-motion";
 import React, { useRef } from "react";
 import img1 from "../assets/SLNKO.png";
-
+import img2 from "../assets/Logo (3)/1.png";
+import img3 from "../assets/Logo (3)/2.png";
+import img4 from "../assets/Logo (3)/3.png";
+import img5 from "../assets/Logo (3)/4.png";
+import img6 from "../assets/Logo (3)/5.png";
 const stats = [
   { value: "6+GW", label: "Project Completed" },
   { value: "350+", label: "Happy Clients" },
@@ -21,7 +25,7 @@ const Page3 = () => {
   const size = isSmall ? 8 : isMedium ? 15 : 25;
 
   const ref = useRef(null);
-  const isInView = useInView(ref, { triggerOnce: true, threshold: 0.2 });
+  const isInView = useInView(ref,  { triggerOnce: true, threshold: 0.2 });
 
   return (
     <Grid
@@ -40,7 +44,7 @@ const Page3 = () => {
       <Grid
         item
         xs={12}
-        display="flex"
+        display={{xs:'none',md:"flex"}}
         justifyContent="center"
         alignItems="center"
         mt={4}
@@ -54,6 +58,29 @@ const Page3 = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         />
       </Grid>
+
+      <Grid
+  item
+  display={{ xs: 'flex', md: 'none' }}
+  flexDirection={'column'}
+  justifyContent={'center'}
+  alignItems={'center'}
+  gap={1}
+  ref={ref}
+>
+  {[img2, img3, img4, img5, img6].map((imgSrc, idx) => (
+    <Box
+      key={idx}
+      width={{ xs: '30%', sm: '25%' }}
+      component={motion.img}
+      alt={`supremely-${idx}`}
+      src={imgSrc}
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={isInView ? { scale: 1, opacity: 1 } : {}}
+      transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.1 }}
+    />
+  ))}
+</Grid>
 
       {!isMobile && (
         <Grid
