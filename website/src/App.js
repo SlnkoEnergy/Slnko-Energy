@@ -2,26 +2,49 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
-import Home from "./Pages/Home/Home.js";
-import About from "./Pages/About/About.js";
-import Services from "./Pages/Services/Services.js";
-import Kusum from "./Pages/Kusum Yojana/Kusum.js";
-import Careers from "./Pages/Careers/Careers.js";
-import Contact from "./Pages/Contacts/Contact.js";
+import Footer from "./Components/Footer";
+import Page2 from "./Pages/Page2";
+import Page3 from "./Pages/Page3";
+import Page4 from "./Pages/Page4"; // Import your Page4 component
+import Page5 from "./Pages/Page5"; // Import your Page5 component
+import Page1 from "./Pages/Page1";
+import Page7 from "./Pages/Page7";
+
+// import Page7N from "./Pages/Page7.0";
+
+import Page4 from "./Pages/Page4"; // Import your Page4 component
+import Page5 from "./Pages/Page5"; // Import your Page5 component
 
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/pm-kusum-yojana" element={<Kusum />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/contacts" element={<Contact />} />
-        </Routes>
+        {/* <Navbar /> */}
+
+        <Page1 />
+        <Page2 />
+        <Page3 />
+        {/* <Page4/>   */}
+        <Page5/>
+        <Page6/>
+        <Page7/>       
+       
+        <Footer />
+
+        {/* <Page2 /> */}
+
+        
+
+        <Page4/>
+
+        {/* <Footer /> */}
+
+        
+        {/* <Page7N/> */}
+
+
+
 
       </BrowserRouter>
     </ThemeProvider>

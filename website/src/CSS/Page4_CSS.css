@@ -1,4 +1,3 @@
-/* 🔹 Fullscreen background */
 .services-container {
     text-align: center;
     background: url("../assets/Background_pg4.png") no-repeat center center/cover;
@@ -9,116 +8,128 @@
     justify-content: center;
     overflow: hidden;
     padding: 20px;
-}
-
-/* 🔹 Title styling */
-h2 {
-    font-size: 2rem;
+    position: relative;
+  }
+  
+  h2 {
+    font-size: 2.2rem;
     color: white;
     text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-/* 🔹 Swiper Container Fixes */
-.slider-wrapper {
+    margin-bottom: 30px;
+  }
+  
+  .slider-wrapper {
     width: 100%;
-    max-width: 90vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 95vw;
+    height: 60vh; /* Increased height */
     padding: 20px;
-}
-
-/* 🔹 Image Styling */
-.service-image {
-    width: 100%;
-    max-width: 250px; /* Adjust image size */
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3); /* Soft shadow */
-    position: relative;
-    background: white;
-    z-index: 1;
-    transition: transform 0.3s ease-in-out;
-}
-
-.service-image:hover {
-    transform: scale(1.05);
-}
-
-/* 🔹 Swiper Slide Adjustments */
-.swiper-slide {
+    box-sizing: border-box;
+  }
+  
+  .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: none !important; /* Removes unwanted background */
-}
-
-/* 🔹 Shadow Effect */
-.service-image::after {
-    content: "";
-    position: absolute;
-    top: 8px;
-    left: 8px;
+    height: 100%;
+  }
+  
+  .service-card {
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.1);
-    filter: blur(10px);
-    z-index: -1;
-}
-
-/* 🔹 Navigation Button */
-.arrow-button {
+    max-width: 400px; /* Increased width */
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .service-image.full {
+    width: 100%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+  
+  .service-title {
+    margin-top: 10px;
+    color: white;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  
+  .arrow-button {
     position: absolute;
     bottom: 20px;
     font-size: 30px;
     cursor: pointer;
     color: white;
     transition: transform 0.3s ease-in-out;
-}
-
-.arrow-button:hover {
+  }
+  
+  .arrow-button:hover {
     transform: scale(1.3);
-}
-
-/* 🔹 Responsive Design */
-@media (max-width: 1024px) {
-    .service-image {
-        max-width: 200px; /* Smaller images on tablets */
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .slider-wrapper {
+      height: 50vh;
     }
+  
+    .service-card {
+      max-width: 320px;
+    }
+  
     h2 {
-        font-size: 1.8rem;
+      font-size: 2rem;
     }
-}
-
-@media (max-width: 768px) {
-    .swiper-container {
-        max-width: 90%;
+  }
+  
+  @media (max-width: 768px) {
+    .slider-wrapper {
+      height: 45vh;
     }
-    .service-image {
-        max-width: 180px;
+  
+    .service-card {
+      max-width: 280px;
     }
+  
+    .service-title {
+      font-size: 1rem;
+    }
+  
     h2 {
-        font-size: 1.6rem;
+      font-size: 1.8rem;
     }
+  
     .arrow-button {
-        bottom: 15px;
-        font-size: 25px;
+      bottom: 15px;
+      font-size: 26px;
     }
-}
-
-@media (max-width: 480px) {
-    .swiper-container {
-        max-width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    .slider-wrapper {
+      height: 40vh;
     }
-    .service-image {
-        max-width: 150px;
+  
+    .service-card {
+      max-width: 240px;
     }
+  
+    .service-title {
+      font-size: 0.9rem;
+    }
+  
     h2 {
-        font-size: 1.4rem;
+      font-size: 1.6rem;
     }
+  
     .arrow-button {
-        bottom: 10px;
-        font-size: 22px;
+      bottom: 10px;
+      font-size: 24px;
     }
-}
+  }
+  
