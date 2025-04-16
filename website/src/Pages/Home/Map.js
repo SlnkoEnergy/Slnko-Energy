@@ -3,17 +3,7 @@ import React, { useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 const MadhyaPradeshMap = () => {
-  const geoUrl = process.env.PUBLIC_URL + "/maps/MadhyaPradesh.geojson";
-
-  const [tooltipContent, setTooltipContent] = useState({
-    name: "",
-    wp: "",
-    status: "",
-  });
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [showCard, setShowCard] = useState(false);
-  const [hoveredDistrict, setHoveredDistrict] = useState("");
-
+  const geoUrl = process.env.PUBLIC_URL + "/maps/MadhyaPradesh.topojson";
   const yellowDistricts = [
     "Rajgarh",
     "Mandsaur",
@@ -51,7 +41,33 @@ const MadhyaPradeshMap = () => {
     Niwari: { wp: "2.4 MWp", status: "completed" },
     Singrauli: { wp: "1.0 MWp", status: "ongoing" },
   };
-
+  const [tooltipContent, setTooltipContent] = useState({
+    name: "",
+    wp: "",
+    status: "",
+  });
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [showCard, setShowCard] = useState(false);
+  const [hoveredDistrict, setHoveredDistrict] = useState("");
+  const wpValues = Object.values(districtWpData).map((d) =>
+    parseFloat(d.wp)
+  );
+  const maxWp = Math.max(...wpValues);
+  const minWp = Math.min(...wpValues);
+  
+  
+  
+  const getFillColor = (name) => {
+    const data = districtWpData[name];
+    if (!data) return "white";
+  
+    const wpValue = parseFloat(data.wp); // extract number
+    const normalized = (wpValue - minWp) / (maxWp - minWp);
+    const lightness = 90 - normalized * 45;
+  
+    return `hsl(45, 100%, ${lightness}%)`;
+  };
+  
   const handleMouseEnter = (geo, evt) => {
     const name = geo.properties?.Dist_Name;
     const data = districtWpData[name] || {};
@@ -229,10 +245,11 @@ const MadhyaPradeshMap = () => {
                         onMouseLeave={handleMouseLeave}
                         style={{
                           default: {
-                            fill: isYellow ? "#efc82f" : "white",
+                            fill: isYellow ? getFillColor(districtName) : "white",
                             stroke: "black",
-                            strokeWidth: 0.4,
+                            strokeWidth: 0.5,
                             outline: "none",
+                            cursor: isYellow ? "pointer" : "default",
                           },
                           hover: {
                             fill: isYellow ? "#ffd945" : "#f1e5b5",
@@ -255,8 +272,8 @@ const MadhyaPradeshMap = () => {
             <div
               style={{
                 position: "fixed",
-                top: position.y + 10,
-                left: position.x,
+                top: position.y + 200,
+                left: position.x - 450,
                 transform: "translate(-50%, 0)",
                 zIndex: 1000,
                 pointerEvents: "none",

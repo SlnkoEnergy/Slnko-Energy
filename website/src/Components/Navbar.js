@@ -14,7 +14,7 @@ const navItems = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
   { label: "Services", path: "/services" },
-  { label: "Kusum Yojana", path: "/kusum-yojana" },
+  { label: "Kusum Yojana", path: "/pm-kusum-yojana" },
   { label: "Careers", path: "/careers" },
   { label: "Contacts", path: "/contacts" },
 ];
