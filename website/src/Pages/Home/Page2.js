@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { useInView } from "framer-motion";
-import "../CSS/file.css";
+import "../../CSS/file.css";
 
 const Page2 = () => {
   const theme = useTheme();

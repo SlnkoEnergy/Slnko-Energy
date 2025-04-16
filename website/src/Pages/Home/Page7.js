@@ -5,13 +5,13 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 // Importing images
-import img1 from "../assets/11.png";
-import img2 from "../assets/12.png";
-import img3 from "../assets/13.png";
-import img4 from "../assets/14.png";
-import img5 from "../assets/15.png";
-import img6 from "../assets/16.png";
-import img7 from "../assets/17.png";
+import img1 from "../../assets/11.png";
+import img2 from "../../assets/12.png";
+import img3 from "../../assets/13.png";
+import img4 from "../../assets/14.png";
+import img5 from "../../assets/15.png";
+import img6 from "../../assets/16.png";
+import img7 from "../../assets/17.png";
 
 const projects = [img1, img2, img3, img4, img5, img6, img7];
 
@@ -46,13 +46,12 @@ const Page7 = () => {
       <Box
         sx={{
           background: "#ffde5b",
-          minHeight: "100vh",
+          height: "100vh",
           width: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          
           overflow: "hidden",
         }}
       >

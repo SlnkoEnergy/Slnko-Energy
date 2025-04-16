@@ -4,12 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "../CSS/Page4_CSS.css";
-
-import Img1 from "../assets/Tendering.png";
-import Img2 from "../assets/Loan.png";
-import Img3 from "../assets/Construction.png";
-import Img4 from "../assets/Commissioning.png";
+import "../../CSS/Page4_CSS.css";
+import Img1 from "../../assets/Tendering.png";
+import Img2 from "../../assets/Loan.png";
+import Img3 from "../../assets/Construction.png";
+import Img4 from "../../assets/Commissioning.png";
 
 const services = [
   { title: "Tendering", img: Img1 },

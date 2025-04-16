@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import Img1 from "../assets/PAGE_5.png"; // Replace with your actual image path
+import Img1 from "../../assets/PAGE_5.png"; // Replace with your actual image path
 
 const Page5 = () => {
   const theme = useTheme();

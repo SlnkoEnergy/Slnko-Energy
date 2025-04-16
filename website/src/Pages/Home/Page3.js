@@ -1,12 +1,12 @@
 import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import { motion, useInView } from "framer-motion";
 import React, { useRef } from "react";
-import img1 from "../assets/SLNKO.png";
-import img2 from "../assets/Logo (3)/1.png";
-import img3 from "../assets/Logo (3)/2.png";
-import img4 from "../assets/Logo (3)/3.png";
-import img5 from "../assets/Logo (3)/4.png";
-import img6 from "../assets/Logo (3)/5.png";
+import img1 from "../../assets/SLNKO.png";
+import img2 from "../../assets/Logo (3)/1.png";
+import img3 from "../../assets/Logo (3)/2.png";
+import img4 from "../../assets/Logo (3)/3.png";
+import img5 from "../../assets/Logo (3)/4.png";
+import img6 from "../../assets/Logo (3)/5.png";
 const stats = [
   { value: "6+GW", label: "Project Completed" },
   { value: "350+", label: "Happy Clients" },
