@@ -1,5 +1,5 @@
 import React from "react";
-import "../CSS/Page6.css";
+import "../../CSS/Page6.css";
 
 const Page6 = () => {
     const handleDistrictClick = (district) => {

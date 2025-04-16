@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Navbar from "../Components/Navbar";
+import Navbar from "../../Components/Navbar";
 import { Box, Button, Grid, Typography } from "@mui/material";
-import video from "../assets/Untitled design.mp4";
-import kusum from "../assets/Kusum (1).webp";
-import arrow from "../assets/arrow.png";
-import Calculator from "../assets/Calculator.png";
-import chatbot from "../assets/chatbot-logo1.png";
-import whatsapp from "../assets/whatsapp.1.png";
+import video from "../../assets/Untitled design.mp4";
+import kusum from "../../assets/Kusum (1).webp";
+import arrow from "../../assets/arrow.png";
+import Calculator from "../../assets/Calculator.png";
+import chatbot from "../../assets/chatbot-logo1.png";
+import whatsapp from "../../assets/whatsapp.1.png";
 // import { Link } from "react-router-dom";  <-- remove this if not navigating
-import ChatbotBox from "../Pages/Chatbot"; // Import your chatbot component
+import ChatbotBox from "./Chatbot"; // Import your chatbot component
 
 const Page1 = () => {
   const [chatOpen, setChatOpen] = useState(false);
