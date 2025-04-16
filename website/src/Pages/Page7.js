@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IconButton, Typography, Box } from "@mui/material";
 import { motion } from "framer-motion";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -15,14 +15,34 @@ import img7 from "../assets/17.png";
 
 const projects = [img1, img2, img3, img4, img5, img6, img7];
 
+const containerVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.2,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.9, y: 30 },
+  visible: { opacity: 1, scale: 1, y: 0 },
+};
+
 const Page7 = () => {
   const [visibleItems, setVisibleItems] = useState(4);
   const [startIndex, setStartIndex] = useState(0);
+  const [inView, setInView] = useState(false); // State to track if the page is in view
+  const pageRef = useRef(null); // Ref to target the page section
 
   useEffect(() => {
     const updateVisibleItems = () => {
       if (window.innerWidth < 600) {
-        setVisibleItems(1); // Show single image for mobile
+        setVisibleItems(1);
       } else if (window.innerWidth < 900) {
         setVisibleItems(2);
       } else if (window.innerWidth < 1200) {
@@ -37,12 +57,40 @@ const Page7 = () => {
     return () => window.removeEventListener("resize", updateVisibleItems);
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Check if the page is in view
+          if (entry.isIntersecting) {
+            setInView(true); // Set the animation to be visible when the page is in view
+          } else {
+            setInView(false); // Reset the animation if the page is out of view
+          }
+        });
+      },
+      {
+        threshold: 0.5, // 50% of the page should be visible to trigger the animation
+      }
+    );
+
+    if (pageRef.current) {
+      observer.observe(pageRef.current); // Start observing the page ref
+    }
+
+    return () => {
+      if (pageRef.current) {
+        observer.unobserve(pageRef.current); // Stop observing when the component unmounts
+      }
+    };
+  }, []);
+
   const scrollLeft = () => setStartIndex((prev) => Math.max(prev - 1, 0));
   const scrollRight = () =>
     setStartIndex((prev) => Math.min(prev + 1, projects.length - visibleItems));
 
   return (
-    <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+    <div ref={pageRef}>
       <Box
         sx={{
           background: "#ffde5b",
@@ -52,7 +100,6 @@ const Page7 = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          
           overflow: "hidden",
         }}
       >
@@ -100,53 +147,56 @@ const Page7 = () => {
             <ArrowBackIosNewIcon />
           </IconButton>
 
-          {/* Card Container */}
-          <Box
-            sx={{
+          {/* Animated Card Container */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"} // Trigger animation only when in view
+            style={{
               display: "flex",
-              gap: { xs: 1, sm: 2, md: 3 },
+              gap: "24px",
               width: "85vw",
-              overflow: "hidden",
               justifyContent: "center",
               flexWrap: "nowrap",
+              overflow: "hidden",
             }}
           >
-            {projects.slice(startIndex, startIndex + visibleItems).map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                whileHover={{ scale: 1.05 }}
-                style={{
-                  borderRadius: "10px",
-                  overflow: "hidden",
-                  width: visibleItems === 1 ? "90vw" : "100%", // Adjust for single image on mobile
-                  maxWidth: { xs: "90vw", sm: "320px", md: "350px" },
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: { xs: "250px", sm: "300px", md: "350px" },
-                    position: "relative",
-                    overflow: "hidden",
+            {projects
+              .slice(startIndex, startIndex + visibleItems)
+              .map((image, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05 }}
+                  style={{
                     borderRadius: "10px",
+                    overflow: "hidden",
+                    width: visibleItems === 1 ? "90vw" : "100%",
+                    maxWidth: "350px",
                   }}
                 >
-                  <img
-                    src={image}
-                    alt={`Project ${index + 1}`}
-                    style={{
+                  <Box
+                    sx={{
                       width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
+                      height: { xs: "250px", sm: "300px", md: "350px" },
+                      position: "relative",
+                      overflow: "hidden",
+                      borderRadius: "10px",
                     }}
-                  />
-                </Box>
-              </motion.div>
-            ))}
-          </Box>
+                  >
+                    <img
+                      src={image}
+                      alt={`Project ${index + 1}`}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </Box>
+                </motion.div>
+              ))}
+          </motion.div>
 
           {/* Right Scroll Button */}
           <IconButton
@@ -165,7 +215,7 @@ const Page7 = () => {
           </IconButton>
         </Box>
       </Box>
-    </motion.div>
+    </div>
   );
 };
 

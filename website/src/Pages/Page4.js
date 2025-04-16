@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -12,58 +12,88 @@ import Img3 from "../assets/Construction.png";
 import Img4 from "../assets/Commissioning.png";
 
 const services = [
-  { title: "Tendering", img: Img1 },
-  { title: "Loan Assistance", img: Img2 },
-  { title: "Construction", img: Img3 },
-  { title: "Liaisoning", img: Img4 },
+  {img: Img1 },
+  {img: Img2 },
+  {img: Img3 },
+  {img: Img4 },
 ];
 
-const getSlidesPerView = (width) => {
-  if (width < 768) return 1;
-  if (width < 1024) return 2;
-  return 3;
-};
 const Page4 = () => {
-  const [slidesPerView, setSlidesPerView] = useState(getSlidesPerView(window.innerWidth));
+  const pageRef = useRef(null);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setSlidesPerView(getSlidesPerView(window.innerWidth));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setInView(true);
+          } else {
+            setInView(false);
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
+
+    if (pageRef.current) {
+      observer.observe(pageRef.current);
+    }
+
+    return () => {
+      if (pageRef.current) {
+        observer.unobserve(pageRef.current);
+      }
     };
-
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Set initial slides count
-
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <div className="services-container">
-      <motion.h2 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+    <div className="services-container" ref={pageRef}>
+      <motion.h2
+        initial={{ opacity: 0, y: -30 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8 }}
+      >
         Services we provide
       </motion.h2>
 
       <div className="slider-wrapper">
         <Swiper
-          key={slidesPerView}
           modules={[Navigation]}
-          spaceBetween={10}
-          slidesPerView={slidesPerView}
+          spaceBetween={20}
           centeredSlides={true}
           navigation
           loop={true}
+          breakpoints={{
+            768: { slidesPerView: 1 },
+            1024: { slidesPerView: 2 },
+            1280: { slidesPerView: 3 },
+          }}
         >
           {services.map(({ title, img }, index) => (
             <SwiperSlide key={index}>
-              <motion.img src={img} alt={title} className="service-image" whileHover={{ scale: 1.05 }} />
+              <motion.div
+                className="service-card"
+                initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <motion.img
+                  src={img}
+                  alt={title}
+                  className="service-image full"
+                  whileHover={{ scale: 1.05 }}
+                />
+                <p className="service-title">{title}</p>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      <motion.div className="arrow-button" whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
-        ➜
-      </motion.div>
+    
     </div>
   );
 };
