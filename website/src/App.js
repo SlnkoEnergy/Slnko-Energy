@@ -3,48 +3,27 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import Footer from "./Components/Footer";
-import Page2 from "./Pages/Page2";
-import Page3 from "./Pages/Page3";
-import Page4 from "./Pages/Page4"; // Import your Page4 component
-import Page5 from "./Pages/Page5"; // Import your Page5 component
-import Page1 from "./Pages/Page1";
-import Page7 from "./Pages/Page7";
-
-// import Page7N from "./Pages/Page7.0";
-
-import Page4 from "./Pages/Page4"; // Import your Page4 component
-import Page5 from "./Pages/Page5"; // Import your Page5 component
+import Home from "./Pages/Home/Home";
+import About from "./Pages/About/About";
+import Services from "./Pages/Services/Services";
+import Kusum from "./Pages/Kusum Yojana/Kusum";
+import Contact from "./Pages/Contacts/Contact";
+import Careers from "./Pages/Careers/Careers";
 
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        {/* <Navbar /> */}
-
-        <Page1 />
-        <Page2 />
-        <Page3 />
-        {/* <Page4/>   */}
-        <Page5/>
-        <Page6/>
-        <Page7/>       
-       
-        <Footer />
-
-        {/* <Page2 /> */}
-
-        
-
-        <Page4/>
-
-        {/* <Footer /> */}
-
-        
-        {/* <Page7N/> */}
-
-
-
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/pm-kusum-yojana" element={<Kusum />} />
+          <Route path="/contacts" element={<Contact />} />
+          <Route path="/careers" element={<Careers />} />
+        </Routes>
+        <Footer /> 
 
       </BrowserRouter>
     </ThemeProvider>
