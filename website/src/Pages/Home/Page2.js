@@ -24,7 +24,7 @@ const Page2 = () => {
           letterSpacing: 2,
           textAlign: "center",
           fontFamily: "Montserrat, sans-serif",
-          overflow: "hidden",
+          overflowX: "hidden",
           width: "100%",
         }}
       >

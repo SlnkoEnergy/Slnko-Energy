@@ -22,36 +22,216 @@ const questions = [
 
 const stateDistrictMap = {
   "Andhra Pradesh": [
-    "Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna",
-    "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari", "Parvathipuram Manyam", "Alluri Sitharama Raju", "Annamayya", "Bapatla", "Eluru", "Kakinada", "Konaseema", "Nandyal", "Palnadu", "Tirupati"
+    "Anantapur",
+    "Chittoor",
+    "East Godavari",
+    "Guntur",
+    "Kadapa",
+    "Krishna",
+    "Kurnool",
+    "Nellore",
+    "Prakasam",
+    "Srikakulam",
+    "Visakhapatnam",
+    "Vizianagaram",
+    "West Godavari",
+    "Parvathipuram Manyam",
+    "Alluri Sitharama Raju",
+    "Annamayya",
+    "Bapatla",
+    "Eluru",
+    "Kakinada",
+    "Konaseema",
+    "Nandyal",
+    "Palnadu",
+    "Tirupati",
   ],
   "Arunachal Pradesh": [
-    "Tawang", "West Kameng", "East Kameng", "Pakke Kessang", "Papum Pare", "Kurung Kumey", "Kra Daadi", "Lower Subansiri", "Upper Subansiri", "West Siang", "East Siang", "Siang", "Upper Siang", "Lower Siang", "Lower Dibang Valley", "Dibang Valley", "Anjaw", "Lohit", "Namsai", "Changlang", "Tirap", "Longding", "Kamle", "Lepa Rada", "Shi Yomi"
+    "Tawang",
+    "West Kameng",
+    "East Kameng",
+    "Pakke Kessang",
+    "Papum Pare",
+    "Kurung Kumey",
+    "Kra Daadi",
+    "Lower Subansiri",
+    "Upper Subansiri",
+    "West Siang",
+    "East Siang",
+    "Siang",
+    "Upper Siang",
+    "Lower Siang",
+    "Lower Dibang Valley",
+    "Dibang Valley",
+    "Anjaw",
+    "Lohit",
+    "Namsai",
+    "Changlang",
+    "Tirap",
+    "Longding",
+    "Kamle",
+    "Lepa Rada",
+    "Shi Yomi",
   ],
-  "Assam": [
-    "Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo", "Chirang", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Dima Hasao", "Goalpara", "Golaghat", "Hailakandi", "Hojai", "Jorhat", "Kamrup", "Kamrup Metropolitan", "Karbi Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Majuli", "Morigaon", "Nagaon", "Nalbari", "Sivasagar", "Sonitpur", "South Salmara-Mankachar", "Tinsukia", "Udalguri", "West Karbi Anglong"
+  Assam: [
+    "Baksa",
+    "Barpeta",
+    "Biswanath",
+    "Bongaigaon",
+    "Cachar",
+    "Charaideo",
+    "Chirang",
+    "Darrang",
+    "Dhemaji",
+    "Dhubri",
+    "Dibrugarh",
+    "Dima Hasao",
+    "Goalpara",
+    "Golaghat",
+    "Hailakandi",
+    "Hojai",
+    "Jorhat",
+    "Kamrup",
+    "Kamrup Metropolitan",
+    "Karbi Anglong",
+    "Karimganj",
+    "Kokrajhar",
+    "Lakhimpur",
+    "Majuli",
+    "Morigaon",
+    "Nagaon",
+    "Nalbari",
+    "Sivasagar",
+    "Sonitpur",
+    "South Salmara-Mankachar",
+    "Tinsukia",
+    "Udalguri",
+    "West Karbi Anglong",
   ],
-  "Bihar": [
-    "Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnia", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West Champaran"
+  Bihar: [
+    "Araria",
+    "Arwal",
+    "Aurangabad",
+    "Banka",
+    "Begusarai",
+    "Bhagalpur",
+    "Bhojpur",
+    "Buxar",
+    "Darbhanga",
+    "East Champaran",
+    "Gaya",
+    "Gopalganj",
+    "Jamui",
+    "Jehanabad",
+    "Kaimur",
+    "Katihar",
+    "Khagaria",
+    "Kishanganj",
+    "Lakhisarai",
+    "Madhepura",
+    "Madhubani",
+    "Munger",
+    "Muzaffarpur",
+    "Nalanda",
+    "Nawada",
+    "Patna",
+    "Purnia",
+    "Rohtas",
+    "Saharsa",
+    "Samastipur",
+    "Saran",
+    "Sheikhpura",
+    "Sheohar",
+    "Sitamarhi",
+    "Siwan",
+    "Supaul",
+    "Vaishali",
+    "West Champaran",
   ],
-  "Chhattisgarh": [
-    "Balod", "Baloda Bazar", "Balrampur", "Bastar", "Bemetara", "Bijapur", "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Gariaband", "Gaurella-Pendra-Marwahi", "Janjgir-Champa", "Jashpur", "Kabirdham", "Kanker", "Kondagaon", "Korba", "Koriya", "Mahasamund", "Mungeli", "Narayanpur", "Raigarh", "Raipur", "Rajnandgaon", "Sukma", "Surajpur", "Surguja"
+  Chhattisgarh: [
+    "Balod",
+    "Baloda Bazar",
+    "Balrampur",
+    "Bastar",
+    "Bemetara",
+    "Bijapur",
+    "Bilaspur",
+    "Dantewada",
+    "Dhamtari",
+    "Durg",
+    "Gariaband",
+    "Gaurella-Pendra-Marwahi",
+    "Janjgir-Champa",
+    "Jashpur",
+    "Kabirdham",
+    "Kanker",
+    "Kondagaon",
+    "Korba",
+    "Koriya",
+    "Mahasamund",
+    "Mungeli",
+    "Narayanpur",
+    "Raigarh",
+    "Raipur",
+    "Rajnandgaon",
+    "Sukma",
+    "Surajpur",
+    "Surguja",
   ],
-  "Goa": [
-    "North Goa", "South Goa"
+  Goa: ["North Goa", "South Goa"],
+  Gujarat: [
+    "Ahmedabad",
+    "Amreli",
+    "Anand",
+    "Banaskantha",
+    "Bharuch",
+    "Bhavnagar",
+    "Botad",
+    "Chhota Udepur",
+    "Dahod",
+    "Dang",
+    "Gir Somnath",
+    "Jamnagar",
+    "Junagadh",
+    "Kachchh",
+    "Kheda",
+    "Mahisagar",
+    "Mehsana",
+    "Morbi",
+    "Narmada",
+    "Navsari",
+    "Panchmahal",
+    "Patan",
+    "Porbandar",
+    "Rajkot",
+    "Sabarkantha",
+    "Surat",
+    "Surendranagar",
+    "Tapi",
+    "Vadodara",
+    "Valsad",
   ],
-  "Gujarat":[
-    "Ahmedabad", "Amreli", "Anand", "Banaskantha", "Bharuch", "Bhavnagar", 
-    "Botad", "Chhota Udepur", "Dahod", "Dang", "Gir Somnath", "Jamnagar", 
-    "Junagadh", "Kachchh", "Kheda", "Mahisagar", "Mehsana", "Morbi", 
-    "Narmada", "Navsari", "Panchmahal", "Patan", "Porbandar", "Rajkot", 
-    "Sabarkantha", "Surat", "Surendranagar", "Tapi", "Vadodara", "Valsad"
-  ],
-  "Haryana":[
-    "Ambala", "Bhiwani", "Faridabad", "Fatehabad", "Gurugram", "Hisar", 
-    "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", "Nuh", 
-    "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", 
-    "Yamunanagar"
+  Haryana: [
+    "Ambala",
+    "Bhiwani",
+    "Faridabad",
+    "Fatehabad",
+    "Gurugram",
+    "Hisar",
+    "Jind",
+    "Kaithal",
+    "Karnal",
+    "Kurukshetra",
+    "Mahendragarh",
+    "Nuh",
+    "Palwal",
+    "Panchkula",
+    "Panipat",
+    "Rewari",
+    "Rohtak",
+    "Sirsa",
+    "Sonipat",
+    "Yamunanagar",
   ],
   "Himachal Pradesh": [
     "Bilaspur",
@@ -65,9 +245,9 @@ const stateDistrictMap = {
     "Shimla",
     "Sirmaur",
     "Solan",
-    "Una"
+    "Una",
   ],
-  "Jharkhand":[
+  Jharkhand: [
     "Bokaro",
     "Chatra",
     "Deoghar",
@@ -91,9 +271,9 @@ const stateDistrictMap = {
     "Sahebganj",
     "Seraikela Kharsawan",
     "Simdega",
-    "West Singhbhum"
+    "West Singhbhum",
   ],
-  "Karnataka":[
+  Karnataka: [
     "Bagalkot",
     "Ballari",
     "Belagavi",
@@ -123,9 +303,9 @@ const stateDistrictMap = {
     "Udupi",
     "Uttara Kannada",
     "Vijayapura",
-    "Yadgir"
+    "Yadgir",
   ],
-  "Kerala":[
+  Kerala: [
     "Alappuzha",
     "Ernakulam",
     "Idukki",
@@ -139,9 +319,9 @@ const stateDistrictMap = {
     "Pathanamthitta",
     "Thiruvananthapuram",
     "Thrissur",
-    "Wayanad"
+    "Wayanad",
   ],
-  "Madhya Pradesh":[
+  "Madhya Pradesh": [
     "Agar Malwa",
     "Alirajpur",
     "Anuppur",
@@ -193,9 +373,9 @@ const stateDistrictMap = {
     "Tikamgarh",
     "Ujjain",
     "Umaria",
-    "Vidisha"
+    "Vidisha",
   ],
-  "Maharashtra":[
+  Maharashtra: [
     "Ahmednagar",
     "Akola",
     "Amravati",
@@ -231,9 +411,9 @@ const stateDistrictMap = {
     "Thane",
     "Wardha",
     "Washim",
-    "Yavatmal"
+    "Yavatmal",
   ],
-  "Manipur":[
+  Manipur: [
     "Bishnupur",
     "Chandel",
     "Churachandpur",
@@ -249,9 +429,9 @@ const stateDistrictMap = {
     "Tamenglong",
     "Tengnoupal",
     "Thoubal",
-    "Ukhrul"
+    "Ukhrul",
   ],
-  "Meghalaya":[
+  Meghalaya: [
     "East Garo Hills",
     "East Jaintia Hills",
     "East Khasi Hills",
@@ -262,9 +442,9 @@ const stateDistrictMap = {
     "South West Khasi Hills",
     "West Garo Hills",
     "West Jaintia Hills",
-    "West Khasi Hills"
+    "West Khasi Hills",
   ],
-  "Mizoram":[
+  Mizoram: [
     "Aizawl",
     "Champhai",
     "Kolasib",
@@ -275,9 +455,9 @@ const stateDistrictMap = {
     "Serchhip",
     "Hnahthial",
     "Khawzawl",
-    "Saitual"
+    "Saitual",
   ],
-  "Nagaland":[
+  Nagaland: [
     "Chümoukedima",
     "Dimapur",
     "Kiphire",
@@ -293,9 +473,9 @@ const stateDistrictMap = {
     "Tseminyü",
     "Tuensang",
     "Wokha",
-    "Zünheboto"
+    "Zünheboto",
   ],
-  "Odisha":[
+  Odisha: [
     "Angul",
     "Balangir",
     "Balasore",
@@ -324,9 +504,9 @@ const stateDistrictMap = {
     "Rayagada",
     "Sambalpur",
     "Subarnapur",
-    "Sundargarh"
+    "Sundargarh",
   ],
-  "Punjab":[
+  Punjab: [
     "Amritsar",
     "Barnala",
     "Bathinda",
@@ -347,9 +527,9 @@ const stateDistrictMap = {
     "Sangrur",
     "Shaheed Bhagat Singh Nagar",
     "Sri Muktsar Sahib",
-    "Tarn Taran"
+    "Tarn Taran",
   ],
-  "Rajasthan":[
+  Rajasthan: [
     "Ajmer",
     "Alwar",
     "Banswara",
@@ -381,15 +561,10 @@ const stateDistrictMap = {
     "Sikar",
     "Sirohi",
     "Tonk",
-    "Udaipur"
+    "Udaipur",
   ],
-  "Sikkim":[
-    "East Sikkim",
-    "North Sikkim",
-    "South Sikkim",
-    "West Sikkim"
-  ],
-  "Tamil Nadu":[
+  Sikkim: ["East Sikkim", "North Sikkim", "South Sikkim", "West Sikkim"],
+  "Tamil Nadu": [
     "Chennai",
     "Coimbatore",
     "Cuddalore",
@@ -415,9 +590,9 @@ const stateDistrictMap = {
     "Tiruchirappalli",
     "Vellore",
     "Viluppuram",
-    "Virudhunagar"
+    "Virudhunagar",
   ],
-  "Telangana":[
+  Telangana: [
     "Adilabad",
     "Hyderabad",
     "Jagtial",
@@ -446,9 +621,9 @@ const stateDistrictMap = {
     "Vikarabad",
     "Warangal",
     "Warangal Rural",
-    "Yadadri Bhuvanagiri"
+    "Yadadri Bhuvanagiri",
   ],
-  "Tripura":[
+  Tripura: [
     "Dhalai",
     "Gomati",
     "Kailashahar",
@@ -457,9 +632,9 @@ const stateDistrictMap = {
     "Sepahijala",
     "South Tripura",
     "Unakoti",
-    "West Tripura"
+    "West Tripura",
   ],
-  "Uttar Pradesh":[
+  "Uttar Pradesh": [
     "Agra",
     "Aligarh",
     "Allahabad",
@@ -524,9 +699,9 @@ const stateDistrictMap = {
     "Sonbhadra",
     "Sultanpur",
     "Unnao",
-    "Varanasi"
+    "Varanasi",
   ],
-  "Uttarakhand": [
+  Uttarakhand: [
     "Almora",
     "Bageshwar",
     "Chamoli",
@@ -539,9 +714,9 @@ const stateDistrictMap = {
     "Rudraprayag",
     "Tehri Garhwal",
     "Udham Singh Nagar",
-    "Uttarkashi"
-  ],  
-  "West Bengal":[
+    "Uttarkashi",
+  ],
+  "West Bengal": [
     "Alipurduar",
     "Bankura",
     "Birbhum",
@@ -565,7 +740,7 @@ const stateDistrictMap = {
     "Purba Medinipur",
     "Purulia",
     "South 24 Parganas",
-    "Uttar Dinajpur"
+    "Uttar Dinajpur",
   ],
 };
 
@@ -574,7 +749,7 @@ const states = Object.keys(stateDistrictMap);
 const ChatbotBox = ({ onClose }) => {
   const [step, setStep] = useState(0);
   const [messages, setMessages] = useState([
-    { from: "bot", text: questions[0] }
+    { from: "bot", text: questions[0] },
   ]);
   const [input, setInput] = useState("");
   const [selectedState, setSelectedState] = useState("");
@@ -590,9 +765,7 @@ const ChatbotBox = ({ onClose }) => {
       botReply = { from: "bot", text: questions[nextStep] };
     }
 
-    const newMessages = botReply
-      ? [userMessage, botReply]
-      : [userMessage];
+    const newMessages = botReply ? [userMessage, botReply] : [userMessage];
 
     setMessages((prev) => [...prev, ...newMessages]);
     if (step === 2) setSelectedState(input); // Save selected state
@@ -611,8 +784,8 @@ const ChatbotBox = ({ onClose }) => {
       sx={{
         position: "fixed",
         bottom: "10%",
-        right: { xs: '4%', sm: '3%', md: "2%" },
-        width: { xs: '50%', sm: '40%', md: '28%', lg: '20%', xl: "18%" },
+        right: { xs: "4%", sm: "3%", md: "2%" },
+        width: { xs: "50%", sm: "40%", md: "28%", lg: "20%", xl: "18%" },
         height: "45%",
         backgroundColor: "#fff",
         borderRadius: "12px",
@@ -626,7 +799,7 @@ const ChatbotBox = ({ onClose }) => {
       {/* Header */}
       <Box
         sx={{
-          background: "linear-gradient(to top right, #00c4cc, #0a1a44)",
+          background: "#214b7b",
           color: "white",
           p: 1.5,
           display: "flex",
@@ -636,19 +809,19 @@ const ChatbotBox = ({ onClose }) => {
       >
         <Typography fontWeight="500">Slnky</Typography>
         <Box>
-        <IconButton sx={{ width: 45, height: 45 }}>
-  <Box
-    component="img"
-    alt="whatsapp"
-    src={whatsapp}
-    sx={{ width: '100%', height: '100%' }}
-  />
-</IconButton>
+          <IconButton sx={{ width: 45, height: 45 }}>
+            <Box
+              component="img"
+              alt="whatsapp"
+              src={whatsapp}
+              sx={{ width: "100%", height: "100%" }}
+            />
+          </IconButton>
 
-        <IconButton size="small" onClick={onClose} sx={{ color: "white" }}>
-          <CloseIcon />
-        </IconButton>
-      </Box>
+          <IconButton size="small" onClick={onClose} sx={{ color: "white" }}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
       </Box>
       {/* Message Area */}
       <Box
@@ -672,8 +845,9 @@ const ChatbotBox = ({ onClose }) => {
               py: 1,
               borderRadius: "10px",
               maxWidth: "80%",
-              fontSize: "0.875rem",
-              letterSpacing: 1
+              fontSize: {xl:"0.9rem"},
+              fontFamily:'poppins',
+              letterSpacing: 1,
             }}
           >
             {msg.text}
@@ -699,8 +873,18 @@ const ChatbotBox = ({ onClose }) => {
             displayEmpty
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  maxHeight: 200, // restricts dropdown height
+                  overflowY: "auto",
+                },
+              },
+            }}
           >
-            <MenuItem value="" disabled>Select your state</MenuItem>
+            <MenuItem value="" disabled>
+              Select your state
+            </MenuItem>
             {states.map((state) => (
               <MenuItem key={state} value={state}>
                 {state}
@@ -714,8 +898,18 @@ const ChatbotBox = ({ onClose }) => {
             displayEmpty
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  maxHeight: 200, // restricts dropdown height
+                  overflowY: "auto",
+                },
+              },
+            }}
           >
-            <MenuItem value="" disabled>Select your district</MenuItem>
+            <MenuItem value="" disabled>
+              Select your district
+            </MenuItem>
             {getDistrictOptions().map((district) => (
               <MenuItem key={district} value={district}>
                 {district}
@@ -738,7 +932,7 @@ const ChatbotBox = ({ onClose }) => {
           sx={{
             minWidth: "40px",
             px: 1,
-            background: "linear-gradient(to top right, #00c4cc, #0a1a44)"
+            background: "#214b7b",
           }}
           onClick={handleSend}
         >

@@ -2,8 +2,8 @@ import { Box, Grid, CircularProgress } from "@mui/material";
 import React, { Suspense, useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
-const Rajasthan = () => {
-  const geoUrl = process.env.PUBLIC_URL + "/maps/Rajasthan.geojson";
+const Punjab = () => {
+  const geoUrl = process.env.PUBLIC_URL + "/maps/Punjab.geojson";
 
   const [tooltipContent, setTooltipContent] = useState({
     name: "",
@@ -15,7 +15,7 @@ const Rajasthan = () => {
   const [hoveredDistrict, setHoveredDistrict] = useState("");
 
   const yellowDistricts = [
-    "Jhunjhunu",
+    "Ballia",
     "Alwar",
     "Jaipur",
     "Didwana",
@@ -33,7 +33,7 @@ const Rajasthan = () => {
   ];
 
   const districtWpData = {
-    Ganganagar: { wp: "2.6 MWp", status: "completed" },
+    Ballia: { wp: "2.6 MWp", status: "completed" },
     Hanumangarh: { wp: "2.52 MWp", status: "completed" },
     Bikaner: { wp: "60 MWp", status: "completed" },
     Jaisalmer: { wp: "1.0 Wp", status: "completed" },
@@ -63,8 +63,8 @@ const Rajasthan = () => {
 
     return `hsl(45, 100%, ${lightness}%)`;
   };
-  let leaveTimeout;
 
+  let leaveTimeout;
   const handleMouseLeave = () => {
     leaveTimeout = setTimeout(() => {
       setShowCard(false);
@@ -88,6 +88,7 @@ const Rajasthan = () => {
     setShowCard(true);
     setHoveredDistrict(name);
   };
+
   return (
     <Grid
       container
@@ -211,7 +212,7 @@ const Rajasthan = () => {
             <Suspense fallback={<CircularProgress color="primary" />}>
               <ComposableMap
                 projection="geoMercator"
-                projectionConfig={{ scale: 4000, center: [74.65, 26.5] }}
+                projectionConfig={{ scale: 9500, center: [74.95, 31] }}
                 style={{ width: "100%", height: "auto" }}
               >
                 <Geographies geography={geoUrl}>
@@ -353,4 +354,4 @@ const Rajasthan = () => {
   );
 };
 
-export default Rajasthan;
+export default Punjab;

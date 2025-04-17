@@ -1,9 +1,9 @@
 import { Box, Grid, CircularProgress } from "@mui/material";
-import React, { Suspense, useState } from "react";
+import React, { useState, Suspense } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
-const Rajasthan = () => {
-  const geoUrl = process.env.PUBLIC_URL + "/maps/Rajasthan.geojson";
+const Jharkhand = () => {
+  const geoUrl = process.env.PUBLIC_URL + "/maps/Jharkhand.geojson";
 
   const [tooltipContent, setTooltipContent] = useState({
     name: "",
@@ -13,42 +13,44 @@ const Rajasthan = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [showCard, setShowCard] = useState(false);
   const [hoveredDistrict, setHoveredDistrict] = useState("");
-
   const yellowDistricts = [
-    "Jhunjhunu",
-    "Alwar",
-    "Jaipur",
-    "Didwana",
-    "Jhalawar",
-    "Bhilwara",
-    "Nagaur",
-    "Jodhpur",
-    "Sirohi",
-    "Jalor",
-    "Barmer",
-    "Jaisalmer",
-    "Bikaner",
-    "Hanumangarh",
-    "Ganganagar",
+    "Dhanbad",
+    "Mandsaur",
+    "Ujjain",
+    "Khargone (West Nimar)",
+    "Raisen",
+    "Chhindwara",
+    "Narsinghpur",
+    "Seoni",
+    "Jabalpur",
+    "Shahdol",
+    "Sidhi",
+    "Rewa",
+    "Chhatarpur",
+    "Sagar",
+    "Niwari",
+    "Singrauli",
   ];
 
   const districtWpData = {
-    Ganganagar: { wp: "2.6 MWp", status: "completed" },
-    Hanumangarh: { wp: "2.52 MWp", status: "completed" },
-    Bikaner: { wp: "60 MWp", status: "completed" },
-    Jaisalmer: { wp: "1.0 Wp", status: "completed" },
-    Barmer: { wp: "7.5 MWp", status: "completed" },
-    Jalor: { wp: "2.5 MWp", status: "completed" },
-    Sirohi: { wp: "1.5 MWp", status: "completed" },
-    Jodhpur: { wp: "34.8 MWp", status: "completed" },
-    Nagaur: { wp: "2.5 MWp", status: "completed" },
-    Bhilwara: { wp: "1.0 MWp", status: "completed" },
-    Jhalawar: { wp: "1.5 MWp", status: "completed" },
-    Didwana: { wp: "1.0 MWp", status: "completed" },
-    Jaipur: { wp: "5.0 MWp", status: "completed" },
-    Alwar: { wp: "33.8 MWp", status: "completed" },
-    Jhunjhunu: { wp: "5.5 MWp", status: "completed" },
+    Dhanbad: { wp: "2.4 MWp", status: "ongoing" },
+    Mandsaur: { wp: "2.0 MWp", status: "completed" },
+    Ujjain: { wp: "2.2 MWp", status: "completed" },
+    "Khargone (West Nimar)": { wp: "2.0 MWp", status: "ongoing" },
+    Raisen: { wp: "4.4 MWp", status: "ongoing" },
+    Chhindwara: { wp: "1.2 MWp", status: "completed" },
+    Narsinghpur: { wp: "2.0 MWp", status: "completed" },
+    Seoni: { wp: "3.6 MWp", status: "ongoing" },
+    Jabalpur: { wp: "4.8 MWp", status: "ongoing" },
+    Shahdol: { wp: "2.0 MWp", status: "completed" },
+    Sidhi: { wp: "3.0 MWp", status: "ongoing" },
+    Rewa: { wp: "2.0 MWp", status: "completed" },
+    Chhatarpur: { wp: "4.0 MWp", status: "completed" },
+    Sagar: { wp: "7.4 MWp", status: "ongoing" },
+    Niwari: { wp: "2.4 MWp", status: "completed" },
+    Singrauli: { wp: "1.0 MWp", status: "ongoing" },
   };
+
   const wpValues = Object.values(districtWpData).map((d) => parseFloat(d.wp));
   const maxWp = Math.max(...wpValues);
   const minWp = Math.min(...wpValues);
@@ -63,8 +65,8 @@ const Rajasthan = () => {
 
     return `hsl(45, 100%, ${lightness}%)`;
   };
-  let leaveTimeout;
 
+  let leaveTimeout;
   const handleMouseLeave = () => {
     leaveTimeout = setTimeout(() => {
       setShowCard(false);
@@ -82,12 +84,12 @@ const Rajasthan = () => {
     const containerRect = container.getBoundingClientRect();
     const mouseX = evt.clientX - containerRect.left;
     const mouseY = evt.clientY - containerRect.top;
-
     setTooltipContent({ name, wp, status });
     setPosition({ x: mouseX, y: mouseY });
     setShowCard(true);
     setHoveredDistrict(name);
   };
+
   return (
     <Grid
       container
@@ -109,21 +111,20 @@ const Rajasthan = () => {
           flexDirection={"column"}
           justifyContent={"space-around"}
           alignContent={"center"}
-          gap={{ xs: 1, sm: 2 }}
+          gap={2}
         >
           <Grid display={"flex"} gap={2}>
             <Box
               sx={{
                 backgroundColor: "#ffd945",
                 color: "#1d3f79",
-                padding: { xs: 0.4, sm: 0.8, md: 0.8 },
+                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
                 borderRadius: { xs: "3px", sm: "3px", md: "2px" },
                 fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
                 width: { xs: "60px", sm: "80px", md: "100px" },
-                height: { xs: "15px", sm: "100%" },
               }}
             >
               Completed
@@ -132,14 +133,13 @@ const Rajasthan = () => {
               sx={{
                 backgroundColor: "#1d3f79",
                 color: "#ffd945",
-                padding: { xs: 0.4, sm: 0.8, md: 0.8 },
+                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
                 borderRadius: { xs: "3px", sm: "3px", md: "2px" },
                 fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
                 width: { xs: "60px", sm: "80px", md: "100px" },
-                height: { xs: "15px", sm: "100%" },
               }}
             >
               20 MWp
@@ -150,14 +150,13 @@ const Rajasthan = () => {
               sx={{
                 backgroundColor: "#ffd945",
                 color: "#1d3f79",
-                padding: { xs: 0.4, sm: 0.8, md: 0.8 },
+                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
                 borderRadius: { xs: "3px", sm: "3px", md: "2px" },
                 fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
                 width: { xs: "60px", sm: "80px", md: "100px" },
-                height: { xs: "15px", sm: "100%" },
               }}
             >
               Ongoing
@@ -166,7 +165,7 @@ const Rajasthan = () => {
               sx={{
                 backgroundColor: "#ffffff",
                 color: "#1d3f79",
-                padding: { xs: 0.4, sm: 0.8, md: 0.8 },
+                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
                 borderRadius: { xs: "3px", sm: "3px", md: "2px" },
                 fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
@@ -174,7 +173,6 @@ const Rajasthan = () => {
                 fontFamily: "poppins",
                 border: "1px solid #1d3f79",
                 width: { xs: "60px", sm: "80px", md: "100px" },
-                height: { xs: "15px", sm: "100%" },
               }}
             >
               10 MWp
@@ -211,7 +209,7 @@ const Rajasthan = () => {
             <Suspense fallback={<CircularProgress color="primary" />}>
               <ComposableMap
                 projection="geoMercator"
-                projectionConfig={{ scale: 4000, center: [74.65, 26.5] }}
+                projectionConfig={{ scale: 8000, center: [85.65, 23.7] }}
                 style={{ width: "100%", height: "auto" }}
               >
                 <Geographies geography={geoUrl}>
@@ -271,7 +269,7 @@ const Rajasthan = () => {
                 position: "absolute",
                 top: position.y,
                 left: position.x,
-                transform: "translate(-50%, 10px)",
+                transform: "translate(-10%, 10%)",
                 zIndex: 1000,
                 pointerEvents: "none",
                 display: "flex",
@@ -306,7 +304,7 @@ const Rajasthan = () => {
                   <Grid
                     sx={{
                       fontSize: {
-                        xs: "0.5rem",
+                        xs: "0.4rem",
                         sm: "0.6rem",
                         md: "0.7rem",
                         lg: "0.9rem",
@@ -353,4 +351,4 @@ const Rajasthan = () => {
   );
 };
 
-export default Rajasthan;
+export default Jharkhand;

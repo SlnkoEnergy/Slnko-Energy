@@ -1,9 +1,18 @@
-import { Box, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Grid, CircularProgress } from "@mui/material";
+import React, { useState, Suspense } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
-const MadhyaPradeshMap = () => {
-  const geoUrl = process.env.PUBLIC_URL + "/maps/MadhyaPradesh.topojson";
+const Chhattisgarh = () => {
+  const geoUrl = process.env.PUBLIC_URL + "/maps/Chhattisgarh.geojson";
+
+  const [tooltipContent, setTooltipContent] = useState({
+    name: "",
+    wp: "",
+    status: "",
+  });
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [showCard, setShowCard] = useState(false);
+  const [hoveredDistrict, setHoveredDistrict] = useState("");
   const yellowDistricts = [
     "Rajgarh",
     "Mandsaur",
@@ -41,59 +50,50 @@ const MadhyaPradeshMap = () => {
     Niwari: { wp: "2.4 MWp", status: "completed" },
     Singrauli: { wp: "1.0 MWp", status: "ongoing" },
   };
-  const [tooltipContent, setTooltipContent] = useState({
-    name: "",
-    wp: "",
-    status: "",
-  });
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [showCard, setShowCard] = useState(false);
-  const [hoveredDistrict, setHoveredDistrict] = useState("");
-  const wpValues = Object.values(districtWpData).map((d) =>
-    parseFloat(d.wp)
-  );
+
+  const wpValues = Object.values(districtWpData).map((d) => parseFloat(d.wp));
   const maxWp = Math.max(...wpValues);
   const minWp = Math.min(...wpValues);
-  
-  
-  
+
   const getFillColor = (name) => {
     const data = districtWpData[name];
     if (!data) return "white";
-  
+
     const wpValue = parseFloat(data.wp); // extract number
     const normalized = (wpValue - minWp) / (maxWp - minWp);
     const lightness = 90 - normalized * 45;
-  
+
     return `hsl(45, 100%, ${lightness}%)`;
   };
-  
+
+  let leaveTimeout;
+  const handleMouseLeave = () => {
+    leaveTimeout = setTimeout(() => {
+      setShowCard(false);
+      setHoveredDistrict("");
+    }, 100);
+  };
+
   const handleMouseEnter = (geo, evt) => {
-    const name = geo.properties?.Dist_Name;
+    clearTimeout(leaveTimeout);
+    const name = geo.properties?.district;
     const data = districtWpData[name] || {};
     const { wp = "", status = "" } = data;
 
-    const path = evt.target;
-    const bbox = path.getBoundingClientRect();
-    const centerX = bbox.left + bbox.width / 2;
-    const centerY = bbox.top + bbox.height / 2;
-
+    const container = evt.currentTarget.ownerSVGElement;
+    const containerRect = container.getBoundingClientRect();
+    const mouseX = evt.clientX - containerRect.left;
+    const mouseY = evt.clientY - containerRect.top;
     setTooltipContent({ name, wp, status });
-    setPosition({ x: centerX, y: centerY });
+    setPosition({ x: mouseX, y: mouseY });
     setShowCard(true);
     setHoveredDistrict(name);
-  };
-
-  const handleMouseLeave = () => {
-    setShowCard(false);
-    setHoveredDistrict("");
   };
 
   return (
     <Grid
       container
-      mt={{xs:0, sm:10}}
-      direction={{ xs: "row", lg: "row" }}
+      direction={{ xs: "row-reverse", lg: "row-reverse" }}
       justifyContent={"space-around"}
       alignItems="center"
       spacing={{ xs: 0, sm: 8, md: 8, lg: 1, xl: 2 }}
@@ -106,24 +106,6 @@ const MadhyaPradeshMap = () => {
         alignItems={"flex-start"}
         gap={{ xs: 4, sm: 4, md: 5, lg: 15, xl: 20 }}
       >
-        <Grid>
-          <Typography
-            fontFamily={"poppins"}
-            color="#0a1a44"
-            fontSize={{
-              xs: "1.5rem",
-              sm: "2.2rem",
-              md: "2.5rem",
-              lg: "2.5rem",
-              xl: "3rem",
-            }}
-            maxWidth={{ lg: "520px", xl: "500px" }}
-          >
-            Our Presence in{" "}
-            <span style={{ fontWeight: "bold" }}>Madhya Pradesh</span>
-          </Typography>
-        </Grid>
-
         <Grid
           display={"flex"}
           flexDirection={"column"}
@@ -177,7 +159,7 @@ const MadhyaPradeshMap = () => {
                 width: { xs: "60px", sm: "80px", md: "100px" },
               }}
             >
-               Ongoing
+              Ongoing
             </Box>
             <Box
               sx={{
@@ -189,7 +171,7 @@ const MadhyaPradeshMap = () => {
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
-                border:'1px solid #1d3f79',                
+                border: "1px solid #1d3f79",
                 width: { xs: "60px", sm: "80px", md: "100px" },
               }}
             >
@@ -199,82 +181,95 @@ const MadhyaPradeshMap = () => {
         </Grid>
       </Grid>
 
-      <Grid item>
-        <div
-          style={{
+      <Grid
+        item
+        display="flex"
+        justifyContent="center"
+        width={{ xs: "50%", lg: "50%" }}
+        height={"100%"}
+      >
+        <Grid
+          sx={{
             backgroundColor: "white",
+            width: {
+              xs: "100%",
+              sm: "100%",
+              md: "100%",
+              lg: "100%",
+              xl: "100%",
+            },
+            height: {
+              xs: "auto",
+              md: "auto",
+            },
             position: "relative",
-            width: "800px",
-            height: "600px",
-            maxWidth: "100%",
           }}
         >
-          <Box
-                      sx={{
-                        width: "100%",
-                        height: {
-                          xs: "80%", // 80% height on extra-small screens
-                          sm: "100%", // 100% on small and above
-                        },
-                      }}
-                    >
-          <ComposableMap
-            projection="geoMercator"
-            width={800}
-            height={600}
-            style={{ width: "100%", height: "100%" }}
-            projectionConfig={{ scale: 4500, center: [78.65, 23.5] }} // ⬅️ Increase scale
-          >
-            <Geographies geography={geoUrl}>
-              {({ geographies }) =>
-                geographies.map((geo) => {
-                  const districtName = geo.properties?.Dist_Name;
-                  const isYellow = yellowDistricts.includes(districtName);
-                  const isHovered = districtName === hoveredDistrict;
+          <Box width="100%" sx={{ aspectRatio: "4 / 3", maxWidth: "2000px" }}>
+            <Suspense fallback={<CircularProgress color="primary" />}>
+              <ComposableMap
+                projection="geoMercator"
+                projectionConfig={{ scale: 4800, center: [81.65, 21.1] }}
+                style={{ width: "100%", height: "auto" }}
+              >
+                <Geographies geography={geoUrl}>
+                  {({ geographies }) =>
+                    geographies.map((geo) => {
+                      const districtName = geo.properties?.district;
+                      const isYellow = yellowDistricts.includes(districtName);
+                      const isHovered = districtName === hoveredDistrict;
 
-                  return (
-                    <g
-                      key={geo.rsmKey}
-                      transform={
-                        isHovered ? "translate(0,-5)" : "translate(0,0)"
-                      }
-                    >
-                      <Geography
-                        geography={geo}
-                        onMouseEnter={(evt) => handleMouseEnter(geo, evt)}
-                        onMouseLeave={handleMouseLeave}
-                        style={{
-                          default: {
-                            fill: isYellow ? getFillColor(districtName) : "white",
-                            stroke: "black",
-                            strokeWidth: 0.5,
-                            outline: "none",
-                            cursor: isYellow ? "pointer" : "default",
-                          },
-                          hover: {
-                            fill: isYellow ? "#ffd945" : "#f1e5b5",
-                            outline: "none",
-                          },
-                          pressed: {
-                            fill: isYellow ? "#ffd945" : "#f1e5b5",
-                            outline: "none",
-                          },
-                        }}
-                      />
-                    </g>
-                  );
-                })
-              }
-            </Geographies>
-          </ComposableMap>
+                      return (
+                        <g key={geo.rsmKey}>
+                          <Geography
+                            geography={geo}
+                            onMouseEnter={(evt) => handleMouseEnter(geo, evt)}
+                            onMouseLeave={handleMouseLeave}
+                            style={{
+                              default: {
+                                fill: "transparent",
+                                stroke: "none",
+                                outline: "none",
+                                pointerEvents: "auto",
+                              },
+                              hover: { fill: "transparent" },
+                              pressed: { fill: "transparent" },
+                            }}
+                          />
+                          <Geography
+                            geography={geo}
+                            style={{
+                              default: {
+                                fill: isYellow
+                                  ? getFillColor(districtName)
+                                  : "white",
+                                stroke: "black",
+                                strokeWidth: 0.5,
+                                outline: "none",
+                                pointerEvents: "none",
+                                transform:
+                                  isHovered && isYellow
+                                    ? "translate(-4px, -4px)"
+                                    : "none",
+                                transition: "all 0.1s ease-in-out",
+                              },
+                            }}
+                          />
+                        </g>
+                      );
+                    })
+                  }
+                </Geographies>
+              </ComposableMap>
+            </Suspense>
           </Box>
           {showCard && (
             <div
               style={{
-                position: "fixed",
-                top: position.y + 200,
-                left: position.x - 450,
-                transform: "translate(-50%, 0)",
+                position: "absolute",
+                top: position.y,
+                left: position.x,
+                transform: "translate(-10%, 10%)",
                 zIndex: 1000,
                 pointerEvents: "none",
                 display: "flex",
@@ -284,59 +279,58 @@ const MadhyaPradeshMap = () => {
             >
               {tooltipContent.status === "completed" && tooltipContent.wp ? (
                 <>
-                  <div
-                    style={{
-                      height: "100px",
-                      width: "2px",
-                      backgroundColor: "#1d3f79",
-                      marginBottom: "4px",
-                    }}
-                  />
-                  <div
-                    style={{
-                      fontSize: "1rem",
+                  <Grid
+                    sx={{
+                      fontSize: {
+                        xs: "0.5rem",
+                        sm: "0.6rem",
+                        md: "0.7rem",
+                        lg: "0.9rem",
+                      },
                       fontWeight: "200",
                       color: "#ffffff",
                       background: "#1d3f79",
                       padding: "4px 8px",
                       borderRadius: "4px",
-                      letterSpacing: 1,
+                      letterSpacing: { xs: 0, md: 1 },
                       fontFamily: "poppins",
                     }}
                   >
                     {tooltipContent.name} - {tooltipContent.wp}
-                  </div>
+                  </Grid>
                 </>
               ) : tooltipContent.wp ? (
                 <>
-                  <div
-                    style={{
-                      height: "100px",
-                      width: "2px",
-                      backgroundColor: "#1d3f79",
-                      marginBottom: "4px",
-                    }}
-                  />
-                  <div
-                    style={{
-                      fontSize: "1rem",
+                  <Grid
+                    sx={{
+                      fontSize: {
+                        xs: "0.4rem",
+                        sm: "0.6rem",
+                        md: "0.7rem",
+                        lg: "0.9rem",
+                      },
                       fontWeight: "200",
                       color: "#1d3f79",
                       background: "white",
                       padding: "4px 8px",
                       borderRadius: "4px",
                       border: "1px solid #1d3f79",
-                      letterSpacing: 1,
+                      letterSpacing: { xs: 0, md: 1 },
                       fontFamily: "poppins",
                     }}
                   >
                     {tooltipContent.name} - {tooltipContent.wp}
-                  </div>
+                  </Grid>
                 </>
               ) : (
-                <div
-                  style={{
-                    fontSize: "14px",
+                <Grid
+                  sx={{
+                    fontSize: {
+                      xs: "0.5rem",
+                      sm: "0.6rem",
+                      md: "0.7rem",
+                      lg: "0.9rem",
+                    },
                     fontWeight: "600",
                     color: "#1d3f79",
                     background: "white",
@@ -347,14 +341,14 @@ const MadhyaPradeshMap = () => {
                   }}
                 >
                   {tooltipContent.name}
-                </div>
+                </Grid>
               )}
             </div>
           )}
-        </div>
+        </Grid>
       </Grid>
     </Grid>
   );
 };
 
-export default MadhyaPradeshMap;
+export default Chhattisgarh;

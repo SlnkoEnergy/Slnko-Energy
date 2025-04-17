@@ -25,7 +25,7 @@ const Page3 = () => {
   const size = isSmall ? 8 : isMedium ? 15 : 25;
 
   const ref = useRef(null);
-  const isInView = useInView(ref,  { triggerOnce: true, threshold: 0.2 });
+  const isInView = useInView(ref,  { triggerOnce: true, threshold: 0.4 });
 
   return (
     <Grid

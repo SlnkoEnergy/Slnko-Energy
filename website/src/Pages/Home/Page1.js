@@ -180,6 +180,7 @@ const Page1 = () => {
                 xl: "60px",
               }}
               src={chatbot}
+              sx={{cursor:'pointer'}}
             />
           </Grid>
         </Grid>
