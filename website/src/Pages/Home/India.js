@@ -20,6 +20,9 @@ const Uttarakhand = lazy(() => import("./Uttarakhand"));
 const Bihar = lazy(() => import("./Bihar"));
 const Jharkhand = lazy(() => import("./Jharkhand"));
 const Chhattisgarh = lazy(() => import("./Chhattisgarh"));
+const Telangana = lazy(()=>import('./Telangana'));
+const Kerala = lazy(() => import('./Kerala'));
+const Maharashtra = lazy(() => import("./Maharashtra"));
 
 const India = () => {
   const [selectedFilter, setSelectedFilter] = useState("overall"); // "overall" or "kusum"
@@ -190,6 +193,10 @@ const India = () => {
         return <Jharkhand />;
       case "Chhattisgarh":
         return <Chhattisgarh />;
+      case "Telangana":
+        return <Telangana />;
+      case "Kerala":
+        return <Kerala />;
       default:
         return <div>Data for {stateName} is not available yet.</div>;
     }
