@@ -2,8 +2,8 @@ import { Box, Grid, CircularProgress } from "@mui/material";
 import React, { Suspense, useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
-const Rajasthan = () => {
-  const geoUrl = process.env.PUBLIC_URL + "/maps/Rajasthan.geojson";
+const UttarPradesh = () => {
+  const geoUrl = process.env.PUBLIC_URL + "/maps/UttarPradesh.geojson";
 
   const [tooltipContent, setTooltipContent] = useState({
     name: "",
@@ -15,55 +15,21 @@ const Rajasthan = () => {
   const [hoveredDistrict, setHoveredDistrict] = useState("");
 
   const yellowDistricts = [
-    "Jhunjhunu",
-    "Alwar",
-    "Jaipur",
-    "Didwana",
-    "Jhalawar",
-    "Bhilwara",
-    "Nagaur",
-    "Jodhpur",
-    "Sirohi",
-    "Jalor",
-    "Barmer",
-    "Jaisalmer",
-    "Bikaner",
-    "Hanumangarh",
-    "Ganganagar",
-    "Sikar",
-    "Churu",
-    "Dausa",
-    "Sawai Madhopur",
-    "Pali",
-    "Jalore",
-    "Bundi",
-    "Jalore",
+    "Gautam Buddha Nagar",
+    "Lalitpur",
+    "Lucknow",
+    "Sitapur",
+    "Muzaffarnagar",
+    "Rae Bareli",
   ];
 
   const districtWpData = {
-    Ganganagar: { wp: "3.07 MWp", status: "completed" },
-    Hanumangarh: { wp: "3.02 MWp", status: "completed" },
-    Bikaner: { wp: "509 MWp", status: "ongoing" },
-    Jaisalmer: { wp: "1101.50 Wp", status: "completed" },
-    Barmer: { wp: "12.65 MWp", status: "ongoing" },
-    Jalor: { wp: "2.5 MWp", status: "completed" },
-    Sirohi: { wp: "1.80 MWp", status: "completed" },
-    Jodhpur: { wp: "148.33 MWp", status: "ongoing" },
-    Nagaur: { wp: "5.90 MWp", status: "completed" },
-    Bhilwara: { wp: "1.0 MWp", status: "completed" },
-    Jhalawar: { wp: "13.93 MWp", status: "ongoing" },
-    Didwana: { wp: "1.0 MWp", status: "completed" },
-    Jaipur: { wp: "5.40 MWp", status: "completed" },
-    Alwar: { wp: "52.18 MWp", status: "ongoing" },
-    Jhunjhunu: { wp: "9.0 MWp", status: "completed" },
-    Sikar: { wp: "11.88 MWp", status: "ongoing" },
-    Churu: { wp: "15.10 MWp", status: "ongoing" },
-    Dausa: { wp: "708.24 MWp", status: "ongoing" },
-    "Sawai Madhopur": { wp: "1.34 MWp", status: "ongoing" },
-    Pali: { wp: "6.55 MWp", status: "ongoing" },
-    Jalore: { wp: "4.20 MWp", status: "ongoing" },
-    Bundi: { wp: "2.58 MWp", status: "ongoing" },
-
+    "Gautam Buddha Nagar": { wp: "4.0 MWp", status: "completed" },
+    Lalitpur: { wp: "0.85 MWp", status: "completed" },
+    Lucknow: { wp: "13.0 Wp", status: "completed" },
+    Sitapur: { wp: "0.54 MWp", status: "completed" },
+    Muzaffarnagar: { wp: "3.96 MWp", status: "ongoing" },
+    "Rae Bareli": { wp: "0.22 MWp", status: "ongoing" },
   };
   const wpValues = Object.values(districtWpData).map((d) => parseFloat(d.wp));
   const maxWp = Math.max(...wpValues);
@@ -79,8 +45,8 @@ const Rajasthan = () => {
 
     return `hsl(45, 100%, ${lightness}%)`;
   };
-  let leaveTimeout;
 
+  let leaveTimeout;
   const handleMouseLeave = () => {
     leaveTimeout = setTimeout(() => {
       setShowCard(false);
@@ -104,6 +70,7 @@ const Rajasthan = () => {
     setShowCard(true);
     setHoveredDistrict(name);
   };
+
   return (
     <Grid
       container
@@ -158,7 +125,7 @@ const Rajasthan = () => {
                 height: { xs: "15px", sm: "100%" },
               }}
             >
-              20 MWp
+              18.39 MWp
             </Box>
           </Grid>
           <Grid display={"flex"} gap={2}>
@@ -193,7 +160,7 @@ const Rajasthan = () => {
                 height: { xs: "15px", sm: "100%" },
               }}
             >
-              10 MWp
+              4.18 MWp
             </Box>
           </Grid>
         </Grid>
@@ -227,7 +194,7 @@ const Rajasthan = () => {
             <Suspense fallback={<CircularProgress color="primary" />}>
               <ComposableMap
                 projection="geoMercator"
-                projectionConfig={{ scale: 4000, center: [74.65, 26.5] }}
+                projectionConfig={{ scale: 4000, center: [80.65, 26.85] }}
                 style={{ width: "100%", height: "auto" }}
               >
                 <Geographies geography={geoUrl}>
@@ -369,4 +336,4 @@ const Rajasthan = () => {
   );
 };
 
-export default Rajasthan;
+export default UttarPradesh;

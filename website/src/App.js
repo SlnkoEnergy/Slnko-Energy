@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/contacts" element={<Contact />} />
           <Route path="/careers" element={<Careers />} />
         </Routes>
-        <Footer /> 
+        
 
       </BrowserRouter>
     </ThemeProvider>

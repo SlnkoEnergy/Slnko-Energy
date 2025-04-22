@@ -2,8 +2,8 @@ import { Box, Grid, CircularProgress } from "@mui/material";
 import React, { Suspense, useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
-const Rajasthan = () => {
-  const geoUrl = process.env.PUBLIC_URL + "/maps/Rajasthan.geojson";
+const Telangana = () => {
+  const geoUrl = process.env.PUBLIC_URL + "/maps/Telangana.geojson";
 
   const [tooltipContent, setTooltipContent] = useState({
     name: "",
@@ -15,7 +15,7 @@ const Rajasthan = () => {
   const [hoveredDistrict, setHoveredDistrict] = useState("");
 
   const yellowDistricts = [
-    "Jhunjhunu",
+    "Suryapet",
     "Alwar",
     "Jaipur",
     "Didwana",
@@ -30,40 +30,24 @@ const Rajasthan = () => {
     "Bikaner",
     "Hanumangarh",
     "Ganganagar",
-    "Sikar",
-    "Churu",
-    "Dausa",
-    "Sawai Madhopur",
-    "Pali",
-    "Jalore",
-    "Bundi",
-    "Jalore",
   ];
 
   const districtWpData = {
-    Ganganagar: { wp: "3.07 MWp", status: "completed" },
-    Hanumangarh: { wp: "3.02 MWp", status: "completed" },
-    Bikaner: { wp: "509 MWp", status: "ongoing" },
-    Jaisalmer: { wp: "1101.50 Wp", status: "completed" },
-    Barmer: { wp: "12.65 MWp", status: "ongoing" },
+    Suryapet: { wp: "0.85 MWp", status: "completed" },
+    Hanumangarh: { wp: "2.52 MWp", status: "completed" },
+    Bikaner: { wp: "60 MWp", status: "completed" },
+    Jaisalmer: { wp: "1.0 Wp", status: "completed" },
+    Barmer: { wp: "7.5 MWp", status: "completed" },
     Jalor: { wp: "2.5 MWp", status: "completed" },
-    Sirohi: { wp: "1.80 MWp", status: "completed" },
-    Jodhpur: { wp: "148.33 MWp", status: "ongoing" },
-    Nagaur: { wp: "5.90 MWp", status: "completed" },
+    Sirohi: { wp: "1.5 MWp", status: "completed" },
+    Jodhpur: { wp: "34.8 MWp", status: "completed" },
+    Nagaur: { wp: "2.5 MWp", status: "completed" },
     Bhilwara: { wp: "1.0 MWp", status: "completed" },
-    Jhalawar: { wp: "13.93 MWp", status: "ongoing" },
+    Jhalawar: { wp: "1.5 MWp", status: "completed" },
     Didwana: { wp: "1.0 MWp", status: "completed" },
-    Jaipur: { wp: "5.40 MWp", status: "completed" },
-    Alwar: { wp: "52.18 MWp", status: "ongoing" },
-    Jhunjhunu: { wp: "9.0 MWp", status: "completed" },
-    Sikar: { wp: "11.88 MWp", status: "ongoing" },
-    Churu: { wp: "15.10 MWp", status: "ongoing" },
-    Dausa: { wp: "708.24 MWp", status: "ongoing" },
-    "Sawai Madhopur": { wp: "1.34 MWp", status: "ongoing" },
-    Pali: { wp: "6.55 MWp", status: "ongoing" },
-    Jalore: { wp: "4.20 MWp", status: "ongoing" },
-    Bundi: { wp: "2.58 MWp", status: "ongoing" },
-
+    Jaipur: { wp: "5.0 MWp", status: "completed" },
+    Alwar: { wp: "33.8 MWp", status: "completed" },
+    Jhunjhunu: { wp: "5.5 MWp", status: "completed" },
   };
   const wpValues = Object.values(districtWpData).map((d) => parseFloat(d.wp));
   const maxWp = Math.max(...wpValues);
@@ -227,7 +211,7 @@ const Rajasthan = () => {
             <Suspense fallback={<CircularProgress color="primary" />}>
               <ComposableMap
                 projection="geoMercator"
-                projectionConfig={{ scale: 4000, center: [74.65, 26.5] }}
+                projectionConfig={{ scale: 7000, center: [78.65, 17.8] }}
                 style={{ width: "100%", height: "auto" }}
               >
                 <Geographies geography={geoUrl}>
@@ -369,4 +353,4 @@ const Rajasthan = () => {
   );
 };
 
-export default Rajasthan;
+export default Telangana;

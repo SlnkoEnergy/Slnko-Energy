@@ -168,19 +168,22 @@ const Page1 = () => {
             alignItems={"center"}
             gap={1}
           >
-            <Box
-              alt="chatbot"
-              component="img"
-              onClick={() => setChatOpen((prev) => !prev)}
-              width={{
-                xs: "30px",
-                sm: "35px",
-                md: "40px",
-                lg: "50px",
-                xl: "60px",
-              }}
-              src={chatbot}
-            />
+            {!chatOpen && (
+              <Box
+                alt="chatbot"
+                component="img"
+                onClick={() => setChatOpen(true)}
+                width={{
+                  xs: "30px",
+                  sm: "35px",
+                  md: "40px",
+                  lg: "50px",
+                  xl: "60px",
+                }}
+                src={chatbot}
+                sx={{ cursor: "pointer" }}
+              />
+            )}
           </Grid>
         </Grid>
 

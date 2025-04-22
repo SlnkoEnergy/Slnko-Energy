@@ -8,10 +8,10 @@ const Page2 = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const sectionRef = useRef(null);
-  const isVisible = useInView(sectionRef, { once: true, threshold: 0.2 });
+  const isVisible = useInView(sectionRef, { triggerOnce: true, threshold: 0.1 });
 
   return (
-    <Box sx={{ backgroundColor: "white", textAlign: "center" }} ref={sectionRef}>
+    <Box sx={{ backgroundColor: "white", textAlign: "center" }}>
       {/* Banner */}
       <Box
         className="scroll-container"
@@ -24,7 +24,7 @@ const Page2 = () => {
           letterSpacing: 2,
           textAlign: "center",
           fontFamily: "Montserrat, sans-serif",
-          overflow: "hidden",
+          overflowX: "hidden",
           width: "100%",
         }}
       >
@@ -46,34 +46,39 @@ const Page2 = () => {
         flexWrap="wrap"
         mt={4}
         px={10}
+        ref={sectionRef}
       >
         {[
           {
             letter: "E",
             title: "ENGINEERING",
             color: "#6daedb",
-            description: "Creating detailed designs for the solar power plant, including layout, electrical schematics, and structural drawings",
+            description:
+              "Creating detailed designs for the solar power plant, including layout, electrical schematics, and structural drawings",
             gradient: "linear-gradient(to bottom, #6daedb, white)",
           },
           {
             letter: "P",
             title: "PROCUREMENT",
             color: "#f44336",
-            description: "Procurement of all the required materials and equipment necessary for the solar power plant.",
+            description:
+              "Procurement of all the required materials and equipment necessary for the solar power plant.",
             gradient: "linear-gradient(to bottom, #f44336, white)",
           },
           {
             letter: "C",
             title: "CONSTRUCTION",
             color: "#ffcc00",
-            description: "Construction and assembly of the solar panels, inverters, and electrical systems on-site.",
+            description:
+              "Construction and assembly of the solar panels, inverters, and electrical systems on-site.",
             gradient: "linear-gradient(to bottom, #ffcc00, white)",
           },
           {
             letter: "M",
             title: "MANAGEMENT",
             color: "#ff9800",
-            description: "Overseeing the project implementation and long-term operations of the solar energy system.",
+            description:
+              "Overseeing the project implementation and long-term operations of the solar energy system.",
             gradient: "linear-gradient(to bottom, #ff9800, white)",
           },
         ].map((item, index) => (
@@ -83,8 +88,10 @@ const Page2 = () => {
               width: isMobile ? "100%" : "24%",
               textAlign: "center",
               opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(100px)",
-              transition: `opacity 0.8s ease-out ${index * 0.2}s, transform 0.8s ease-out ${index * 0.2}s`,
+              transform: isVisible ? "translateY(0)" : "translateY(200px)",
+              transition: `opacity 0.6s ease-out ${
+                index * 0.2
+              }s, transform 0.6s ease-out ${index * 0.2}s`,
             }}
           >
             <Typography
@@ -98,7 +105,7 @@ const Page2 = () => {
                 fontFamily: "Montserrat, sans-serif",
                 transform: isVisible
                   ? "translateX(0)"
-                  : `translateX(${index % 2 === 0 ? "-150%" : "150%"})`,
+                  : `translateX(${index % 2 === 0 ? "-0%" : "0%"})`,
                 transition: `transform 0.8s ease-out ${index * 0.3}s`,
               }}
             >
@@ -120,13 +127,23 @@ const Page2 = () => {
               <Typography
                 fontWeight="900"
                 color="white"
-                fontSize={{ xs: "0.8rem", sm: "0.6rem", md: "1.2rem", lg: "1.4rem" }}
+                fontSize={{
+                  xs: "0.8rem",
+                  sm: "0.6rem",
+                  md: "1.2rem",
+                  lg: "1.4rem",
+                }}
                 letterSpacing={2}
               >
                 {item.title}
               </Typography>
               <Typography
-                fontSize={{ xs: "0.8rem", sm: "0.6rem", md: "1.2rem", lg: "1.5rem" }}
+                fontSize={{
+                  xs: "0.8rem",
+                  sm: "0.6rem",
+                  md: "1.2rem",
+                  lg: "1.5rem",
+                }}
                 mt={3}
                 p={1}
                 color="#1d3f79"
