@@ -17,12 +17,14 @@ const UttarPradesh = lazy(() => import("./UttarPradesh"));
 const Punjab = lazy(() => import("./Punjab"));
 const HimachalPradesh = lazy(() => import("./HimachalPradesh"));
 const Uttarakhand = lazy(() => import("./Uttarakhand"));
-const Bihar = lazy(() => import("./Bihar"));
 const Jharkhand = lazy(() => import("./Jharkhand"));
 const Chhattisgarh = lazy(() => import("./Chhattisgarh"));
-const Telangana = lazy(()=>import('./Telangana'));
-const Kerala = lazy(() => import('./Kerala'));
+const Telangana = lazy(() => import("./Telangana"));
+const Kerala = lazy(() => import("./Kerala"));
 const Maharashtra = lazy(() => import("./Maharashtra"));
+const Gujarat = lazy(() => import("./Gujarat"));
+const Sikkim = lazy(() => import("./Sikkim"));
+const Assam = lazy(() => import("./Assam"));
 
 const India = () => {
   const [selectedFilter, setSelectedFilter] = useState("overall"); // "overall" or "kusum"
@@ -40,7 +42,6 @@ const India = () => {
     "Madhya Pradesh",
     "Rajasthan",
     "Uttar Pradesh",
-    "Bihar",
     "Jharkhand",
     "Assam",
     "Chhattisgarh",
@@ -61,9 +62,8 @@ const India = () => {
     Rajasthan: { wp: 2881.56, status: "ongoing" },
     "Uttar Pradesh": { wp: 56.92, status: "completed" },
     Assam: { wp: 455.0, status: "ongoing" },
-    Bihar: { wp: 4.4, status: "ongoing" },
     Jharkhand: { wp: 2, status: "completed" },
-    Chhattisgarh: { wp: 0.11, status: "completed" },
+    Chhattisgarh: { wp: 0.12, status: "completed" },
     Gujarat: { wp: 28.0, status: "ongoing" },
     "Himachal Pradesh": { wp: 5.0, status: "ongoing" },
     Kerala: { wp: 8.0, status: "completed" },
@@ -187,8 +187,6 @@ const India = () => {
         return <HimachalPradesh />;
       case "Uttarakhand":
         return <Uttarakhand />;
-      case "Bihar":
-        return <Bihar />;
       case "Jharkhand":
         return <Jharkhand />;
       case "Chhattisgarh":
@@ -197,6 +195,14 @@ const India = () => {
         return <Telangana />;
       case "Kerala":
         return <Kerala />;
+      case "Maharashtra":
+        return <Maharashtra />;
+      case "Gujarat":
+        return <Gujarat />;
+      case "Sikkim":
+        return <Sikkim />;
+      case "Assam":
+        return <Assam />;
       default:
         return <div>Data for {stateName} is not available yet.</div>;
     }
@@ -220,7 +226,7 @@ const India = () => {
         height={"100%"}
         width={"100%"}
         container
-        mt={{ xs: 0, sm: 10 }}
+        mt={{ xs: 6, sm: 10 }}
         direction={{ xs: "column", lg: "row" }}
         spacing={2}
         justifyContent="center"
@@ -230,8 +236,10 @@ const India = () => {
           item
           display={"flex"}
           flexDirection={"column"}
-          justifyContent={"flex-start"}
+          justifyContent={"space-evenly"}
           alignItems={"flex-start"}
+          width={{xs:'90%', sm:'80%', md:'50%', lg:'40%'}}
+          gap={{xs:2, xl:4}}
         >
           <Typography
             fontFamily="poppins"
@@ -240,7 +248,7 @@ const India = () => {
               xs: "1.7rem",
               sm: "2.2rem",
               md: "2.5rem",
-              lg: "3.5rem",
+              lg: "2.8rem",
               xl: "3.5rem",
             }}
             maxWidth={{ lg: "820px", xl: "1000px" }}
@@ -287,6 +295,37 @@ const India = () => {
               Kusum
             </Typography>
           </Grid>
+          {selectedFilter === "overall" && (
+           <Grid
+           letterSpacing={{xs:0, sm:1}}
+           
+           >
+              <Typography fontSize={{xs:'0.8rem', sm:'0.9rem', lg:'1rem' ,xl:'1.1rem'}}>
+                Slnko Energy is proud to be the leading and largest
+                brand under the <b>PM-KUSUM Yojana</b>, having successfully completed
+                over 1.5 GW of solar installations across India. Our commitment
+                to empowering farmers with sustainable and affordable solar
+                solutions has positioned us at the forefront of the
+                decentralized solar energy movement, driving rural development
+                and energy independence.
+              </Typography>
+            </Grid>
+          )}
+          {selectedFilter === "Kusum" && (
+           <Grid
+           letterSpacing={{xs:0, sm:1}}
+           >
+              <Typography fontSize={{xs:'0.8rem', sm:'0.9rem', lg:'1rem' ,xl:'1.1rem'}}>
+                Slnko Energy is proud to be the leading and largest
+                brand under the <b>PM-KUSUM Yojana</b>, having successfully completed
+                over 1.5 GW of solar installations across India. Our commitment
+                to empowering farmers with sustainable and affordable solar
+                solutions has positioned us at the forefront of the
+                decentralized solar energy movement, driving rural development
+                and energy independence.
+              </Typography>
+            </Grid>
+          )}
 
           {/* Legend */}
           {selectedFilter === "overall" && (
@@ -344,13 +383,13 @@ const India = () => {
               width: {
                 xs: "100%",
                 sm: "150%",
-                md: "100%",
+                md: "75%",
                 lg: "100%",
                 xl: "100%",
               },
               height: {
                 xs: "auto",
-                md: "600px",
+                md: "auto",
               },
               position: "relative",
               mb: { xl: 10 },

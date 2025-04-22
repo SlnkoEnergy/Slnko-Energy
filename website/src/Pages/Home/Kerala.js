@@ -15,39 +15,11 @@ const Kerala = () => {
   const [hoveredDistrict, setHoveredDistrict] = useState("");
 
   const yellowDistricts = [
-    "Jhunjhunu",
-    "Alwar",
-    "Jaipur",
-    "Didwana",
-    "Jhalawar",
-    "Bhilwara",
-    "Nagaur",
-    "Jodhpur",
-    "Sirohi",
-    "Jalor",
-    "Barmer",
-    "Jaisalmer",
-    "Bikaner",
-    "Hanumangarh",
-    "Ganganagar",
+    "Ernakulam",
   ];
 
   const districtWpData = {
-    Ganganagar: { wp: "2.6 MWp", status: "completed" },
-    Hanumangarh: { wp: "2.52 MWp", status: "completed" },
-    Bikaner: { wp: "60 MWp", status: "completed" },
-    Jaisalmer: { wp: "1.0 Wp", status: "completed" },
-    Barmer: { wp: "7.5 MWp", status: "completed" },
-    Jalor: { wp: "2.5 MWp", status: "completed" },
-    Sirohi: { wp: "1.5 MWp", status: "completed" },
-    Jodhpur: { wp: "34.8 MWp", status: "completed" },
-    Nagaur: { wp: "2.5 MWp", status: "completed" },
-    Bhilwara: { wp: "1.0 MWp", status: "completed" },
-    Jhalawar: { wp: "1.5 MWp", status: "completed" },
-    Didwana: { wp: "1.0 MWp", status: "completed" },
-    Jaipur: { wp: "5.0 MWp", status: "completed" },
-    Alwar: { wp: "33.8 MWp", status: "completed" },
-    Jhunjhunu: { wp: "5.5 MWp", status: "completed" },
+    Ernakulam: { wp: "8.4 MWp", status: "completed" },
   };
   const wpValues = Object.values(districtWpData).map((d) => parseFloat(d.wp));
   const maxWp = Math.max(...wpValues);
@@ -142,7 +114,7 @@ const Kerala = () => {
                 height: { xs: "15px", sm: "100%" },
               }}
             >
-              20 MWp
+              8.4 MWp
             </Box>
           </Grid>
           <Grid display={"flex"} gap={2}>
@@ -177,7 +149,7 @@ const Kerala = () => {
                 height: { xs: "15px", sm: "100%" },
               }}
             >
-              10 MWp
+            0 MWp
             </Box>
           </Grid>
         </Grid>

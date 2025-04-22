@@ -14,41 +14,11 @@ const Jharkhand = () => {
   const [showCard, setShowCard] = useState(false);
   const [hoveredDistrict, setHoveredDistrict] = useState("");
   const yellowDistricts = [
-    "Dhanbad",
-    "Mandsaur",
-    "Ujjain",
-    "Khargone (West Nimar)",
-    "Raisen",
-    "Chhindwara",
-    "Narsinghpur",
-    "Seoni",
-    "Jabalpur",
-    "Shahdol",
-    "Sidhi",
-    "Rewa",
-    "Chhatarpur",
-    "Sagar",
-    "Niwari",
-    "Singrauli",
+    "Ranchi",
   ];
 
   const districtWpData = {
-    Dhanbad: { wp: "2.4 MWp", status: "ongoing" },
-    Mandsaur: { wp: "2.0 MWp", status: "completed" },
-    Ujjain: { wp: "2.2 MWp", status: "completed" },
-    "Khargone (West Nimar)": { wp: "2.0 MWp", status: "ongoing" },
-    Raisen: { wp: "4.4 MWp", status: "ongoing" },
-    Chhindwara: { wp: "1.2 MWp", status: "completed" },
-    Narsinghpur: { wp: "2.0 MWp", status: "completed" },
-    Seoni: { wp: "3.6 MWp", status: "ongoing" },
-    Jabalpur: { wp: "4.8 MWp", status: "ongoing" },
-    Shahdol: { wp: "2.0 MWp", status: "completed" },
-    Sidhi: { wp: "3.0 MWp", status: "ongoing" },
-    Rewa: { wp: "2.0 MWp", status: "completed" },
-    Chhatarpur: { wp: "4.0 MWp", status: "completed" },
-    Sagar: { wp: "7.4 MWp", status: "ongoing" },
-    Niwari: { wp: "2.4 MWp", status: "completed" },
-    Singrauli: { wp: "1.0 MWp", status: "ongoing" },
+    Ranchi: { wp: "90 MWp", status: "completed" },
   };
 
   const wpValues = Object.values(districtWpData).map((d) => parseFloat(d.wp));
@@ -142,7 +112,7 @@ const Jharkhand = () => {
                 width: { xs: "60px", sm: "80px", md: "100px" },
               }}
             >
-              20 MWp
+              90 MWp
             </Box>
           </Grid>
           <Grid display={"flex"} gap={2}>
@@ -175,7 +145,7 @@ const Jharkhand = () => {
                 width: { xs: "60px", sm: "80px", md: "100px" },
               }}
             >
-              10 MWp
+              0 MWp
             </Box>
           </Grid>
         </Grid>

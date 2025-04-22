@@ -1,9 +1,9 @@
 import { Box, Grid, CircularProgress } from "@mui/material";
-import React, { useState, Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
-const Bihar = () => {
-  const geoUrl = process.env.PUBLIC_URL + "/maps/Bihar.geojson";
+const Sikkim = () => {
+  const geoUrl = process.env.PUBLIC_URL + "/maps/Sikkim.geojson";
 
   const [tooltipContent, setTooltipContent] = useState({
     name: "",
@@ -13,44 +13,14 @@ const Bihar = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [showCard, setShowCard] = useState(false);
   const [hoveredDistrict, setHoveredDistrict] = useState("");
+
   const yellowDistricts = [
-    "Rajgarh",
-    "Mandsaur",
-    "Ujjain",
-    "Khargone (West Nimar)",
-    "Raisen",
-    "Chhindwara",
-    "Narsinghpur",
-    "Seoni",
-    "Jabalpur",
-    "Shahdol",
-    "Sidhi",
-    "Rewa",
-    "Chhatarpur",
-    "Sagar",
-    "Niwari",
-    "Singrauli",
+    "East Sikkim",
   ];
 
   const districtWpData = {
-    Rajgarh: { wp: "2.4 MWp", status: "ongoing" },
-    Mandsaur: { wp: "2.0 MWp", status: "completed" },
-    Ujjain: { wp: "2.2 MWp", status: "completed" },
-    "Khargone (West Nimar)": { wp: "2.0 MWp", status: "ongoing" },
-    Raisen: { wp: "4.4 MWp", status: "ongoing" },
-    Chhindwara: { wp: "1.2 MWp", status: "completed" },
-    Narsinghpur: { wp: "2.0 MWp", status: "completed" },
-    Seoni: { wp: "3.6 MWp", status: "ongoing" },
-    Jabalpur: { wp: "4.8 MWp", status: "ongoing" },
-    Shahdol: { wp: "2.0 MWp", status: "completed" },
-    Sidhi: { wp: "3.0 MWp", status: "ongoing" },
-    Rewa: { wp: "2.0 MWp", status: "completed" },
-    Chhatarpur: { wp: "4.0 MWp", status: "completed" },
-    Sagar: { wp: "7.4 MWp", status: "ongoing" },
-    Niwari: { wp: "2.4 MWp", status: "completed" },
-    Singrauli: { wp: "1.0 MWp", status: "ongoing" },
+    "East Sikkim": { wp: "0.4 MWp", status: "completed" },
   };
-
   const wpValues = Object.values(districtWpData).map((d) => parseFloat(d.wp));
   const maxWp = Math.max(...wpValues);
   const minWp = Math.min(...wpValues);
@@ -65,8 +35,8 @@ const Bihar = () => {
 
     return `hsl(45, 100%, ${lightness}%)`;
   };
-
   let leaveTimeout;
+
   const handleMouseLeave = () => {
     leaveTimeout = setTimeout(() => {
       setShowCard(false);
@@ -84,12 +54,12 @@ const Bihar = () => {
     const containerRect = container.getBoundingClientRect();
     const mouseX = evt.clientX - containerRect.left;
     const mouseY = evt.clientY - containerRect.top;
+
     setTooltipContent({ name, wp, status });
     setPosition({ x: mouseX, y: mouseY });
     setShowCard(true);
     setHoveredDistrict(name);
   };
-
   return (
     <Grid
       container
@@ -111,20 +81,21 @@ const Bihar = () => {
           flexDirection={"column"}
           justifyContent={"space-around"}
           alignContent={"center"}
-          gap={2}
+          gap={{ xs: 1, sm: 2 }}
         >
           <Grid display={"flex"} gap={2}>
             <Box
               sx={{
                 backgroundColor: "#ffd945",
                 color: "#1d3f79",
-                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
+                padding: { xs: 0.4, sm: 0.8, md: 0.8 },
                 borderRadius: { xs: "3px", sm: "3px", md: "2px" },
                 fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
                 width: { xs: "60px", sm: "80px", md: "100px" },
+                height: { xs: "15px", sm: "100%" },
               }}
             >
               Completed
@@ -133,16 +104,17 @@ const Bihar = () => {
               sx={{
                 backgroundColor: "#1d3f79",
                 color: "#ffd945",
-                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
+                padding: { xs: 0.4, sm: 0.8, md: 0.8 },
                 borderRadius: { xs: "3px", sm: "3px", md: "2px" },
                 fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
                 width: { xs: "60px", sm: "80px", md: "100px" },
+                height: { xs: "15px", sm: "100%" },
               }}
             >
-              20 MWp
+              0.4 MWp
             </Box>
           </Grid>
           <Grid display={"flex"} gap={2}>
@@ -150,13 +122,14 @@ const Bihar = () => {
               sx={{
                 backgroundColor: "#ffd945",
                 color: "#1d3f79",
-                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
+                padding: { xs: 0.4, sm: 0.8, md: 0.8 },
                 borderRadius: { xs: "3px", sm: "3px", md: "2px" },
                 fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
                 textAlign: "center",
                 fontFamily: "poppins",
                 width: { xs: "60px", sm: "80px", md: "100px" },
+                height: { xs: "15px", sm: "100%" },
               }}
             >
               Ongoing
@@ -165,7 +138,7 @@ const Bihar = () => {
               sx={{
                 backgroundColor: "#ffffff",
                 color: "#1d3f79",
-                padding: { xs: 0.8, sm: 0.8, md: 0.8 },
+                padding: { xs: 0.4, sm: 0.8, md: 0.8 },
                 borderRadius: { xs: "3px", sm: "3px", md: "2px" },
                 fontSize: { xs: "0.6rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: 400,
@@ -173,9 +146,10 @@ const Bihar = () => {
                 fontFamily: "poppins",
                 border: "1px solid #1d3f79",
                 width: { xs: "60px", sm: "80px", md: "100px" },
+                height: { xs: "15px", sm: "100%" },
               }}
             >
-              10 MWp
+              0 MWp
             </Box>
           </Grid>
         </Grid>
@@ -209,7 +183,7 @@ const Bihar = () => {
             <Suspense fallback={<CircularProgress color="primary" />}>
               <ComposableMap
                 projection="geoMercator"
-                projectionConfig={{ scale: 8000, center: [85.65, 25.7] }}
+                projectionConfig={{ scale: 25500, center: [88.45, 27.6] }}
                 style={{ width: "100%", height: "auto" }}
               >
                 <Geographies geography={geoUrl}>
@@ -269,7 +243,7 @@ const Bihar = () => {
                 position: "absolute",
                 top: position.y,
                 left: position.x,
-                transform: "translate(-10%, 10%)",
+                transform: "translate(-50%, 10px)",
                 zIndex: 1000,
                 pointerEvents: "none",
                 display: "flex",
@@ -304,7 +278,7 @@ const Bihar = () => {
                   <Grid
                     sx={{
                       fontSize: {
-                        xs: "0.4rem",
+                        xs: "0.5rem",
                         sm: "0.6rem",
                         md: "0.7rem",
                         lg: "0.9rem",
@@ -351,4 +325,4 @@ const Bihar = () => {
   );
 };
 
-export default Bihar;
+export default Sikkim;

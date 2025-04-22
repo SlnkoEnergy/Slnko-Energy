@@ -15,39 +15,15 @@ const Maharashtra = () => {
   const [hoveredDistrict, setHoveredDistrict] = useState("");
 
   const yellowDistricts = [
-    "Jhunjhunu",
-    "Alwar",
-    "Jaipur",
-    "Didwana",
-    "Jhalawar",
-    "Bhilwara",
-    "Nagaur",
-    "Jodhpur",
-    "Sirohi",
-    "Jalor",
-    "Barmer",
-    "Jaisalmer",
-    "Bikaner",
-    "Hanumangarh",
-    "Ganganagar",
+    "Ahmednagar",
+    "Pune",
+    "Solapur",
   ];
 
   const districtWpData = {
-    Ganganagar: { wp: "2.6 MWp", status: "completed" },
-    Hanumangarh: { wp: "2.52 MWp", status: "completed" },
-    Bikaner: { wp: "60 MWp", status: "completed" },
-    Jaisalmer: { wp: "1.0 Wp", status: "completed" },
-    Barmer: { wp: "7.5 MWp", status: "completed" },
-    Jalor: { wp: "2.5 MWp", status: "completed" },
-    Sirohi: { wp: "1.5 MWp", status: "completed" },
-    Jodhpur: { wp: "34.8 MWp", status: "completed" },
-    Nagaur: { wp: "2.5 MWp", status: "completed" },
-    Bhilwara: { wp: "1.0 MWp", status: "completed" },
-    Jhalawar: { wp: "1.5 MWp", status: "completed" },
-    Didwana: { wp: "1.0 MWp", status: "completed" },
-    Jaipur: { wp: "5.0 MWp", status: "completed" },
-    Alwar: { wp: "33.8 MWp", status: "completed" },
-    Jhunjhunu: { wp: "5.5 MWp", status: "completed" },
+    Ahmednagar: { wp: "12.59 MWp", status: "ongoing" },
+    Pune: { wp: "14.81 MWp", status: "completed" },
+    Solapur: { wp: "1.20 MWp", status: "ongoing" },
   };
   const wpValues = Object.values(districtWpData).map((d) => parseFloat(d.wp));
   const maxWp = Math.max(...wpValues);
@@ -142,7 +118,7 @@ const Maharashtra = () => {
                 height: { xs: "15px", sm: "100%" },
               }}
             >
-              20 MWp
+              14.81 MWp
             </Box>
           </Grid>
           <Grid display={"flex"} gap={2}>
@@ -177,7 +153,7 @@ const Maharashtra = () => {
                 height: { xs: "15px", sm: "100%" },
               }}
             >
-              10 MWp
+              13.79 MWp
             </Box>
           </Grid>
         </Grid>
@@ -211,7 +187,7 @@ const Maharashtra = () => {
             <Suspense fallback={<CircularProgress color="primary" />}>
               <ComposableMap
                 projection="geoMercator"
-                projectionConfig={{ scale: 6500, center: [75.65, 10.8] }}
+                projectionConfig={{ scale: 4500, center: [76.65, 18.8] }}
                 style={{ width: "100%", height: "auto" }}
               >
                 <Geographies geography={geoUrl}>

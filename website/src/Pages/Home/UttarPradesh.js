@@ -15,39 +15,21 @@ const UttarPradesh = () => {
   const [hoveredDistrict, setHoveredDistrict] = useState("");
 
   const yellowDistricts = [
-    "Ballia",
-    "Alwar",
-    "Jaipur",
-    "Didwana",
-    "Jhalawar",
-    "Bhilwara",
-    "Nagaur",
-    "Jodhpur",
-    "Sirohi",
-    "Jalor",
-    "Barmer",
-    "Jaisalmer",
-    "Bikaner",
-    "Hanumangarh",
-    "Ganganagar",
+    "Gautam Buddha Nagar",
+    "Lalitpur",
+    "Lucknow",
+    "Sitapur",
+    "Muzaffarnagar",
+    "Rae Bareli",
   ];
 
   const districtWpData = {
-    Ballia: { wp: "2.6 MWp", status: "completed" },
-    Hanumangarh: { wp: "2.52 MWp", status: "completed" },
-    Bikaner: { wp: "60 MWp", status: "completed" },
-    Jaisalmer: { wp: "1.0 Wp", status: "completed" },
-    Barmer: { wp: "7.5 MWp", status: "completed" },
-    Jalor: { wp: "2.5 MWp", status: "completed" },
-    Sirohi: { wp: "1.5 MWp", status: "completed" },
-    Jodhpur: { wp: "34.8 MWp", status: "completed" },
-    Nagaur: { wp: "2.5 MWp", status: "completed" },
-    Bhilwara: { wp: "1.0 MWp", status: "completed" },
-    Jhalawar: { wp: "1.5 MWp", status: "completed" },
-    Didwana: { wp: "1.0 MWp", status: "completed" },
-    Jaipur: { wp: "5.0 MWp", status: "completed" },
-    Alwar: { wp: "33.8 MWp", status: "completed" },
-    Jhunjhunu: { wp: "5.5 MWp", status: "completed" },
+    "Gautam Buddha Nagar": { wp: "4.0 MWp", status: "completed" },
+    Lalitpur: { wp: "0.85 MWp", status: "completed" },
+    Lucknow: { wp: "13.0 Wp", status: "completed" },
+    Sitapur: { wp: "0.54 MWp", status: "completed" },
+    Muzaffarnagar: { wp: "3.96 MWp", status: "ongoing" },
+    "Rae Bareli": { wp: "0.22 MWp", status: "ongoing" },
   };
   const wpValues = Object.values(districtWpData).map((d) => parseFloat(d.wp));
   const maxWp = Math.max(...wpValues);
@@ -143,7 +125,7 @@ const UttarPradesh = () => {
                 height: { xs: "15px", sm: "100%" },
               }}
             >
-              20 MWp
+              18.39 MWp
             </Box>
           </Grid>
           <Grid display={"flex"} gap={2}>
@@ -178,7 +160,7 @@ const UttarPradesh = () => {
                 height: { xs: "15px", sm: "100%" },
               }}
             >
-              10 MWp
+              4.18 MWp
             </Box>
           </Grid>
         </Grid>

@@ -1,5 +1,5 @@
 // src/Components/ChatbotBox.jsx
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Box,
   Typography,
@@ -18,6 +18,15 @@ const questions = [
   "Good!, Can you please tell me your Mobile Number",
   "Nice!, could you please tell me your State",
   "From which district are you ?",
+  "Are you interested in ?",
+];
+
+const KusumOptions = [
+  "a) KUSUM Yojna",
+  "b) Other Government projects",
+  "c) Open access",
+  "d) Private use",
+  "e) Other services",
 ];
 
 const stateDistrictMap = {
@@ -746,31 +755,109 @@ const stateDistrictMap = {
 
 const states = Object.keys(stateDistrictMap);
 
+const KusumFollowUpQuestion =
+  "Which state are you interested in filling the tender?";
+const TenderStates = [
+  "Rajasthan",
+  "MP",
+  "UP",
+  "Other states",
+  "Already applied",
+];
+
+const StageQuestion = "What stage are you on ?";
+
+const Stages = [
+  "Tender Applied",
+  "LOI Received",
+  "LOA Received",
+  "PPA Received",
+];
+const Exit = ["Exit Chat"];
+
 const ChatbotBox = ({ onClose }) => {
   const [step, setStep] = useState(0);
+  const [s, setS] = useState("");
   const [messages, setMessages] = useState([
     { from: "bot", text: questions[0] },
   ]);
   const [input, setInput] = useState("");
   const [selectedState, setSelectedState] = useState("");
+  const endOfMessagesRef = useRef(null);
 
   const handleSend = () => {
     if (input.trim() === "") return;
 
     const userMessage = { from: "user", text: input };
     const nextStep = step + 1;
+    const newMessages = [userMessage];
 
-    let botReply = null;
+    if (step === 2) setSelectedState(input);
+
+    // Prevent pushing a new question if it's step 3 (district), so 4 can show options
     if (nextStep < questions.length) {
-      botReply = { from: "bot", text: questions[nextStep] };
+      newMessages.push({ from: "bot", text: questions[nextStep] });
     }
 
-    const newMessages = botReply ? [userMessage, botReply] : [userMessage];
-
     setMessages((prev) => [...prev, ...newMessages]);
-    if (step === 2) setSelectedState(input); // Save selected state
     setInput("");
     setStep(nextStep);
+  };
+
+  const handleOptionClick = (option) => {
+    const userMessage = { from: "user", text: option };
+
+    if (option === "Exit Chat") {
+      setMessages((prev) => [
+        ...prev,
+        userMessage,
+        { from: "bot", text: "Thank you for visiting us!" },
+      ]);
+      setTimeout(() => onClose(), 1000);
+      return;
+    }
+
+    if (step === 4 && option.startsWith("a) KUSUM Yojna")) {
+      setS(option);
+      setStep(5);
+      setMessages((prev) => [
+        ...prev,
+        userMessage,
+        { from: "bot", text: KusumFollowUpQuestion },
+      ]);
+    } else if (step === 5 && option.startsWith("Already applied")) {
+      setS(option);
+      setStep(6);
+      setMessages((prev) => [
+        ...prev,
+        userMessage,
+        { from: "bot", text: StageQuestion },
+      ]);
+    } else if (step === 5) {
+      setStep(6);
+      setMessages((prev) => [
+        ...prev,
+        userMessage,
+        { from: "bot", text: "Thank you! We’ll get in touch with you soon." },
+      ]);
+    } else if (step === 4) {
+      setMessages((prev) => [
+        ...prev,
+        userMessage,
+        { from: "bot", text: "Thank you! We’ll get in touch with you soon." },
+      ]);
+      setStep(6);
+    } else if (step === 6 && Stages.includes(option)) {
+      setMessages((prev) => [
+        ...prev,
+        userMessage,
+        {
+          from: "bot",
+          text: "Thanks for sharing! Our team will follow up with you shortly.",
+        },
+      ]);
+      setStep(7);
+    }
   };
 
   const getDistrictOptions = () => {
@@ -779,13 +866,17 @@ const ChatbotBox = ({ onClose }) => {
       : [];
   };
 
+  useEffect(() => {
+    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <Box
       sx={{
         position: "fixed",
         bottom: "10%",
         right: { xs: "4%", sm: "3%", md: "2%" },
-        width: { xs: "50%", sm: "40%", md: "28%", lg: "20%", xl: "18%" },
+        width: { xs: "50%", sm: "40%", md: "22%", lg: "20%", xl: "18%" },
         height: "45%",
         backgroundColor: "#fff",
         borderRadius: "12px",
@@ -794,6 +885,7 @@ const ChatbotBox = ({ onClose }) => {
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
+        mb: 1,
       }}
     >
       {/* Header */}
@@ -817,12 +909,12 @@ const ChatbotBox = ({ onClose }) => {
               sx={{ width: "100%", height: "100%" }}
             />
           </IconButton>
-
           <IconButton size="small" onClick={onClose} sx={{ color: "white" }}>
             <CloseIcon />
           </IconButton>
         </Box>
       </Box>
+
       {/* Message Area */}
       <Box
         sx={{
@@ -845,26 +937,97 @@ const ChatbotBox = ({ onClose }) => {
               py: 1,
               borderRadius: "10px",
               maxWidth: "80%",
-              fontSize: {xl:"0.9rem"},
-              fontFamily:'poppins',
+              fontSize: { md:'0.7rem',lg:'0.8rem',xl: "0.9rem" },
+              fontFamily: "poppins",
               letterSpacing: 1,
             }}
           >
             {msg.text}
           </Box>
         ))}
+
+        {/* Step 4: Show Kusum Options */}
+        {step === 4 && (
+          <Box
+            sx={{
+              mt: 1,
+              display: "flex",
+              flexDirection: "column",
+              gap: 1,
+              alignSelf: "flex-start",
+            }}
+          >
+            {KusumOptions.map((option) => (
+              <Button
+                key={option}
+                variant="outlined"
+                size="small"
+                sx={{ textTransform: "none", alignSelf: "flex-start" }}
+                onClick={() => handleOptionClick(option)}
+              >
+                {option}
+              </Button>
+            ))}
+          </Box>
+        )}
+
+        {/* Step 5: Follow-up on KUSUM */}
+        {step === 5 && s?.includes("KUSUM") && (
+          <Box
+            sx={{
+              mt: 1,
+              display: "flex",
+              flexDirection: "column",
+              gap: 1,
+              alignSelf: "flex-start",
+            }}
+          >
+            {TenderStates.map((option) => (
+              <Button
+                key={option}
+                variant="outlined"
+                size="small"
+                sx={{ textTransform: "none", alignSelf: "flex-start" }}
+                onClick={() => handleOptionClick(option)}
+              >
+                {option}
+              </Button>
+            ))}
+          </Box>
+        )}
+
+        {/* Step 6: Stage Options */}
+        {step === 6 && s?.includes("Already") && (
+          <Box
+            sx={{
+              mt: 1,
+              display: "flex",
+              flexDirection: "column",
+              gap: 1,
+              alignSelf: "flex-start",
+            }}
+          >
+            {Stages.map((option) => (
+              <Button
+                key={option}
+                variant="outlined"
+                size="small"
+                sx={{ textTransform: "none", alignSelf: "flex-start" }}
+                onClick={() => handleOptionClick(option)}
+              >
+                {option}
+              </Button>
+            ))}
+          </Box>
+        )}
+        <Box ref={endOfMessagesRef} />
       </Box>
 
       <Divider />
 
       {/* Input Area */}
       <Box
-        sx={{
-          display: "flex",
-          gap: 1,
-          p: 1.5,
-          borderTop: "1px solid #ddd",
-        }}
+        sx={{ display: "flex", gap: 1, p: 1.5, borderTop: "1px solid #ddd" }}
       >
         {step === 2 ? (
           <Select
@@ -873,14 +1036,7 @@ const ChatbotBox = ({ onClose }) => {
             displayEmpty
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            MenuProps={{
-              PaperProps: {
-                style: {
-                  maxHeight: 200, // restricts dropdown height
-                  overflowY: "auto",
-                },
-              },
-            }}
+            MenuProps={{ PaperProps: { sx: { maxHeight: 250 } } }}
           >
             <MenuItem value="" disabled>
               Select your state
@@ -898,14 +1054,7 @@ const ChatbotBox = ({ onClose }) => {
             displayEmpty
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            MenuProps={{
-              PaperProps: {
-                style: {
-                  maxHeight: 200, // restricts dropdown height
-                  overflowY: "auto",
-                },
-              },
-            }}
+            MenuProps={{ PaperProps: { sx: { maxHeight: 250 } } }}
           >
             <MenuItem value="" disabled>
               Select your district
@@ -916,6 +1065,13 @@ const ChatbotBox = ({ onClose }) => {
               </MenuItem>
             ))}
           </Select>
+        ) : step === 4 || step === 5 ? (
+          <TextField
+            fullWidth
+            size="small"
+            disabled
+            placeholder="Please select an option above"
+          />
         ) : (
           <TextField
             fullWidth
@@ -927,14 +1083,12 @@ const ChatbotBox = ({ onClose }) => {
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
           />
         )}
+
         <Button
           variant="contained"
-          sx={{
-            minWidth: "40px",
-            px: 1,
-            background: "#214b7b",
-          }}
+          sx={{ minWidth: "40px", px: 1, background: "#214b7b" }}
           onClick={handleSend}
+          disabled={step === 4 || step === 5}
         >
           <SendIcon fontSize="small" />
         </Button>

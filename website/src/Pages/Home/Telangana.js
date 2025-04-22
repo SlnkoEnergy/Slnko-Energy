@@ -15,7 +15,7 @@ const Telangana = () => {
   const [hoveredDistrict, setHoveredDistrict] = useState("");
 
   const yellowDistricts = [
-    "Jhunjhunu",
+    "Suryapet",
     "Alwar",
     "Jaipur",
     "Didwana",
@@ -33,7 +33,7 @@ const Telangana = () => {
   ];
 
   const districtWpData = {
-    Ganganagar: { wp: "2.6 MWp", status: "completed" },
+    Suryapet: { wp: "0.85 MWp", status: "completed" },
     Hanumangarh: { wp: "2.52 MWp", status: "completed" },
     Bikaner: { wp: "60 MWp", status: "completed" },
     Jaisalmer: { wp: "1.0 Wp", status: "completed" },
