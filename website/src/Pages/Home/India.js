@@ -6,42 +6,64 @@ import {
   Modal,
   IconButton,
   CircularProgress,
-  Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 // Lazy load state components
-const MadhyaPradesh = lazy(() => import("./Map"));
+const MadhyaPradesh = lazy(() => import("./Mp"));
 const Rajasthan = lazy(() => import("./Rajasthan"));
-// const UttarPradesh = lazy(() => import("../Pages/UttarPradesh"));
+const UttarPradesh = lazy(() => import("./UttarPradesh"));
+const Punjab = lazy(() => import("./Punjab"));
+const HimachalPradesh = lazy(() => import("./HimachalPradesh"));
+const Uttarakhand = lazy(() => import("./Uttarakhand"));
+const Jharkhand = lazy(() => import("./Jharkhand"));
+const Chhattisgarh = lazy(() => import("./Chhattisgarh"));
+const Telangana = lazy(() => import("./Telangana"));
+const Kerala = lazy(() => import("./Kerala"));
+const Maharashtra = lazy(() => import("./Maharashtra"));
+const Gujarat = lazy(() => import("./Gujarat"));
+const Sikkim = lazy(() => import("./Sikkim"));
+const Assam = lazy(() => import("./Assam"));
 
 const India = () => {
   const [selectedFilter, setSelectedFilter] = useState("overall"); // "overall" or "kusum"
   const [selectedState, setSelectedState] = useState(null);
-  const [tooltipContent, setTooltipContent] = useState({ name: "", wp: "", status: "" });
+  const [tooltipContent, setTooltipContent] = useState({
+    name: "",
+    wp: "",
+    status: "",
+  });
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [showCard, setShowCard] = useState(false);
   const [hoveredDistrict, setHoveredDistrict] = useState("");
 
   const yellowStates = [
-    "Madhya Pradesh", "Rajasthan", "Uttar Pradesh", "Bihar", "Jharkhand",
-    "Assam", "Chhattisgarh", "Gujarat", "Himachal Pradesh", "Kerala",
-    "Maharashtra", "Punjab", "Sikkim", "Telangana", "Uttarakhand",
+    "Madhya Pradesh",
+    "Rajasthan",
+    "Uttar Pradesh",
+    "Jharkhand",
+    "Assam",
+    "Chhattisgarh",
+    "Gujarat",
+    "Himachal Pradesh",
+    "Kerala",
+    "Maharashtra",
+    "Punjab",
+    "Sikkim",
+    "Telangana",
+    "Uttarakhand",
   ];
 
-  const yellowStatesKusum = [
-    "Madhya Pradesh", "Rajasthan", "Uttar Pradesh",
-  ];
+  const yellowStatesKusum = ["Madhya Pradesh", "Rajasthan", "Uttar Pradesh"];
 
   const StateWpData = {
     "Madhya Pradesh": { wp: 718.9, status: "ongoing" },
     Rajasthan: { wp: 2881.56, status: "ongoing" },
     "Uttar Pradesh": { wp: 56.92, status: "completed" },
     Assam: { wp: 455.0, status: "ongoing" },
-    Bihar: { wp: 4.4, status: "ongoing" },
     Jharkhand: { wp: 2, status: "completed" },
-    Chhattisgarh: { wp: 0.11, status: "completed" },
+    Chhattisgarh: { wp: 0.12, status: "completed" },
     Gujarat: { wp: 28.0, status: "ongoing" },
     "Himachal Pradesh": { wp: 5.0, status: "ongoing" },
     Kerala: { wp: 8.0, status: "completed" },
@@ -56,18 +78,6 @@ const India = () => {
     "Madhya Pradesh": { wp: 718.9, status: "ongoing" },
     Rajasthan: { wp: 2881.56, status: "ongoing" },
     "Uttar Pradesh": { wp: 56.92, status: "completed" },
-    Assam: { wp: 455.0, status: "ongoing" },
-    Bihar: { wp: 4.4, status: "ongoing" },
-    Jharkhand: { wp: 2, status: "completed" },
-    Chhattisgarh: { wp: 0.11, status: "completed" },
-    Gujarat: { wp: 28.0, status: "ongoing" },
-    "Himachal Pradesh": { wp: 5.0, status: "ongoing" },
-    Kerala: { wp: 8.0, status: "completed" },
-    Maharashtra: { wp: 33.8, status: "ongoing" },
-    Punjab: { wp: 25.0, status: "completed" },
-    Sikkim: { wp: 0.4, status: "completed" },
-    Telangana: { wp: 126.0, status: "ongoing" },
-    Uttarakhand: { wp: 30.69, status: "completed" },
   };
 
   const geoUrl = process.env.PUBLIC_URL + "/maps/India.geojson";
@@ -169,8 +179,30 @@ const India = () => {
         return <MadhyaPradesh />;
       case "Rajasthan":
         return <Rajasthan />;
-      // case "Uttar Pradesh":
-      //   return <UttarPradesh />;
+      case "Uttar Pradesh":
+        return <UttarPradesh />;
+      case "Punjab":
+        return <Punjab />;
+      case "Himachal Pradesh":
+        return <HimachalPradesh />;
+      case "Uttarakhand":
+        return <Uttarakhand />;
+      case "Jharkhand":
+        return <Jharkhand />;
+      case "Chhattisgarh":
+        return <Chhattisgarh />;
+      case "Telangana":
+        return <Telangana />;
+      case "Kerala":
+        return <Kerala />;
+      case "Maharashtra":
+        return <Maharashtra />;
+      case "Gujarat":
+        return <Gujarat />;
+      case "Sikkim":
+        return <Sikkim />;
+      case "Assam":
+        return <Assam />;
       default:
         return <div>Data for {stateName} is not available yet.</div>;
     }
@@ -190,12 +222,35 @@ const India = () => {
 
   return (
     <>
-      <Grid height={'100%'} width={'100%'} container mt={{ xs: 0, sm: 10 }} direction="column" spacing={2} justifyContent="center" alignItems="center">
-        <Grid item>
+      <Grid
+        height={"100%"}
+        width={"100%"}
+        container
+        mt={{ xs: 6, sm: 10 }}
+        direction={{ xs: "column", lg: "row" }}
+        spacing={2}
+        justifyContent="center"
+        alignItems={{ xs: "center", lg: "flex-start" }}
+      >
+        <Grid
+          item
+          display={"flex"}
+          flexDirection={"column"}
+          justifyContent={"space-evenly"}
+          alignItems={"flex-start"}
+          width={{xs:'90%', sm:'80%', md:'50%', lg:'40%'}}
+          gap={{xs:2, xl:4}}
+        >
           <Typography
             fontFamily="poppins"
             color="#0a1a44"
-            fontSize={{ xs: "1.7rem", sm: "2.2rem", md: "2.5rem", lg: "3.5rem", xl: "4rem" }}
+            fontSize={{
+              xs: "1.7rem",
+              sm: "2.2rem",
+              md: "2.5rem",
+              lg: "2.8rem",
+              xl: "3.5rem",
+            }}
             maxWidth={{ lg: "820px", xl: "1000px" }}
           >
             Our Presence in <span style={{ fontWeight: "bold" }}>India</span>
@@ -203,44 +258,85 @@ const India = () => {
 
           {/* Filter Buttons */}
           <Grid display="flex" justifyContent="center" gap={4} mt={2}>
-  <Typography
-    component="span"
-    onClick={() => setSelectedFilter("overall")}
-    sx={{
-      cursor: "pointer",
-      textDecoration: selectedFilter === "overall" ? "3px underline" : "none",
-      textDecorationColor: selectedFilter === "overall" ? "#ffd945" : "transparent",
-      textUnderlineOffset:'4px',
-      fontWeight: selectedFilter === "overall" ? "bold" : "normal",
-      color: selectedFilter === "overall" ? "#0a1a44" : "#0a1a44", // You can change this if needed
-      fontSize: {xs:'1rem', sm:'1.1rem',md:"1.2rem"},
-      fontFamily: "poppins",
-    }}
-    
-  >
-    Overall
-  </Typography>
-  <Typography
-    component="span"
-    onClick={() => setSelectedFilter("Kusum")}
-    sx={{
-      cursor: "pointer",
-      textDecoration: selectedFilter === "Kusum" ? "3px underline" : "none",
-      textDecorationColor: selectedFilter === "Kusum" ? "#ffd945" : "transparent",
-      textUnderlineOffset:'4px',
-      fontWeight: selectedFilter === "Kusum" ? "bold" : "normal",
-      color: selectedFilter === "Kusum" ? "#0a1a44" : "#0a1a44", // You can change this if needed
-      fontSize: {xs:'1rem', sm:'1.1rem',md:"1.2rem"},
-      fontFamily: "poppins",
-    }}
-  >
-    Kusum
-  </Typography>
-</Grid>
+            <Typography
+              component="span"
+              onClick={() => setSelectedFilter("overall")}
+              sx={{
+                cursor: "pointer",
+                textDecoration:
+                  selectedFilter === "overall" ? "3px underline" : "none",
+                textDecorationColor:
+                  selectedFilter === "overall" ? "#ffd945" : "transparent",
+                textUnderlineOffset: "4px",
+                fontWeight: selectedFilter === "overall" ? "bold" : "normal",
+                color: selectedFilter === "overall" ? "#0a1a44" : "#0a1a44", // You can change this if needed
+                fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
+                fontFamily: "poppins",
+              }}
+            >
+              Overall
+            </Typography>
+            <Typography
+              component="span"
+              onClick={() => setSelectedFilter("Kusum")}
+              sx={{
+                cursor: "pointer",
+                textDecoration:
+                  selectedFilter === "Kusum" ? "3px underline" : "none",
+                textDecorationColor:
+                  selectedFilter === "Kusum" ? "#ffd945" : "transparent",
+                textUnderlineOffset: "4px",
+                fontWeight: selectedFilter === "Kusum" ? "bold" : "normal",
+                color: selectedFilter === "Kusum" ? "#0a1a44" : "#0a1a44", // You can change this if needed
+                fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
+                fontFamily: "poppins",
+              }}
+            >
+              Kusum
+            </Typography>
+          </Grid>
+          {selectedFilter === "overall" && (
+           <Grid
+           letterSpacing={{xs:0, sm:1}}
+           
+           >
+              <Typography fontSize={{xs:'0.8rem', sm:'0.9rem', lg:'1rem' ,xl:'1.1rem'}}>
+                Slnko Energy is proud to be the leading and largest
+                brand under the <b>PM-KUSUM Yojana</b>, having successfully completed
+                over 1.5 GW of solar installations across India. Our commitment
+                to empowering farmers with sustainable and affordable solar
+                solutions has positioned us at the forefront of the
+                decentralized solar energy movement, driving rural development
+                and energy independence.
+              </Typography>
+            </Grid>
+          )}
+          {selectedFilter === "Kusum" && (
+           <Grid
+           letterSpacing={{xs:0, sm:1}}
+           >
+              <Typography fontSize={{xs:'0.8rem', sm:'0.9rem', lg:'1rem' ,xl:'1.1rem'}}>
+                Slnko Energy is proud to be the leading and largest
+                brand under the <b>PM-KUSUM Yojana</b>, having successfully completed
+                over 1.5 GW of solar installations across India. Our commitment
+                to empowering farmers with sustainable and affordable solar
+                solutions has positioned us at the forefront of the
+                decentralized solar energy movement, driving rural development
+                and energy independence.
+              </Typography>
+            </Grid>
+          )}
 
- {/* Legend */}
- {selectedFilter === "overall" && (
-            <Grid display="flex" flexDirection="column" justifyContent={'center'} alignItems={'center'} gap={2} mt={2}>
+          {/* Legend */}
+          {selectedFilter === "overall" && (
+            <Grid
+              display="flex"
+              flexDirection="column"
+              justifyContent={"center"}
+              alignItems={"center"}
+              gap={2}
+              mt={2}
+            >
               <Grid display="flex" gap={2}>
                 <Box sx={legendBoxStyle("#ffd945", "#1d3f79")}>Completed</Box>
                 <Box sx={legendBoxStyle("#1d3f79", "#ffd945")}>20 MWp</Box>
@@ -251,9 +347,16 @@ const India = () => {
               </Grid>
             </Grid>
           )}
-          
+
           {selectedFilter === "Kusum" && (
-            <Grid display="flex" flexDirection="column" justifyContent={'center'} alignItems={'center'} gap={2} mt={2}>
+            <Grid
+              display="flex"
+              flexDirection="column"
+              justifyContent={"center"}
+              alignItems={"center"}
+              gap={2}
+              mt={2}
+            >
               <Grid display="flex" gap={2}>
                 <Box sx={legendBoxStyle("#ffd945", "#1d3f79")}>Completed</Box>
                 <Box sx={legendBoxStyle("#1d3f79", "#ffd945")}>10 MWp</Box>
@@ -267,20 +370,26 @@ const India = () => {
         </Grid>
 
         {/* Main Map */}
-        <Grid item display="flex" justifyContent="center" width="100%">
+        <Grid
+          item
+          display="flex"
+          justifyContent="center"
+          width={{ xs: "100%", lg: "50%" }}
+          height={"100%"}
+        >
           <Grid
             sx={{
               backgroundColor: "white",
               width: {
                 xs: "100%",
                 sm: "150%",
-                md: "70%",
-                lg: "50%",
-                xl: "50%",
+                md: "75%",
+                lg: "100%",
+                xl: "100%",
               },
               height: {
                 xs: "auto",
-                md: "600px",
+                md: "auto",
               },
               position: "relative",
               mb: { xl: 10 },
@@ -305,11 +414,18 @@ const India = () => {
                             <g key={geo.rsmKey}>
                               <Geography
                                 geography={geo}
-                                onMouseEnter={(evt) => handleMouseEnter(geo, evt)}
+                                onMouseEnter={(evt) =>
+                                  handleMouseEnter(geo, evt)
+                                }
                                 onMouseLeave={handleMouseLeave}
                                 onClick={() => handleClick(geo)}
                                 style={{
-                                  default: { fill: "transparent", stroke: "none", outline: "none", pointerEvents: "auto" },
+                                  default: {
+                                    fill: "transparent",
+                                    stroke: "none",
+                                    outline: "none",
+                                    pointerEvents: "auto",
+                                  },
                                   hover: { fill: "transparent" },
                                   pressed: { fill: "transparent" },
                                 }}
@@ -318,12 +434,17 @@ const India = () => {
                                 geography={geo}
                                 style={{
                                   default: {
-                                    fill: isYellow ? getFillColor(districtName) : "white",
+                                    fill: isYellow
+                                      ? getFillColor(districtName)
+                                      : "white",
                                     stroke: "black",
                                     strokeWidth: 0.5,
                                     outline: "none",
                                     pointerEvents: "none",
-                                    transform: isHovered && isYellow ? "translate(-4px, -4px)" : "none",
+                                    transform:
+                                      isHovered && isYellow
+                                        ? "translate(-4px, -4px)"
+                                        : "none",
                                     transition: "all 0.1s ease-in-out",
                                   },
                                 }}
@@ -336,54 +457,65 @@ const India = () => {
                   </ComposableMap>
                 ) : (
                   <ComposableMap
-                  projection="geoMercator"
-                  projectionConfig={{ scale: 800, center: [80.65, 22.5] }}
-                  style={{ width: "100%", height: "auto" }}
-                >
-                  <Geographies geography={geoUrlKusum}>
-                    {({ geographies }) =>
-                      geographies.map((geo) => {
-                        const districtName = geo.properties?.st_nm;
-                        const isYellow = yellowStatesKusum.includes(districtName);
-                        const isHovered = districtName === hoveredDistrict;
+                    projection="geoMercator"
+                    projectionConfig={{ scale: 800, center: [80.65, 22.5] }}
+                    style={{ width: "100%", height: "auto" }}
+                  >
+                    <Geographies geography={geoUrlKusum}>
+                      {({ geographies }) =>
+                        geographies.map((geo) => {
+                          const districtName = geo.properties?.st_nm;
+                          const isYellow =
+                            yellowStatesKusum.includes(districtName);
+                          const isHovered = districtName === hoveredDistrict;
 
-                        return (
-                          <g key={geo.rsmKey}>
-                            <Geography
-                              geography={geo}
-                              onMouseEnter={(evt) => handleMouseEnterK(geo, evt)}
-                              onMouseLeave={handleMouseLeaveK}
-                              onClick={() => handleClickK(geo)}
-                              style={{
-                                default: { fill: "transparent", stroke: "none", outline: "none", pointerEvents: "auto" },
-                                hover: { fill: "transparent" },
-                                pressed: { fill: "transparent" },
-                              }}
-                            />
-                            <Geography
-                              geography={geo}
-                              style={{
-                                default: {
-                                  fill: isYellow ? getFillColorK(districtName) : "white",
-                                  stroke: "black",
-                                  strokeWidth: 0.5,
-                                  outline: "none",
-                                  pointerEvents: "none",
-                                  transform: isHovered && isYellow ? "translate(-4px, -4px)" : "none",
-                                  transition: "all 0.1s ease-in-out",
-                                },
-                              }}
-                            />
-                          </g>
-                        );
-                      })
-                    }
-                  </Geographies>
-                </ComposableMap>
+                          return (
+                            <g key={geo.rsmKey}>
+                              <Geography
+                                geography={geo}
+                                onMouseEnter={(evt) =>
+                                  handleMouseEnterK(geo, evt)
+                                }
+                                onMouseLeave={handleMouseLeaveK}
+                                onClick={() => handleClickK(geo)}
+                                style={{
+                                  default: {
+                                    fill: "transparent",
+                                    stroke: "none",
+                                    outline: "none",
+                                    pointerEvents: "auto",
+                                  },
+                                  hover: { fill: "transparent" },
+                                  pressed: { fill: "transparent" },
+                                }}
+                              />
+                              <Geography
+                                geography={geo}
+                                style={{
+                                  default: {
+                                    fill: isYellow
+                                      ? getFillColorK(districtName)
+                                      : "white",
+                                    stroke: "black",
+                                    strokeWidth: 0.5,
+                                    outline: "none",
+                                    pointerEvents: "none",
+                                    transform:
+                                      isHovered && isYellow
+                                        ? "translate(-4px, -4px)"
+                                        : "none",
+                                    transition: "all 0.1s ease-in-out",
+                                  },
+                                }}
+                              />
+                            </g>
+                          );
+                        })
+                      }
+                    </Geographies>
+                  </ComposableMap>
                 )}
               </Suspense>
-
-              
 
               {/* Tooltip */}
               {showCard && selectedFilter === "overall" && (
@@ -414,11 +546,20 @@ const India = () => {
                         style={{
                           fontSize: "1rem",
                           fontWeight: "200",
-                          color: tooltipContent.status === "completed" ? "#ffffff" : "#1d3f79",
-                          background: tooltipContent.status === "completed" ? "#1d3f79" : "white",
+                          color:
+                            tooltipContent.status === "completed"
+                              ? "#ffffff"
+                              : "#1d3f79",
+                          background:
+                            tooltipContent.status === "completed"
+                              ? "#1d3f79"
+                              : "white",
                           padding: "4px 8px",
                           borderRadius: "4px",
-                          border: tooltipContent.status === "completed" ? "none" : "1px solid #1d3f79",
+                          border:
+                            tooltipContent.status === "completed"
+                              ? "none"
+                              : "1px solid #1d3f79",
                           fontFamily: "poppins",
                         }}
                       >
@@ -444,7 +585,7 @@ const India = () => {
                 </div>
               )}
 
-{showCard && selectedFilter === "Kusum" && (
+              {showCard && selectedFilter === "Kusum" && (
                 <div
                   style={{
                     position: "fixed",
@@ -472,11 +613,20 @@ const India = () => {
                         style={{
                           fontSize: "1rem",
                           fontWeight: "200",
-                          color: tooltipContent.status === "completed" ? "#ffffff" : "#1d3f79",
-                          background: tooltipContent.status === "completed" ? "#1d3f79" : "white",
+                          color:
+                            tooltipContent.status === "completed"
+                              ? "#ffffff"
+                              : "#1d3f79",
+                          background:
+                            tooltipContent.status === "completed"
+                              ? "#1d3f79"
+                              : "white",
                           padding: "4px 8px",
                           borderRadius: "4px",
-                          border: tooltipContent.status === "completed" ? "none" : "1px solid #1d3f79",
+                          border:
+                            tooltipContent.status === "completed"
+                              ? "none"
+                              : "1px solid #1d3f79",
                           fontFamily: "poppins",
                         }}
                       >
@@ -502,8 +652,6 @@ const India = () => {
                 </div>
               )}
             </Box>
-
-           
           </Grid>
         </Grid>
       </Grid>
@@ -519,14 +667,17 @@ const India = () => {
             bgcolor: "white",
             boxShadow: 24,
             p: 2,
-            width: "90%",
+            width: "100%",
             maxWidth: "1000px",
-            maxHeight: "90%",
+            maxHeight: "50%",
             overflow: "auto",
             borderRadius: 2,
           }}
         >
-          <IconButton sx={{ position: "absolute", top: 8, right: 8 }} onClick={() => setSelectedState(null)}>
+          <IconButton
+            sx={{ position: "absolute", top: 8, right: 8 }}
+            onClick={() => setSelectedState(null)}
+          >
             <CloseIcon />
           </IconButton>
           <Suspense fallback={<CircularProgress color="primary" />}>

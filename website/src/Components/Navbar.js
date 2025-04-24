@@ -45,7 +45,13 @@ const Navbar = () => {
         alignItems={"center"}
         mr={{lg:6,xl:12}}
       >
-        <img alt="logo" width="150px" height="75px" src={logo} />
+        <Box 
+        component={'img'}
+        alt="logo"
+        src={logo}
+        width={{xs:'120px',sm:'140px', md:'150px'}}
+        height={{xs:'60px',sm:'70px',md:'75px'}}
+        />
       </Grid>
 
       {isMdScreen ? (
