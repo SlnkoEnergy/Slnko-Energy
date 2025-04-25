@@ -38,3 +38,27 @@
     white-space: nowrap;
   }
   
+
+  /* 3D effect for react-slick carousel */
+  .carousel-image {
+    height: 400px;
+    width: auto;
+    transition: all 0.4s ease;
+    border-radius: 8px;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+  }
+  
+  /* Center slide: big, clear */
+  .slick-center .carousel-image {
+    transform: scale(1.1) rotateY(0deg);
+    z-index: 2;
+    opacity: 1;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+  }
+  
+  /* Side slides: tilted and faded */
+  .slick-slide:not(.slick-center) .carousel-image {
+    transform: scale(0.9) rotateY(15deg);
+    opacity: 0.6;
+  }
+  

@@ -63,15 +63,15 @@ const cardData = [
     title: "Present",
     description:
       "Provide clients with refined designs and plans, maintaining clear communication and stakeholder confidence, while offering continuous support throughout construction and commissioning.",
-    outerBg: "#055968",
-    innerBg: "#033c47",
+    outerBg: "#033c47",
+    innerBg: "#055968",
   },
   {
     title: "TAT",
     description:
       "Emphasizes prompt execution, focusing on efficiency and quality. Our project management team tracks progress, allocates resources, and addresses challenges for swift, seamless delivery.",
-    outerBg: "#715611",
-    innerBg: "#4e3d0e",
+    outerBg: "#4e3d0e",
+    innerBg: "#715611",
   },
 ];
 

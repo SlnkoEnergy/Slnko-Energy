@@ -9,6 +9,7 @@ const Page5 = () => {
   return (
     <Grid
       container
+      spacing={8}
       sx={{
         minHeight: "100%",
         width: "100%",
@@ -16,7 +17,7 @@ const Page5 = () => {
         alignItems: "center",
         justifyContent: "center",
         px: { xs: 2, sm: 4, md: 10 },
-        flexDirection: isBelow1350 ? "column" : "row", // Stack content when below 1350px
+        flexDirection: isBelow1350 ? "column" : "row",
         textAlign: isBelow1350 ? "center" : "left",
       }}
     >
@@ -33,7 +34,7 @@ const Page5 = () => {
           src={Img1}
           alt="Slnko Solar"
           sx={{
-            width: { xs: "100%", sm: "90%", md: "95%" }, 
+            width: { xs: "100%", sm: "90%", md: "95%" },
             maxWidth: { xs: "350px", sm: "500px", md: "650px" },
             height: "auto",
             borderRadius: "20px",
@@ -53,16 +54,18 @@ const Page5 = () => {
           justifyContent: "center",
           alignItems: isBelow1350 ? "center" : "flex-start",
           px: { xs: 2, sm: 4, md: 5 },
+          py: { xs: 2, sm: 4, md: 15 },
           maxWidth: { xs: "100%", md: "550px" },
         }}
       >
         <Typography
           variant="h3"
-          fontWeight="bold"
+          // fontWeight="bold"
           color="#1E293B"
-          sx={{ fontSize: { xs: "2rem", sm: "2.6rem", md: "3.3rem" } }}
+          sx={{ fontSize: { xs: "2rem", sm: "2.6rem", md: "4rem" } }}
         >
-          A little about SLNKO
+          A little<br/>
+          about SLNKO
         </Typography>
         <Typography
           mt={2}
@@ -70,13 +73,17 @@ const Page5 = () => {
           sx={{
             fontSize: { xs: "0.9rem", sm: "1.2rem", md: "1.3rem" },
             textAlign: "justify",
-            maxWidth: isBelow1350 ? "90%" : "100%", // Adjust width for better readability
+            maxWidth: isBelow1350 ? "90%" : "100%",
           }}
         >
           At Slnko Energy, we are redefining the solar energy landscape with our
           end-to-end Engineering, Procurement, and Construction (EPC) solutions
-          under the Kusum Yojana Scheme. Our team ensures every project meets
-          the highest standards of quality, efficiency, and sustainability.
+          under the Kusum Yojana Scheme. Our team of young, energetic, and
+          experienced professionals ensures that every project meets the highest
+          standards of quality, efficiency, and sustainability. We leverage
+          state-of-the-art engineering solutions, streamlined procurement
+          processes, and a commitment to green energy to maximize return on
+          investment for our clients.
         </Typography>
       </Grid>
     </Grid>
