@@ -39,26 +39,40 @@
   }
   
 
-  /* 3D effect for react-slick carousel */
   .carousel-image {
     height: 400px;
-    width: auto;
-    transition: all 0.4s ease;
-    border-radius: 8px;
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
-  }
-  
-  /* Center slide: big, clear */
-  .slick-center .carousel-image {
-    transform: scale(1.1) rotateY(0deg);
-    z-index: 2;
-    opacity: 1;
-    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
-  }
-  
-  /* Side slides: tilted and faded */
-  .slick-slide:not(.slick-center) .carousel-image {
-    transform: scale(0.9) rotateY(15deg);
+    width: 300px;
+    transition: all 0.5s ease;
+    border-radius: 12px;
     opacity: 0.6;
+    transform: scale(0.6) perspective(1000px) rotateY(0deg);
+  }
+  
+  .carousel-image.center {
+    transform: scale(1) perspective(1000px) rotateY(0deg);
+    opacity: 1;
+    z-index: 2;
+  }
+  
+  .carousel-image.left {
+    transform: scale(0.6) perspective(1000px) rotateY(white-space) translateZ(-100px);
+    opacity: 0.6;
+    z-index: 1;
+  }
+  
+  .carousel-image.right {
+    transform: scale(0.6) perspective(1000px) rotateY(60deg) translateZ(-100px);
+    opacity: 0.6;
+    z-index: 1;
+  }
+  
+  /* Responsive */
+  @media screen and (max-width: 768px) {
+    .carousel-image {
+      width: 90%;
+      height: auto;
+      transform: scale(1) perspective(1000px) rotateY(0deg);
+      opacity: 1;
+    }
   }
   
