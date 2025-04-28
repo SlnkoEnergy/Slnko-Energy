@@ -40,8 +40,8 @@
   
 
   .carousel-image {
-    height: 400px;
-    width: 300px;
+    height: auto;
+    width: 310px;
     transition: all 0.5s ease;
     border-radius: 12px;
     opacity: 0.6;
@@ -55,24 +55,32 @@
   }
   
   .carousel-image.left {
-    transform: scale(0.6) perspective(1000px) rotateY(white-space) translateZ(-100px);
+    transform: scale(0.6) perspective(1000px) rotateY(-45deg) translateZ(-100px);
     opacity: 0.6;
     z-index: 1;
+    
   }
   
   .carousel-image.right {
-    transform: scale(0.6) perspective(1000px) rotateY(60deg) translateZ(-100px);
+    transform: scale(0.6) perspective(1000px) rotateY(45deg) translateZ(-100px);
     opacity: 0.6;
     z-index: 1;
   }
+  .carousel-image:hover {
+    opacity: 1;
+  }
+  
+  .carousel-image.center:hover {
+    opacity: 1;
+  }
+  
   
   /* Responsive */
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 900px) {
     .carousel-image {
-      width: 90%;
+      width: 160px;
       height: auto;
-      transform: scale(1) perspective(1000px) rotateY(0deg);
-      opacity: 1;
+      
     }
   }
   

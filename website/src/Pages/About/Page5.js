@@ -22,7 +22,7 @@ const Page5 = () => {
     slidesToShow: 3,
     infinite: true,
     speed: 500,
-    arrows: true,
+    arrows: false,
     dots: true,
     beforeChange: (oldIndex, newIndex) => {
       setCenterIndex(newIndex);
@@ -38,20 +38,23 @@ const Page5 = () => {
   };
 
   return (
-    <Box sx={{ width: "100%", height: "100%" }}>
+    <Box sx={{   }}display="flex" flexDirection={'column'} justifyContent="center" alignItems="center">
       <Box display="flex" justifyContent="center" alignItems="center">
         <Typography mb={8} mt={5} variant="h4" fontWeight="bold" gutterBottom>
           Certificates
         </Typography>
       </Box>
       <Box
-        sx={{
-          maxWidth: { xs: "90%", md: "55%" },
-          mx: "auto",
-          mt: 5,
-          mb: 10,
-        }}
-      >
+  sx={{
+    
+    maxWidth: { sm: "70%", md: "900px", lg:'1000px' }, // you can adjust 800px or any value
+    mx: "auto",
+    mt: 5,
+    mb: 10,
+    
+  }}
+>
+
         <Slider {...settings}>
           {images.map((img, i) => {
             let className = "carousel-image";
@@ -76,6 +79,8 @@ const Page5 = () => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  ml:{sm:'0px',md:'10px',lg:'25px'},
+                  mr:{sm:'0px', md:'0px'}
                 }}
               >
                 <img src={img} alt={`Certificate ${i + 1}`} className={className} />
