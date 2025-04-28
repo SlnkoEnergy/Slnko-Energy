@@ -9,6 +9,9 @@ import Services from "./Pages/Services/Services";
 import Kusum from "./Pages/Kusum Yojana/Kusum";
 import Contact from "./Pages/Contacts/Contact";
 import Careers from "./Pages/Careers/Careers";
+// In your App.js or index.js
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 const App = () => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Container, useTheme } from '@mui/material';
-import Img1 from '../../assets/About_P1.png'; // Make sure this path is correct
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Page1 = () => {
   const theme = useTheme();
@@ -29,7 +30,7 @@ const Page1 = () => {
             sx={{ 
               fontWeight: 'bold',
               mb: 3,
-              fontSize: '2rem',
+              fontSize: {xs:'1.5rem',sm:'1.6rem',md:'1.7rem',lg: '2rem'},
               color: theme.palette.primary.main
             }}
           >
@@ -37,27 +38,31 @@ const Page1 = () => {
           </Typography>
           
           <Typography 
-            variant="body1" 
+            fontSize={'1.1rem'}
+            letterSpacing={1}
+            textAlign={'justify'}
             paragraph 
             sx={{
-              fontSize: '1rem',
+              fontSize: {xs:'0.7rem',sm:'0.8rem',md:'0.9rem',lg:'1rem'},
               lineHeight: 1.7,
-              textAlign: 'left'
+              textAlign: 'justify'
             }}
           >
-            Slnko is a one-stop platform providing end to end solutions to Solar Developers, EPCs & Installers. 
+            <b>SLnko</b> is a one-stop platform providing end to end solutions to Solar Developers, EPCs & Installers. 
             Incorporated in 2018 as an engineering company, we have expanded the horizon of our services to 
-            SCM (Supply Chain Management), EPCM (Engineering, Procurement, Construction, Management) & PM 
+            <b> SCM </b>(Supply Chain Management), <b> EPCM </b>(Engineering, Procurement, Construction, Management) &<b> PM</b> 
             (Project Management). Our services can be availed at any stage from the Pre-Bid & early planning 
             phase up to construction, installation and commissioning of Solar Projects of any capacity.
           </Typography>
           
           <Typography 
-            variant="body1" 
+            letterSpacing={1}
+            textAlign={'justify'}
+            paragraph 
             sx={{
-              fontSize: '1rem',
+              fontSize: {xs:'0.7rem',sm:'0.8rem',md:'0.9rem',lg:'1rem'},
               lineHeight: 1.7,
-              textAlign: 'left'
+              textAlign: 'justify'
             }}
           >
             We are a team of young, energetic and experienced professionals constantly challenging ourselves to 
@@ -70,23 +75,21 @@ const Page1 = () => {
         {/* Image */}
         <Box 
           sx={{ 
-            flex: 1,
+            
             display: 'flex',
             justifyContent: 'center',
             maxWidth: { xs: '100%', md: '50%' }
           }}
         >
-          <Box
-            component="img"
-            src={Img1}
+          <LazyLoadImage
             alt="Solar energy solutions by Slnko"
-            loading="lazy"
-            sx={{
+            src={require("../../assets/About_P1.png")}
+            effect="blur"
+            style={{
               width: '100%',
               maxWidth: '500px',
               height: 'auto',
-              borderRadius: 2,
-             
+              borderRadius: '16px',
               objectFit: 'cover'
             }}
           />

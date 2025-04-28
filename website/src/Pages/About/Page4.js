@@ -53,10 +53,9 @@ const Page4 = () => {
       {/* Bordered container */}
       <Box
         sx={{
-          border: '2px solid #1976d2',
+          border: '1px solid black',
           borderRadius: 4,
           p: 4,
-          bgcolor: '#f9f9f9',
         }}
       >
         <Grid container spacing={3} justifyContent="center">
