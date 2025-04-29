@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 
 const StyledCard = ({
   title,
@@ -13,28 +13,30 @@ const StyledCard = ({
   hoveredLeft = "0px",
   zIndex = 1,
   hovered = false,
+  simple = false,   // <-- NEW
 }) => {
   return (
     <Box
       sx={{
-        position: "absolute",
-        top: hovered ? hoveredTop : top,
-        left: hovered ? hoveredLeft : left,
+        position: simple ? "static" : "absolute",
+        top: simple ? "auto" : (hovered ? hoveredTop : top),
+        left: simple ? "auto" : (hovered ? hoveredLeft : left),
         zIndex: zIndex,
         bgcolor: outerBg,
         borderRadius: "30px",
         width: 280,
-        height:200,
+        height: {xs:140, sm:180, md:200},
         textAlign: "center",
-        transform: hovered
-          ? `rotate(0deg) scale(1.05)`
-          : `rotate(${rotation}deg)`,
-        
+        transform: simple
+          ? "none"
+          : (hovered ? `rotate(0deg) scale(1.05)` : `rotate(${rotation}deg)`),
         transition: "all 0.4s ease",
         boxShadow: hovered
           ? "0px 10px 25px rgba(0,0,0,0.5)"
           : "0px 5px 15px rgba(0,0,0,0.3)",
         p: { xs: '15px 0 0 0', sm: '20px 0 0 0' },
+        my: simple ? 2 : 0,   // <-- add margin between cards in simple mode
+        mx: "auto",           // <-- center the cards in simple mode
       }}
     >
       <Box>
@@ -72,6 +74,7 @@ const StyledCard = ({
 
 const Page3 = () => {
   const [hovered, setHovered] = useState(false);
+  const isDesktop = useMediaQuery('(min-width:900px)'); // <-- important
 
   const cardData = [
     {
@@ -82,8 +85,8 @@ const Page3 = () => {
       rotation: -16,
       top: "60px",
       left: "30px",
-      hoveredLeft:'-70px',
-      hoveredTop:'-60px',
+      hoveredLeft: '-70px',
+      hoveredTop: '-60px',
       zIndex: 2,
     },
     {
@@ -94,8 +97,8 @@ const Page3 = () => {
       rotation: 0,
       top: "-60px",
       left: "250px",
-      hoveredLeft:'250px',
-      hoveredTop:'-60px',
+      hoveredLeft: '250px',
+      hoveredTop: '-60px',
       zIndex: 3,
     },
     {
@@ -106,8 +109,8 @@ const Page3 = () => {
       rotation: -32,
       top: "180px",
       left: "140px",
-      hoveredLeft:'80px',
-      hoveredTop:'260px',
+      hoveredLeft: '80px',
+      hoveredTop: '260px',
       zIndex: 4,
     },
     {
@@ -118,8 +121,8 @@ const Page3 = () => {
       rotation: 15,
       top: "160px",
       left: "380px",
-      hoveredLeft:'400px',
-      hoveredTop:'260px',
+      hoveredLeft: '400px',
+      hoveredTop: '260px',
       zIndex: 6,
     },
     {
@@ -130,8 +133,8 @@ const Page3 = () => {
       rotation: 34,
       top: "40px",
       left: "480px",
-      hoveredLeft:'570px',
-      hoveredTop:'-60px',
+      hoveredLeft: '570px',
+      hoveredTop: '-60px',
       zIndex: 1,
     },
   ];
@@ -151,7 +154,7 @@ const Page3 = () => {
         minHeight: "600px",
       }}
     >
-      <Box mb={'80px'}>
+      <Box mb={{xs: '0px', md:'80px'}}>
         <Typography
           fontSize={{ xs: '2.1rem', sm: '2.2rem', md: '2.3rem', lg: '2.5rem' }}
           align="center"
@@ -175,9 +178,17 @@ const Page3 = () => {
 
       {/* Cards */}
       <Box
-        sx={{ position: "relative", width: "800px", height: "700px" }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        sx={{
+          position: isDesktop ? "relative" : "static",
+          width: isDesktop ? "800px" : "100%",
+          height: isDesktop ? "700px" : "auto",
+          display: "flex",
+          flexDirection: isDesktop ? "initial" : "column",
+          alignItems: "center",
+          gap:isDesktop ? 0 : 6
+        }}
+        onMouseEnter={() => isDesktop && setHovered(true)}
+        onMouseLeave={() => isDesktop && setHovered(false)}
       >
         {cardData.map((card, index) => (
           <StyledCard
@@ -187,12 +198,13 @@ const Page3 = () => {
             outerBg={card.outerBg}
             innerBg={card.innerBg}
             rotation={card.rotation}
-            hoveredTop = {card.hoveredTop}
-            hoveredLeft = {card.hoveredLeft}
+            hoveredTop={card.hoveredTop}
+            hoveredLeft={card.hoveredLeft}
             top={card.top}
             left={card.left}
             zIndex={card.zIndex}
             hovered={hovered}
+            simple={!isDesktop} // <-- important
           />
         ))}
       </Box>
