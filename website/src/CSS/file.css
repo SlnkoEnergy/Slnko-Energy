@@ -78,7 +78,15 @@
   /* Responsive */
   @media screen and (max-width: 900px) {
     .carousel-image {
-      width: 160px;
+      width: 140px;
+      height: auto;
+      
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .carousel-image {
+      width: 120px;
       height: auto;
       
     }

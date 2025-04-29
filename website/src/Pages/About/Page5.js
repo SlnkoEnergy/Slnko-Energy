@@ -40,14 +40,14 @@ const Page5 = () => {
   return (
     <Box sx={{   }}display="flex" flexDirection={'column'} justifyContent="center" alignItems="center">
       <Box display="flex" justifyContent="center" alignItems="center">
-        <Typography mb={8} mt={5} variant="h4" fontWeight="bold" gutterBottom>
+        <Typography mb={8} mt={5} fontSize={{xs:'1.5rem',sm:'2rem',md:'2.7rem',lg:'3rem'}} fontWeight="bold" gutterBottom>
           Certificates
         </Typography>
       </Box>
       <Box
   sx={{
     
-    maxWidth: { sm: "70%", md: "900px", lg:'1000px' }, // you can adjust 800px or any value
+    maxWidth: { xs:'95%',sm: "65%", md: "900px", lg:'1000px' }, // you can adjust 800px or any value
     mx: "auto",
     mt: 5,
     mb: 10,
@@ -79,8 +79,8 @@ const Page5 = () => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  ml:{sm:'0px',md:'10px',lg:'25px'},
-                  mr:{sm:'0px', md:'0px'}
+                  ml:{xs:'40px',sm:'10px',md:'0px',lg:'15px'},
+                  mr:{sm:'20px', md:'0px'}
                 }}
               >
                 <img src={img} alt={`Certificate ${i + 1}`} className={className} />
