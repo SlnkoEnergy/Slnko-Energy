@@ -13,36 +13,38 @@ const StyledCard = ({
   hoveredLeft = "0px",
   zIndex = 1,
   hovered = false,
-  simple = false,   // <-- NEW
+  simple = false, // <-- NEW
 }) => {
   return (
     <Box
       sx={{
         position: simple ? "static" : "absolute",
-        top: simple ? "auto" : (hovered ? hoveredTop : top),
-        left: simple ? "auto" : (hovered ? hoveredLeft : left),
+        top: simple ? "auto" : hovered ? hoveredTop : top,
+        left: simple ? "auto" : hovered ? hoveredLeft : left,
         zIndex: zIndex,
         bgcolor: outerBg,
         borderRadius: "30px",
         width: 280,
-        height: {xs:140, sm:180, md:200},
+        height: { xs: 140, sm: 180, md: 200 },
         textAlign: "center",
         transform: simple
           ? "none"
-          : (hovered ? `rotate(0deg) scale(1.05)` : `rotate(${rotation}deg)`),
+          : hovered
+          ? `rotate(0deg) scale(1.05)`
+          : `rotate(${rotation}deg)`,
         transition: "all 0.4s ease",
         boxShadow: hovered
           ? "0px 10px 25px rgba(0,0,0,0.5)"
           : "0px 5px 15px rgba(0,0,0,0.3)",
-        p: { xs: '15px 0 0 0', sm: '20px 0 0 0' },
-        my: simple ? 2 : 0,   // <-- add margin between cards in simple mode
-        mx: "auto",           // <-- center the cards in simple mode
+        p: { xs: "15px 0 0 0", sm: "20px 0 0 0" },
+        my: simple ? 2 : 0, // <-- add margin between cards in simple mode
+        mx: "auto", // <-- center the cards in simple mode
       }}
     >
       <Box>
         <Typography
           letterSpacing={1}
-          fontSize={'1.2rem'}
+          fontSize={"1.2rem"}
           fontWeight="bold"
           color="white"
         >
@@ -52,16 +54,16 @@ const StyledCard = ({
       <Box
         sx={{
           bgcolor: innerBg,
-          borderRadius: { xs: '30px', sm: '40px' },
+          borderRadius: { xs: "30px", sm: "40px" },
           px: { xs: 1, sm: 2 },
           py: 3,
-          height: '80%',
+          height: "80%",
           mt: 2,
         }}
       >
         <Typography
           textAlign="center"
-          fontSize={{ xs: '0.7rem', sm: '0.9rem' }}
+          fontSize={{ xs: "0.7rem", sm: "0.9rem" }}
           letterSpacing={0.5}
           color="white"
         >
@@ -74,67 +76,72 @@ const StyledCard = ({
 
 const Page3 = () => {
   const [hovered, setHovered] = useState(false);
-  const isDesktop = useMediaQuery('(min-width:900px)'); // <-- important
+  const isDesktop = useMediaQuery("(min-width:900px)"); // <-- important
 
   const cardData = [
     {
       title: "Analysis",
-      description: "Our team assesses project needs site conditions and client goals identifying opportunities and challenges to customize solutions and set a strong Adopt foundation.",
+      description:
+        "Our team assesses project needs site conditions and client goals identifying opportunities and challenges to customize solutions and set a strong Adopt foundation.",
       outerBg: "#3c444a",
       innerBg: "#43505a",
       rotation: -16,
       top: "60px",
       left: "30px",
-      hoveredLeft: '-70px',
-      hoveredTop: '-60px',
+      hoveredLeft: "-70px",
+      hoveredTop: "-60px",
       zIndex: 2,
     },
     {
       title: "Develop",
-      description: "Team collaborates on innovative, efficient, and sustainable solutions drawing expertise to exceed client's expectations.",
+      description:
+        "Team collaborates on innovative, efficient, and sustainable solutions drawing expertise to exceed client's expectations.",
       outerBg: "#32442f",
       innerBg: "#3c5638",
       rotation: 0,
       top: "-60px",
       left: "250px",
-      hoveredLeft: '250px',
-      hoveredTop: '-60px',
+      hoveredLeft: "250px",
+      hoveredTop: "-60px",
       zIndex: 3,
     },
     {
       title: "Optimize",
-      description: "We constantly improve designs and strategies for peak efficiency and value, using rigorous quality control and cutting-edge tools to boost performance and maximize client ROI.",
+      description:
+        "We constantly improve designs and strategies for peak efficiency and value, using rigorous quality control and cutting-edge tools to boost performance and maximize client ROI.",
       outerBg: "#3e3336",
       innerBg: "#533f42",
       rotation: -32,
       top: "180px",
       left: "140px",
-      hoveredLeft: '80px',
-      hoveredTop: '260px',
+      hoveredLeft: "80px",
+      hoveredTop: "260px",
       zIndex: 4,
     },
     {
       title: "Present",
-      description: "Provide clients with refined designs and plans, maintaining clear communication and stakeholder confidence, while offering continuous support throughout construction and commissioning.",
+      description:
+        "Provide clients with refined designs and plans, maintaining clear communication and stakeholder confidence, while offering continuous support throughout construction and commissioning.",
       outerBg: "#033c47",
       innerBg: "#055968",
       rotation: 15,
       top: "160px",
       left: "380px",
-      hoveredLeft: '400px',
-      hoveredTop: '260px',
+      hoveredLeft: "400px",
+      hoveredTop: "260px",
       zIndex: 6,
     },
     {
       title: "TAT",
-      description: "Emphasizes prompt execution, focusing on efficiency and quality. Our project management team tracks progress, allocates resources, and addresses challenges for swift, seamless delivery.",
+      description:
+        "Emphasizes prompt execution, focusing on efficiency and quality. Our project management team tracks progress, allocates resources, and addresses challenges for swift, seamless delivery.",
       outerBg: "#4e3d0e",
       innerBg: "#715611",
       rotation: 34,
       top: "40px",
       left: "480px",
-      hoveredLeft: '570px',
-      hoveredTop: '-60px',
+      hoveredLeft: "570px",
+      hoveredTop: "-60px",
       zIndex: 1,
     },
   ];
@@ -154,9 +161,9 @@ const Page3 = () => {
         minHeight: "600px",
       }}
     >
-      <Box mb={{xs: '0px', md:'80px'}}>
+      <Box mb={{ xs: "0px", md: "80px" }}>
         <Typography
-          fontSize={{ xs: '2.1rem', sm: '2.2rem', md: '2.3rem', lg: '2.5rem' }}
+          fontSize={{ xs: "2.1rem", sm: "2.2rem", md: "2.3rem", lg: "2.5rem" }}
           align="center"
           fontWeight="bold"
           color="#ffde59"
@@ -167,12 +174,19 @@ const Page3 = () => {
         <Typography
           variant="body1"
           align="center"
-          fontSize={{ xs: '0.8rem', sm: '1rem', md: "1rem", lg: '1.1rem' }}
+          fontSize={{ xs: "0.8rem", sm: "1rem", md: "1rem", lg: "1.1rem" }}
           fontWeight={100}
           textAlign="center"
-          sx={{ maxWidth: { xs: '95%', lg: "80%" }, mx: "auto", mb: 6, letterSpacing: 0.5 }}
+          sx={{
+            maxWidth: { xs: "95%", lg: "80%" },
+            mx: "auto",
+            mb: 6,
+            letterSpacing: 0.5,
+          }}
         >
-          Our commitment to excellence is reflected in our unique ADOPT methodology, ensuring we consistently deliver exceptional results for our clients.
+          Our commitment to excellence is reflected in our unique ADOPT
+          methodology, ensuring we consistently deliver exceptional results for
+          our clients.
         </Typography>
       </Box>
 
@@ -185,7 +199,7 @@ const Page3 = () => {
           display: "flex",
           flexDirection: isDesktop ? "initial" : "column",
           alignItems: "center",
-          gap:isDesktop ? 0 : 6
+          gap: isDesktop ? 0 : 6,
         }}
         onMouseEnter={() => isDesktop && setHovered(true)}
         onMouseLeave={() => isDesktop && setHovered(false)}
