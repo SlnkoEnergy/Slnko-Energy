@@ -11,20 +11,20 @@ import CloseIcon from "@mui/icons-material/Close";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 // Lazy load state components
-const MadhyaPradesh = lazy(() => import("./Mp"));
-const Rajasthan = lazy(() => import("./Rajasthan"));
-const UttarPradesh = lazy(() => import("./UttarPradesh"));
-const Punjab = lazy(() => import("./Punjab"));
-const HimachalPradesh = lazy(() => import("./HimachalPradesh"));
-const Uttarakhand = lazy(() => import("./Uttarakhand"));
-const Jharkhand = lazy(() => import("./Jharkhand"));
-const Chhattisgarh = lazy(() => import("./Chhattisgarh"));
-const Telangana = lazy(() => import("./Telangana"));
-const Kerala = lazy(() => import("./Kerala"));
-const Maharashtra = lazy(() => import("./Maharashtra"));
-const Gujarat = lazy(() => import("./Gujarat"));
-const Sikkim = lazy(() => import("./Sikkim"));
-const Assam = lazy(() => import("./Assam"));
+const MadhyaPradesh = lazy(() => import("../Home/IndianStates/Mp"));
+const Rajasthan = lazy(() => import("../Home/IndianStates/Rajasthan"));
+const UttarPradesh = lazy(() => import("../Home/IndianStates/UttarPradesh"));
+const Punjab = lazy(() => import("../Home/IndianStates/Punjab"));
+const HimachalPradesh = lazy(() => import("../Home/IndianStates/HimachalPradesh"));
+const Uttarakhand = lazy(() => import("../Home/IndianStates/Uttarakhand"));
+const Jharkhand = lazy(() => import("../Home/IndianStates/Jharkhand"));
+const Chhattisgarh = lazy(() => import("../Home/IndianStates/Chhattisgarh"));
+const Telangana = lazy(() => import("../Home/IndianStates/Telangana"));
+const Kerala = lazy(() => import("../Home/IndianStates/Kerala"));
+const Maharashtra = lazy(() => import("../Home/IndianStates/Maharashtra"));
+const Gujarat = lazy(() => import("../Home/IndianStates/Gujarat"));
+const Sikkim = lazy(() => import("../Home/IndianStates/Sikkim"));
+const Assam = lazy(() => import("../Home/IndianStates/Assam"));
 
 const India = () => {
   const [selectedFilter, setSelectedFilter] = useState("overall"); // "overall" or "kusum"

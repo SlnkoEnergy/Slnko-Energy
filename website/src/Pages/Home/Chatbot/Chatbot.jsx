@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
-import whatsapp from "../../assets/whatsapp.1.png";
+import whatsapp from "../../../assets/whatsapp.1.png";
 const questions = [
   "Hey Welcome to Slnko! What's your name?",
   "Good!, Can you please tell me your Mobile Number",
