@@ -80,8 +80,9 @@ const India = () => {
     "Uttar Pradesh": { wp: 56.92, status: "completed" },
   };
 
-  const geoUrl = process.env.PUBLIC_URL + "/maps/India.geojson";
-  const geoUrlKusum = process.env.PUBLIC_URL + "/maps/IndiaKusum.geojson";
+  const geoUrl = import.meta.env.BASE_URL + "maps/India.geojson";
+const geoUrlKusum = import.meta.env.BASE_URL + "maps/IndiaKusum.geojson";
+
 
   const maxWp = Math.max(...Object.values(StateWpData).map((d) => d.wp));
   const minWp = Math.min(...Object.values(StateWpData).map((d) => d.wp));

@@ -13,7 +13,7 @@ const StyledCard = ({
         bgcolor: outerBg,
         borderRadius: "30px",
         width: 280,
-        height: { xs: 140, sm: 180, md: 220 },
+        height: { xs: 140, sm: 200, md: 190, lg:200 },
         textAlign: "center",
         transform: `rotate(0deg) scale(1.05)`,
         transition: "all 0.4s ease",
@@ -45,7 +45,7 @@ const StyledCard = ({
       >
         <Typography
           textAlign="center"
-          fontSize={{ xs: "0.7rem", sm: "0.8rem" }}
+          fontSize={{ xs: "0.7rem", sm: "0.75rem", md:'0.75rem' }}
           letterSpacing={0.5}
           color="white"
         >
@@ -56,26 +56,26 @@ const StyledCard = ({
   );
 };
 
-const Page5 = () => {
+const Page3 = () => {
   const cardData = [
     {
-      title: "Detailed Engineering",
+      title: "How to Bid?",
       description:
-        "Our engineering experts ensure that project is completely designed in terms of Civil, Mechanical and Electrical aspects.",
+        "After going through your tender/customer requirement, we understand and analyze technical and financial parameters defined in the RFP. We manage the technical documentations required for bidding.",
       outerBg: "#3c444a",
       innerBg: "#43505a",
     },
     {
-      title: "Budget Calculation",
+      title: "How much to Bid?",
       description:
-        "Our procurement department in close association with our engineering experts prepares a comprehensive and accurate Bill of Material, Machinery, Resources, & Statuary Requirements in the Project along with their backed-up costing. This helps in ensuring increased commercial viability of the project.",
+        "Our highly skilled team prepares a comprehensive and accurate Bill of Material, Machinery and Resources required in the project. This helps in ensuring the accuracy of the project cost and increase the chances to win the project.",
       outerBg: "#32442f",
       innerBg: "#3c5638",
     },
     {
-      title: "Construction Support",
+      title: "Queries & Support",
       description:
-        "We work in tandem with the project team of our clients. We ensure that the ground team gets constant support in terms of engineering throughout the project execution phase whenever required. Through this we ensure that project is installed as per the design finalized during detailed engineering phase.",
+        "Our team keeps an eye on the tender filled by our clients. We provide all the supports required during bid evaluation/ Reverse Auction (RA) to ensure a smooth closure.",
       outerBg: "#2e232e",
       innerBg: "#533d52",
     },
@@ -83,22 +83,16 @@ const Page5 = () => {
 
   return (
     <>
-      <Grid
-        width={"100%"}
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        minHeight={"50vh"}
-        backgroundColor={"#3e3336"}
-      >
+      <Grid width={"100%"} display={'flex'} justifyContent={'center'} alignItems={'center'} minHeight={{xs:'800px',sm:'1000px',md:"500px"}} height={'100%'}  backgroundColor={"#3e3336"}>
         <Box
           sx={{
             width: "100%",
             height: "100%",
             display: "flex",
-            flexDirection: "row",
+            flexDirection: {xs:"column", md:'row'},
             justifyContent: "center",
             alignItems: "center",
+            gap: { xs: 8, sm: 8, md:2 },
           }}
         >
           {cardData.map((card, index) => (
@@ -117,4 +111,4 @@ const Page5 = () => {
   );
 };
 
-export default Page5;
+export default Page3;

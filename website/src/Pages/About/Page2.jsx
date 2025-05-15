@@ -81,7 +81,7 @@ const Page2 = () => {
         <Typography
           letterSpacing={1}
           fontSize={{ xs: "0.7rem", sm: "0.85rem", md: "1rem", lg: "1.1rem" }}
-          fontWeight={"100"}
+          fontWeight={"500"}
           color="#1d3f79"
           fontFamily={"Poppins"}
           maxWidth={{ xs: "md", sm: "600px", md: "710px", lg: "md" }}
