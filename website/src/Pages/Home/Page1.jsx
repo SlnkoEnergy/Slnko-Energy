@@ -112,7 +112,7 @@ const Page1 = () => {
                 xl: "1.1rem",
               }}
               letterSpacing={1}
-              fontWeight={"100"}
+              fontWeight={"500"}
               textAlign={"center"}
             >
               One-stop platform providing Solar EPC
@@ -127,7 +127,7 @@ const Page1 = () => {
                 xl: "1.1rem",
               }}
               letterSpacing={1}
-              fontWeight={"100"}
+              fontWeight={"500"}
               textAlign={"center"}
             >
               Join the solar revolution with SLNKO ENERGY

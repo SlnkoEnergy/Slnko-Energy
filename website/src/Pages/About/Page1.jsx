@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography, Container, useTheme } from '@mui/material';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import AboutP1 from '../../assets/About_P1.png';
 
 const Page1 = () => {
   const theme = useTheme();
@@ -81,18 +82,21 @@ const Page1 = () => {
             maxWidth: { xs: '100%', md: '50%' }
           }}
         >
-          <LazyLoadImage
-            alt="Solar energy solutions by Slnko"
-            src={require("../../assets/About_P1.png")}
-            effect="blur"
-            style={{
-              width: '100%',
-              maxWidth: '500px',
-              height: 'auto',
-              borderRadius: '16px',
-              objectFit: 'cover'
-            }}
-          />
+         
+
+<LazyLoadImage
+  alt="Solar energy solutions by Slnko"
+  src={AboutP1}
+  effect="blur"
+  style={{
+    width: '100%',
+    maxWidth: '500px',
+    height: 'auto',
+    borderRadius: '16px',
+    objectFit: 'cover'
+  }}
+/>
+
         </Box>
       </Box>
     </Container>
