@@ -1,20 +1,19 @@
-import React from 'react'
-import Page1 from '../components/Page1'
 import Navbar from '../../../Components/Navbar'
 import Footer from '../../../Components/Footer'
-import Page2 from '../components/Page2'
-import Page3 from '../components/Page3'
-import Page4 from '../components/Page4'
-import Page5 from '../components/Page5'
+import Careers_Main from '../components/Careers_Main'
+import Company_Culture from '../components/Company_Culture'
+import Health from '../components/Health'
+import Support from '../components/Support'
+import Work_Life from '../components/Work_Life'
 
 const Careers = () => {
   return <>
   <Navbar />
-   <Page1 />
-   <Page2 />
-   <Page3 />
-   <Page4 />
-   <Page5 />
+   <Careers_Main />
+   <Company_Culture />
+   <Health />
+   <Support />
+   <Work_Life />
    <Footer />
   </>
 }
