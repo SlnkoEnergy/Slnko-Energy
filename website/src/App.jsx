@@ -3,17 +3,16 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import Footer from "./Components/Footer";
-import Home from "./Pages/Home/Home";
-import About from "./Pages/About/About";
-import Kusum from "./Pages/Kusum Yojana/Kusum";
-import Contact from "./Pages/Contacts/Contact";
-import Careers from "./Pages/Careers/Careers";
-// In your App.js or index.js
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Design from "./Pages/Services/Design&Engineering/D&E";
-import SCM from "./Pages/Services/SCM/SCM";
-import PMC from "./Pages/Services/PMC/PMC";
+import Home from "./modules/home/pages/Home";
+import About from "./modules/about/pages/About";
+import Kusum from "./modules/kusum_yojana/pages/Kusum";
+import Contact from "./modules/contact/pages/Contact";
+import Careers from "./modules/careers/pages/Careers";
+import Design from "./modules/services/design&engineering/pages/D&E";
+import SCM from "./modules/services/scm/pages/SCM";
+import PMC from "./modules/services/pmc/pages/PMC";
 
 
 const App = () => {
