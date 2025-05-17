@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense } from "react";
 import {
   Box,
   Grid,
@@ -11,20 +11,21 @@ import CloseIcon from "@mui/icons-material/Close";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 // Lazy load state components
-const MadhyaPradesh = lazy(() => import("./IndianStates/Mp"));
-const Rajasthan = lazy(() => import("./IndianStates/Rajasthan"));
-const UttarPradesh = lazy(() => import("./IndianStates/UttarPradesh"));
-const Punjab = lazy(() => import("./IndianStates/Punjab"));
-const HimachalPradesh = lazy(() => import("./IndianStates/HimachalPradesh"));
-const Uttarakhand = lazy(() => import("./IndianStates/Uttarakhand"));
-const Jharkhand = lazy(() => import("./IndianStates/Jharkhand"));
-const Chhattisgarh = lazy(() => import("./IndianStates/Chhattisgarh"));
-const Telangana = lazy(() => import("./IndianStates/Telangana"));
-const Kerala = lazy(() => import("./IndianStates/Kerala"));
-const Maharashtra = lazy(() => import("./IndianStates/Maharashtra"));
-const Gujarat = lazy(() => import("./IndianStates/Gujarat"));
-const Sikkim = lazy(() => import("./IndianStates/Sikkim"));
-const Assam = lazy(() => import("./IndianStates/Assam"));
+const MadhyaPradesh = lazy(() => import("../../home/components/indianStates/Mp"));
+const Rajasthan = lazy(() => import("../../home/components/indianStates/Rajasthan"));
+const UttarPradesh = lazy(() => import("../../home/components/indianStates/UttarPradesh"));
+const Punjab = lazy(() => import("../../home/components/indianStates/Punjab"));
+const HimachalPradesh = lazy(() => import("../../home/components/indianStates/HimachalPradesh"));
+const Uttarakhand = lazy(() => import("../../home/components/indianStates/Uttarakhand"));
+const Jharkhand = lazy(() => import("../../home/components/indianStates/Jharkhand"));
+const Chhattisgarh = lazy(() => import("../../home/components/indianStates/Chhattisgarh"));
+const Telangana = lazy(() => import("../../home/components/indianStates/Telangana"))
+const Kerala = lazy(() => import("../../home/components/indianStates/Kerala"));
+const Maharashtra = lazy(() => import("../../home/components/indianStates/Maharashtra"));
+const Gujarat = lazy(() => import("../../home/components/indianStates/Gujarat"));
+const Sikkim = lazy(() => import("../../home/components/indianStates/Sikkim"));
+const Assam = lazy(() => import("../../home/components/indianStates/Assam"));
+
 
 const India = () => {
   const [selectedFilter, setSelectedFilter] = useState("overall"); // "overall" or "kusum"

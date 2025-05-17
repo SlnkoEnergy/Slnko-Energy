@@ -8,7 +8,7 @@ import Calculator from "../../../assets/Calculator.png";
 import chatbot from "../../../assets/chatbot-logo1.png";
 import whatsapp from "../../../assets/whatsapp.1.png";
 // import { Link } from "react-router-dom";  <-- remove this if not navigating
-import ChatbotBox from "../../home/components/Chatbot/Chatbot" // Import your chatbot component
+import ChatbotBox from "../components/chatbot/Chatbot"; // Import your chatbot component
 
 const Page1 = () => {
   const [chatOpen, setChatOpen] = useState(false);

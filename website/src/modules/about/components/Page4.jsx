@@ -30,8 +30,8 @@ import Img29 from '../../../assets/client_logo/29.png';
 
 const clientLogos = [
   { src: Img1 }, { src: Img2 }, { src: Img3 }, { src: Img4 }, { src: Img5 },
-  { src: Img6 }, { src: Img7 }, { src: Img8 }, { src: Img9 }, { src: Img10 },
-  { src: Img11 }, { src: Img12 }, { src: Img13 }, { src: Img14 }, { src: Img15 },
+  { src: Img6 }, { src: Img7 }, { src: Img8 }, { src: Img9 }, 
+   { src: Img12 }, { src: Img13 }, { src: Img14 }, { src: Img15 },
   { src: Img16 }, { src: Img17 }, { src: Img18 }, { src: Img19 }, { src: Img20 },
   { src: Img21 }, { src: Img22 }, { src: Img23 }, { src: Img24 }, { src: Img25 },
   {src: Img26 },
