@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme.js";
 import "slick-carousel/slick/slick.css";
@@ -12,30 +12,32 @@ import Design from "../modules/services/design&engineering/pages/D&E";
 import SCM from "../modules/services/scm/pages/SCM";
 import PMC from "../modules/services/pmc/pages/PMC";
 import Layout from "./Outlet";
+import News from "../modules/media/news/pages/News.jsx";
 
 // ^ adjust path as needed
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
+      
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/pm-kusum-yojana" element={<Kusum />} />
           <Route path="/contacts" element={<Contact />} />
           <Route path="/careers" element={<Careers />} />
-
+          
           {/* Nested Services Routes */}
           <Route path="/services" element={<Layout />}>
             <Route path="design&engineering" element={<Design />} />
             <Route path="scm" element={<SCM />} />
             <Route path="pmc" element={<PMC />} />
           </Route>
-        </Routes>
 
-       
-      </BrowserRouter>
+          <Route path='/media' element={<Layout />}>
+          <Route path="news" element={<News />} />
+          </Route>
+        </Routes>
     </ThemeProvider>
   );
 };
