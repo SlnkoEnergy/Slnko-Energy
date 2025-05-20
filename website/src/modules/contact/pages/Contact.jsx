@@ -1,10 +1,14 @@
-import Page1 from '../components/ContactMode'
-import Page2 from '../components/contactForm'
+import ModeContact from '../components/ContactMode'
+import FormContact from '../components/contactForm'
+import LocationContact from '../components/contactLocation'
+import Footer from '../../../Components/Footer'
 
 const Contact = () => {
   return <>
-  <Page1 />
-  <Page2/>
+  <ModeContact />
+  <FormContact/>
+  <LocationContact/>
+  <Footer/>
   </>
 }
 

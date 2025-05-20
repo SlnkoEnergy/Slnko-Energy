@@ -4,9 +4,17 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { MdEmail } from "react-icons/md";
 
-
-
-const StyledContactCard = ({ title, content, icon, outerBg, innerBg }) => (
+const StyledContactCard = ({
+  title,
+  content,
+  icon,
+  outerBg,
+  innerBg,
+  isEmail = false,
+  isPhone = false,
+  isLocation = false,
+  link = "",
+}) => (
   <Box
     sx={{
       bgcolor: outerBg,
@@ -48,14 +56,35 @@ const StyledContactCard = ({ title, content, icon, outerBg, innerBg }) => (
       }}
     >
       <Box sx={{ fontSize: 30, color: "white" }}>{icon}</Box>
-      <Typography
-        textAlign="center"
-        fontSize={{ xs: "0.75rem", sm: "0.8rem" }}
-        letterSpacing={0.5}
-        color="white"
-      >
-        {content}
-      </Typography>
+      {(isEmail || isPhone || isLocation) ? (
+        <Typography
+          component="a"
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          textAlign="center"
+          fontSize={{ xs: "0.75rem", sm: "0.8rem" }}
+          letterSpacing={0.5}
+          color="white"
+          sx={{
+            textDecoration: "underline",
+            wordBreak: "break-word",
+            whiteSpace: isLocation ? "pre-line" : "normal",
+          }}
+        >
+          {content}
+        </Typography>
+      ) : (
+        <Typography
+          textAlign="center"
+          fontSize={{ xs: "0.75rem", sm: "0.8rem" }}
+          letterSpacing={0.5}
+          color="white"
+          whiteSpace="pre-line"
+        >
+          {content}
+        </Typography>
+      )}
     </Box>
   </Box>
 );
@@ -68,6 +97,8 @@ const ContactMode = () => {
       icon: <FaPhoneAlt />,
       outerBg: "#2e3741",
       innerBg: "#3f4d5a",
+      isPhone: true,
+      link: "tel:+916202528672",
     },
     {
       title: "Address",
@@ -75,6 +106,8 @@ const ContactMode = () => {
       icon: <HiLocationMarker />,
       outerBg: "#32442f",
       innerBg: "#3c5638",
+      isLocation: true,
+      link: "https://maps.app.goo.gl/8vNyApxbTnGkXnbw7",
     },
     {
       title: "Mail",
@@ -82,6 +115,8 @@ const ContactMode = () => {
       icon: <MdEmail />,
       outerBg: "#3f2d2d",
       innerBg: "#5c4040",
+      isEmail: true,
+      link: "https://mail.google.com/mail/?view=cm&to=info@slnkoenergy.com",
     },
   ];
 
